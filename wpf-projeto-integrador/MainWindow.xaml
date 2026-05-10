@@ -240,8 +240,7 @@
                   FontWeight="Bold"
                   BorderThickness="2"
                   BorderBrush="#D4A514"
-                  Cursor="Hand"
-                  Click="BtnEntrar_Click">
+                  Cursor="Hand">
 
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
