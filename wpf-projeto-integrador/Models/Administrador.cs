@@ -12,7 +12,7 @@ namespace wpf_projeto_integrador.Models
 
         [Required]
         public NivelAcessoEnum NivelAcesso { get; set; }
-        public string Observacao { get; set; }
+        public string? Observacao { get; set; }
 
 
         public enum NivelAcessoEnum

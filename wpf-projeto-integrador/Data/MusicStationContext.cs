@@ -22,8 +22,10 @@ namespace wpf_projeto_integrador.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Usuario>().ToTable("Usuarios");
-                
+
+            modelBuilder.Entity<Usuario>().ToTable("Usuarios");
+            modelBuilder.Entity<Administrador>().ToTable("Administradores");
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Usuario>()
@@ -36,6 +38,16 @@ namespace wpf_projeto_integrador.Data
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.DataCriacao)
                 .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Administrador>()
+                .Property(a => a.NivelAcesso)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Administrador>()
+                .ToTable(t => t.HasCheckConstraint(
+                    "CK_Administrador_NivelAcesso",
+                    "NivelAcesso IN ('Baixo','Medio','Alto')"
+    ));
 
         }
 

@@ -12,7 +12,7 @@ using wpf_projeto_integrador.Data;
 namespace wpf_projeto_integrador.Migrations
 {
     [DbContext(typeof(MusicStationContext))]
-    [Migration("20260510173354_InitialCreate")]
+    [Migration("20260510191034_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -37,11 +37,6 @@ namespace wpf_projeto_integrador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -70,25 +65,35 @@ namespace wpf_projeto_integrador.Migrations
                     b.HasIndex("NomeUsuario")
                         .IsUnique();
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
 
-                    b.HasDiscriminator().HasValue("Usuario");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.Administrador", b =>
                 {
                     b.HasBaseType("wpf_projeto_integrador.Models.Usuario");
 
-                    b.Property<int>("NivelAcesso")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Observacao")
+                    b.Property<string>("NivelAcesso")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Administrador");
+                    b.Property<string>("Observacao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Administradores", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Administrador_NivelAcesso", "NivelAcesso IN ('Baixo','Medio','Alto')");
+                        });
+                });
+
+            modelBuilder.Entity("wpf_projeto_integrador.Models.Administrador", b =>
+                {
+                    b.HasOne("wpf_projeto_integrador.Models.Usuario", null)
+                        .WithOne()
+                        .HasForeignKey("wpf_projeto_integrador.Models.Administrador", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
