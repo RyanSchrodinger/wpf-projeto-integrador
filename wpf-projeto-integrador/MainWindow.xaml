@@ -7,7 +7,285 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1100">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="260*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- LADO ESQUERDO -->
+        <Border Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#07020F" Offset="0"/>
+                    <GradientStop Color="#120323" Offset="0.55"/>
+                    <GradientStop Color="#090414" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Ellipse Width="280"
+                   Height="280"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Margin="-170,0,0,-170"
+                   Opacity="0.05"
+                   Fill="#8B5CF6"/>
+
+                <StackPanel Margin="50,0,26,0"
+                      VerticalAlignment="Center">
+
+                    <Image Source="/imagens/music-station-vetorizada.png"
+                     Width="280"
+                     Stretch="Uniform"
+                     Margin="0,0,0,16"/>
+
+                    <TextBlock Text="Sistema de Gestão Administrativa"
+                         FontSize="18"
+                         Foreground="#D7D3DF"/>
+
+                    <Border Width="48"
+                      Height="3"
+                      Background="#F2B705"
+                      Margin="0,32,0,28"
+                      CornerRadius="2"/>
+
+                    <TextBlock
+                  Text="Gerencie sua rádio com eficiência.&#10;Informações, músicas e muito mais,&#10;em um só lugar."
+                  FontSize="16"
+                  LineHeight="28"
+                  Foreground="#D7D3DF"/>
+                </StackPanel>
+
+                <TextBlock VerticalAlignment="Bottom"
+                     Margin="50,0,0,32"
+                     FontSize="11"
+                     Foreground="#A0A0AA">
+              © 2026
+              <Run Text=" Music Station"
+                   Foreground="#F2B705"
+                   FontWeight="SemiBold"/>
+              . Todos os direitos reservados.
+                </TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- LINHA DIVISÓRIA -->
+        <Border Grid.Column="0"
+          Width="1"
+          Background="#3D1F68"
+          Opacity="0.7"
+          HorizontalAlignment="Left"
+          Margin="400,0,0,0"/>
+
+        <!-- FUNDO DIREITO -->
+        <Border Grid.Column="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#19062E" Offset="0"/>
+                    <GradientStop Color="#10011F" Offset="0.45"/>
+                    <GradientStop Color="#17032B" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <!-- CARD LOGIN -->
+        <Border Grid.Column="1"
+          Width="480"
+          Height="450"
+          CornerRadius="16"
+          Padding="32"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center"
+          Background="#1B1230"
+          BorderBrush="#4D2A7A"
+          BorderThickness="1">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30"
+                            ShadowDepth="0"
+                            Opacity="0.5"/>
+            </Border.Effect>
+
+            <StackPanel>
+
+                <!-- TÍTULO -->
+                <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,8">
+                    <TextBlock Text="👤"
+                         FontSize="26"
+                         Margin="0,0,12,0"
+                         Foreground="#8B5CF6"/>
+
+                    <TextBlock Text="Acesso ao sistema"
+                         FontSize="26"
+                         FontWeight="SemiBold"
+                         Foreground="White"/>
+                </StackPanel>
+
+                <TextBlock Text="Entre com suas credenciais para continuar"
+                     FontSize="14"
+                     Foreground="#C7C2D3"
+                     HorizontalAlignment="Center"
+                     Margin="0,0,0,24"/>
+
+                <Border Height="1"
+                  Background="#34234D"
+                  Margin="0,0,0,24"/>
+
+                <!-- USUÁRIO -->
+                <TextBlock Text="Usuário"
+                     FontSize="14"
+                     FontWeight="SemiBold"
+                     Foreground="White"
+                     Margin="0,0,0,6"/>
+
+                <Border Height="46"
+                  CornerRadius="8"
+                  Background="#120A20"
+                  BorderBrush="#5B2DBF"
+                  BorderThickness="1"
+                  Margin="0,0,0,18">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="👤"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Foreground="#B8B1C9"/>
+
+                        <TextBox x:Name="txtUsuario"
+                          Grid.Column="1"
+                           Background="Transparent"
+                           BorderThickness="0"
+                           FontSize="14"
+                           Foreground="#B8B1C9"
+                           VerticalContentAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- SENHA -->
+                <TextBlock Text="Senha"
+                     FontSize="14"
+                     FontWeight="SemiBold"
+                     Foreground="White"
+                     Margin="0,0,0,6"/>
+
+                <Border Height="46"
+                  CornerRadius="8"
+                  Background="#120A20"
+                  BorderBrush="#5B2DBF"
+                  BorderThickness="1"
+                  Margin="0,0,0,20">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="🔒"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Foreground="#B8B1C9"/>
+
+                        <PasswordBox x:Name="txtSenha"
+                               Grid.Column="1"
+                               Background="Transparent"
+                               BorderThickness="0"
+                               FontSize="14"
+                               VerticalContentAlignment="Center"/>
+
+                        <TextBlock Grid.Column="2"
+                             Text="👁"
+                             FontSize="18"
+                             Cursor="Hand"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Foreground="#B8B1C9"/>
+                    </Grid>
+                </Border>
+
+                <!-- OPÇÕES -->
+                <Grid Margin="0,0,0,26">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Content="Lembrar meu login"
+                        FontSize="13"
+                        Foreground="#D8D3E3"/>
+
+                    <TextBlock Grid.Column="1"
+                         Text="Esqueci minha senha"
+                         FontSize="13"
+                         Foreground="#F2B705"
+                         HorizontalAlignment="Right"
+                         Cursor="Hand"/>
+                </Grid>
+
+                <!-- BOTÃO -->
+                <Button Content="↪  Entrar"
+                  Width="360"
+                  Height="50"
+                  FontSize="18"
+                  FontWeight="Bold"
+                  BorderThickness="2"
+                  BorderBrush="#D4A514"
+                  Cursor="Hand"
+                  Click="BtnEntrar_Click">
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                              Background="#FFD21A"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border"
+                                      Property="Background"
+                                      Value="#FFF3B0"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border"
+                                      Property="Background"
+                                      Value="#E6BD17"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Border Height="1"
+                  Background="#34234D"
+                  Margin="0,26,0,20"/>
+
+                <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center">
+                    <TextBlock Text="🛡"
+                         FontSize="15"
+                         Foreground="#8B5CF6"
+                         Margin="0,0,8,0"/>
+                    <TextBlock Text="Acesso restrito. Uso exclusivo para administradores."
+                         FontSize="12"
+                         Foreground="#C7C2D3"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
 
     </Grid>
 </Window>
