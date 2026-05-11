@@ -15,9 +15,7 @@ using wpf_projeto_integrador.Models;
 
 namespace wpf_projeto_integrador
 {
-    /// <summary>
-    /// Lógica interna para TelaPrincipal.xaml
-    /// </summary>
+ 
     public partial class TelaPrincipal : Window
     {
         private Administrador _administrador;

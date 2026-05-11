@@ -23,8 +23,11 @@ namespace wpf_projeto_integrador
             InitializeComponent();
         }
 
-        private void BtnEntrar_Click(object sender, RoutedEventArgs e)
+
+
+        private void btnEntrar_Click_1(object sender, RoutedEventArgs e)
         {
+
             string? nomeUsuario = txtUsuario.Text;
             string? senha = txtSenha.Password;
             if (string.IsNullOrWhiteSpace(nomeUsuario) || string.IsNullOrWhiteSpace(senha))
