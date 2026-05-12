@@ -47,7 +47,7 @@ namespace wpf_projeto_integrador.Data
                 .ToTable(t => t.HasCheckConstraint(
                     "CK_Administrador_NivelAcesso",
                     "NivelAcesso IN ('Baixo','Medio','Alto')"
-    ));
+                 ));
 
         }
 

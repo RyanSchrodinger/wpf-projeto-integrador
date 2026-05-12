@@ -12,23 +12,15 @@ namespace wpf_projeto_integrador.Models
 
         public int Id { get; set; }
 
-
-
         [Required]
         [MaxLength(100)]
         public string Nome { get; set; }
 
-
-
-
         [Required, MaxLength(255)]
         public string SenhaHash { get; set; }
 
-
-
         [Required,  MinLength(20)]
         public string NomeUsuario  { get; set; }
-
 
         [Required]
         [EmailAddress]

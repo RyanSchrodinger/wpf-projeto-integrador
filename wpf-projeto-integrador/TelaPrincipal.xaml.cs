@@ -137,37 +137,37 @@ namespace wpf_projeto_integrador
 
             AreaConteudo.Children.Add(cardsResumo);
 
-            AreaConteudo.Children.Add(new TextBlock
-            {
-                Text = "Acesso rápido",
-                Foreground = Brushes.White,
-                FontSize = 22,
-                FontWeight = FontWeights.Bold,
-                Margin = new Thickness(8, 28, 0, 12)
-            });
+            //AreaConteudo.Children.Add(new TextBlock
+            //{
+            //    Text = "Acesso rápido",
+            //    Foreground = Brushes.White,
+            //    FontSize = 22,
+            //    FontWeight = FontWeights.Bold,
+            //    Margin = new Thickness(8, 28, 0, 12)
+            //});
 
-            UniformGrid acessoRapido = new UniformGrid
-            {
-                Columns = 3
-            };
+            //UniformGrid acessoRapido = new UniformGrid
+            //{
+            //    Columns = 3
+            //};
 
-            Button btnUsuarios = CriarCard("👤  Usuários");
-            btnUsuarios.Click += BtnUsuarios_Click;
+            //Button btnUsuarios = CriarCard("👤  Usuários");
+            //btnUsuarios.Click += BtnUsuarios_Click;
 
-            Button btnClientes = CriarCard("👥  Clientes");
-            Button btnEmpresas = CriarCard("🏢  Empresas");
-            Button btnProfissionais = CriarCard("🧑‍🎤  Profissionais");
-            Button btnInstrumentos = CriarCard("🎸  Instrumentos");
-            Button btnLocacoes = CriarCard("📦  Locações");
+            //Button btnClientes = CriarCard("👥  Clientes");
+            //Button btnEmpresas = CriarCard("🏢  Empresas");
+            //Button btnProfissionais = CriarCard("🧑‍🎤  Profissionais");
+            //Button btnInstrumentos = CriarCard("🎸  Instrumentos");
+            //Button btnLocacoes = CriarCard("📦  Locações");
 
-            acessoRapido.Children.Add(btnUsuarios);
-            acessoRapido.Children.Add(btnClientes);
-            acessoRapido.Children.Add(btnEmpresas);
-            acessoRapido.Children.Add(btnProfissionais);
-            acessoRapido.Children.Add(btnInstrumentos);
-            acessoRapido.Children.Add(btnLocacoes);
+            //acessoRapido.Children.Add(btnUsuarios);
+            //acessoRapido.Children.Add(btnClientes);
+            //acessoRapido.Children.Add(btnEmpresas);
+            //acessoRapido.Children.Add(btnProfissionais);
+            //acessoRapido.Children.Add(btnInstrumentos);
+            //acessoRapido.Children.Add(btnLocacoes);
 
-            AreaConteudo.Children.Add(acessoRapido);
+            //AreaConteudo.Children.Add(acessoRapido);
         }
 
         private Border CriarCardResumo(string iconeTexto, string titulo, string valor)
