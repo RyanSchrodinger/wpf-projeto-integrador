@@ -1,13 +1,203 @@
-﻿<Window x:Class="wpf_projeto_integrador.TelaPrincipal"
+﻿<Window x:Class="wpf_projeto_integrador.FormMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:wpf_projeto_integrador"
-        mc:Ignorable="d"
-        Title="TelaPrincipal" Height="450" Width="800">
-    <Grid>
+        Title="Music Station - Painel Administrador"
+        Height="720"
+        Width="1180"
+        WindowStartupLocation="CenterScreen"
+        Background="#151527">
 
-        <TextBlock x:Name="txtBemVindo">Bem-vindo, </TextBlock>
+    <Window.Resources>
+
+        <Style x:Key="SidebarButton" TargetType="Button">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="12 4"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#D8D8F0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="16 0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="CardButton" TargetType="Button">
+            <Setter Property="Height" Value="95"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Background" Value="#202038"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MenuColumn" Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Border Grid.Column="0"
+                Margin="18"
+                CornerRadius="28"
+                Background="#1F1F35">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="90"/>
+                </Grid.RowDefinitions>
+
+                <!-- LOGO / BOTÃO MENU -->
+                <StackPanel Margin="20" VerticalAlignment="Center">
+
+                    <Button x:Name="BtnToggleMenu"
+                            Content="☰"
+                            Width="42"
+                            Height="42"
+                            HorizontalAlignment="Left"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            FontSize="22"
+                            Cursor="Hand"
+                            Click="BtnToggleMenu_Click"/>
+
+                    <TextBlock x:Name="TxtLogoMusic"
+                               Text="MUSIC"
+                               Foreground="#5B2A86"
+                               FontSize="26"
+                               FontWeight="Black"
+                               Margin="0 8 0 0"/>
+
+                    <TextBlock x:Name="TxtLogoStation"
+                               Text="STATION"
+                               Foreground="#F4C430"
+                               FontSize="26"
+                               FontWeight="Black"/>
+
+                    <TextBlock x:Name="TxtPainelAdm"
+                               Text="Painel ADM"
+                               Foreground="#9B9BB8"
+                               FontSize="13"
+                               Margin="2 4 0 0"/>
+                </StackPanel>
+
+                <!-- MENU -->
+                <StackPanel Grid.Row="1">
+
+                    <Button x:Name="BtnMenuDashboard"
+                            Style="{StaticResource SidebarButton}"
+                            Content="🏠  Dashboard"
+                            Click="BtnDashboard_Click"/>
+
+                    <Button x:Name="BtnMenuPessoas"
+                            Style="{StaticResource SidebarButton}"
+                            Content="👥  Gestão de Pessoas"
+                            Click="BtnPessoas_Click"/>
+
+                    <Button x:Name="BtnMenuFinanceiro"
+                            Style="{StaticResource SidebarButton}"
+                            Content="💰  Gestão Financeira"
+                            Click="BtnFinanceiro_Click"/>
+
+                    <Button x:Name="BtnMenuServicos"
+                            Style="{StaticResource SidebarButton}"
+                            Content="🎵  Gestão de Serviços"
+                            Click="BtnServicos_Click"/>
+
+                    <Button x:Name="BtnMenuLocacoes"
+                            Style="{StaticResource SidebarButton}"
+                            Content="📦  Gestão de Locações"
+                            Click="BtnLocacoes_Click"/>
+
+                    <Button x:Name="BtnMenuComunicacao"
+                            Style="{StaticResource SidebarButton}"
+                            Content="💬  Comunicação"
+                            Click="BtnComunicacao_Click"/>
+
+                    <Button x:Name="BtnMenuConfiguracoes"
+                            Style="{StaticResource SidebarButton}"
+                            Content="⚙️  Configurações"
+                            Click="BtnConfiguracoes_Click"/>
+                </StackPanel>
+
+                <!-- LOGOUT -->
+                <StackPanel Grid.Row="2">
+                    <Button x:Name="BtnMenuLogout"
+                            Style="{StaticResource SidebarButton}"
+                            Content="🚪  Fazer logout"
+                            Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <Grid Grid.Column="1" Margin="0 18 18 18">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="82"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- TOPO -->
+            <Border Grid.Row="0"
+                    Background="#1F1F35"
+                    CornerRadius="24"
+                    Padding="24 0">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="280"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock x:Name="TxtTituloPagina"
+                                   Text="Dashboard"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Text="Bem-vindo ao painel administrativo do Music Station"
+                                   Foreground="#9B9BB8"
+                                   FontSize="14"
+                                   Margin="0 4 0 0"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Background="#151527"
+                            CornerRadius="18"
+                            Height="46"
+                            VerticalAlignment="Center"
+                            Padding="16 0">
+
+                        <TextBox x:Name="TxtBusca"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 VerticalContentAlignment="Center"
+                                 Text="Buscar..."
+                                 CaretBrush="White"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- ÁREA QUE MUDA -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="0 18 0 0">
+
+                <StackPanel x:Name="AreaConteudo"/>
+            </ScrollViewer>
+
+        </Grid>
     </Grid>
 </Window>

@@ -52,7 +52,7 @@ namespace wpf_projeto_integrador
 
 
                 MessageBox.Show($"Bem-vindo, {adm.NomeUsuario}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
-                TelaPrincipal tela = new TelaPrincipal(adm);
+                FormMenu tela = new FormMenu(adm);
                 tela.Show();
 
                 this.Close();
