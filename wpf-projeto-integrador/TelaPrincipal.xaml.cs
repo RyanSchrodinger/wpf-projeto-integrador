@@ -10,7 +10,7 @@ namespace wpf_projeto_integrador
     {
         private bool menuAberto = true;
 
-        public FormMenu(Administrador adm)
+        public FormMenu()
         {
             InitializeComponent();
             MostrarDashboard();

@@ -28,31 +28,31 @@ namespace wpf_projeto_integrador
         private void btnEntrar_Click_1(object sender, RoutedEventArgs e)
         {
 
-            string? nomeUsuario = txtUsuario.Text;
-            string? senha = txtSenha.Password;
-            if (string.IsNullOrWhiteSpace(nomeUsuario) || string.IsNullOrWhiteSpace(senha))
-            {
-                MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+            //string? nomeUsuario = txtUsuario.Text;
+            //string? senha = txtSenha.Password;
+            //if (string.IsNullOrWhiteSpace(nomeUsuario) || string.IsNullOrWhiteSpace(senha))
+            //{
+            //    MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    return;
+            //}
 
-            using (var db = new MusicStationContext())
-            {
-                Administrador adm = db.Administradores
-                    .FirstOrDefault(a =>
-                        a.NomeUsuario == nomeUsuario &&
-                        a.SenhaHash == senha);
-
-
-                if (adm == null)
-                {
-                    MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+            //using (var db = new MusicStationContext())
+            //{
+            //    Administrador adm = db.Administradores
+            //        .FirstOrDefault(a =>
+            //            a.NomeUsuario == nomeUsuario &&
+            //            a.SenhaHash == senha);
 
 
-                MessageBox.Show($"Bem-vindo, {adm.NomeUsuario}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
-                FormMenu tela = new FormMenu(adm);
+            //    if (adm == null)
+            //    {
+            //        MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        return;
+            //    }
+
+
+            //    MessageBox.Show($"Bem-vindo, {adm.NomeUsuario}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+            FormMenu tela = new FormMenu();
                 tela.Show();
 
                 this.Close();
@@ -72,7 +72,7 @@ namespace wpf_projeto_integrador
                 // {
                 //     MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                 // }
-            }
+            //}
 
         }
     }

@@ -84,11 +84,36 @@ namespace wpf_projeto_integrador.Migrations
                         });
                 });
 
+            modelBuilder.Entity("wpf_projeto_integrador.Models.Empresa", b =>
+                {
+                    b.HasBaseType("wpf_projeto_integrador.Models.Usuario");
+
+                    b.Property<string>("CNPJ")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Empresas");
+                });
+
             modelBuilder.Entity("wpf_projeto_integrador.Models.Administrador", b =>
                 {
                     b.HasOne("wpf_projeto_integrador.Models.Usuario", null)
                         .WithOne()
                         .HasForeignKey("wpf_projeto_integrador.Models.Administrador", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("wpf_projeto_integrador.Models.Empresa", b =>
+                {
+                    b.HasOne("wpf_projeto_integrador.Models.Usuario", null)
+                        .WithOne()
+                        .HasForeignKey("wpf_projeto_integrador.Models.Empresa", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
