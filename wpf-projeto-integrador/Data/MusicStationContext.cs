@@ -12,7 +12,6 @@ namespace wpf_projeto_integrador.Data
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
-        public DbSet<Empresa> Empresas { get; set; }    
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
