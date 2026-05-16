@@ -42,12 +42,6 @@
 
                         </Button>
 
-                        <TextBlock Text="MENU"
-                                   Foreground="White"
-                                   FontSize="14"
-                                   FontWeight="Bold"
-                                   VerticalAlignment="Center"
-                                   Margin="12 0 0 0"/>
 
                     </StackPanel>
                     <TextBlock 
