@@ -13,10 +13,14 @@ namespace wpf_projeto_integrador.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
 
+        public DbSet<LogSistema> LogsSistema { get; set; }
+        public DbSet<TipoAcao> TiposAcao { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Server=OSA0716347W11-1\\SQLEXPRESS;Database=MusicStation;Trusted_Connection=True;TrustServerCertificate=True;"
+                "Server=Ryan\\SQLEXPRESS;Database=MusicStation;Trusted_Connection=True;TrustServerCertificate=True;"
             );
         }
 
@@ -49,6 +53,45 @@ namespace wpf_projeto_integrador.Data
                     "NivelAcesso IN ('Baixo','Medio','Alto')"
                  ));
 
+
+            modelBuilder.Entity<TipoAcao>()
+               .HasIndex(t => t.Nome)
+               .IsUnique();
+
+            modelBuilder.Entity<TipoAcao>()
+                .Property(t => t.Nome)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            modelBuilder.Entity<LogSistema>()
+                .Property(l => l.NomeComputador)
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<LogSistema>()
+                .Property(l => l.Descricao)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            modelBuilder.Entity<LogSistema>()
+                .Property(l => l.Entidade)
+                .HasMaxLength(100);
+
+
+            modelBuilder.Entity<LogSistema>()
+                .Property(l => l.DataHora)
+                .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<LogSistema>()
+                .HasOne(l => l.Usuario)
+                .WithMany(u => u.Logs)
+                .HasForeignKey(l => l.UsuarioId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<LogSistema>()
+                .HasOne(l => l.TipoAcao)
+                .WithMany(t => t.Logs)
+                .HasForeignKey(l => l.TipoAcaoId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
 

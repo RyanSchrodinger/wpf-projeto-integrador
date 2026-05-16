@@ -19,6 +19,8 @@ namespace wpf_projeto_integrador.Models
         public string? Entidade { get; set; }
         public int? EntidadeId { get; set; }
 
+        public string? NomeComputador { get; set; }
+
 
         public string Descricao { get; set; }
         public DateTime DataHora { get; set; }

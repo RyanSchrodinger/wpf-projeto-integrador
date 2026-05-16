@@ -28,6 +28,8 @@ namespace wpf_projeto_integrador.Models
         public string Email { get; set; } 
         public DateTime DataCriacao { get; set; }
 
+        public ICollection<LogSistema> Logs { get; set; } = new List<LogSistema>();
+
 
     }
 }

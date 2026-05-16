@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq.Expressions;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,36 +29,66 @@ namespace wpf_projeto_integrador
         private void btnEntrar_Click_1(object sender, RoutedEventArgs e)
         {
 
-            //string? nomeUsuario = txtUsuario.Text;
-            //string? senha = txtSenha.Password;
-            //if (string.IsNullOrWhiteSpace(nomeUsuario) || string.IsNullOrWhiteSpace(senha))
-            //{
-            //    MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
 
-            //using (var db = new MusicStationContext())
-            //{
-            //    Administrador adm = db.Administradores
-            //        .FirstOrDefault(a =>
-            //            a.NomeUsuario == nomeUsuario &&
-            //            a.SenhaHash == senha);
+            string? nomeUsuario = txtUsuario.Text;
+            string? senha = txtSenha.Password;
+            if (string.IsNullOrWhiteSpace(nomeUsuario) || string.IsNullOrWhiteSpace(senha))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
 
-
-            //    if (adm == null)
-            //    {
-            //        MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        return;
-            //    }
+                using (var db = new MusicStationContext())
+                {
+                    Administrador adm = db.Administradores
+                        .FirstOrDefault(a =>
+                            a.NomeUsuario == nomeUsuario &&
+                            a.SenhaHash == senha);
 
 
-            //    MessageBox.Show($"Bem-vindo, {adm.NomeUsuario}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
-            FormMenu tela = new FormMenu();
-                tela.Show();
+                    if (adm == null)
+                    {
+                        MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
 
-                this.Close();
+                    var login = db.TiposAcao.FirstOrDefault(t => t.Nome == "Login");
+
+                    if (login == null)
+                    {
+                        MessageBox.Show("Vish, vey. Deu probelma ai", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                    var log = new LogSistema
+                    {
+                        UsuarioId = adm.Id,
+                        TipoAcaoId = login.Id,
+                        Entidade = "Administrador",
+                        EntidadeId = adm.Id,
+                        Descricao = $"Administrador {adm.NomeUsuario} fez login.",
+                        DataHora = DateTime.Now,
+                        NomeComputador = Environment.MachineName
+                    };
+
+                    db.LogsSistema.Add(log);
+                    db.SaveChanges();
 
 
+
+                    MessageBox.Show($"Bem-vindo, {adm.NomeUsuario}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    FormMenu tela = new FormMenu();
+                    tela.Show();
+
+                    this.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro ao tentar fazer login: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
 
 
@@ -72,7 +103,7 @@ namespace wpf_projeto_integrador
                 // {
                 //     MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                 // }
-            //}
+                //}
 
         }
     }

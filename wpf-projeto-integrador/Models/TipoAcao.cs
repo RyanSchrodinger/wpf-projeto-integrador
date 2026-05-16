@@ -16,6 +16,6 @@ namespace wpf_projeto_integrador.Models
         [MaxLength(100)]
         public string Nome { get; set; }
 
-
+        public ICollection<LogSistema> Logs { get; set; } = new List<LogSistema>();
     }
 }

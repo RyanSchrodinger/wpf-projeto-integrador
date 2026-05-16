@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wpf_projeto_integrador.Data;
 
@@ -11,9 +12,11 @@ using wpf_projeto_integrador.Data;
 namespace wpf_projeto_integrador.Migrations
 {
     [DbContext(typeof(MusicStationContext))]
-    partial class MusicStationContextModelSnapshot : ModelSnapshot
+    [Migration("20260516172125_LogSistema")]
+    partial class LogSistema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,10 +49,6 @@ namespace wpf_projeto_integrador.Migrations
 
                     b.Property<int?>("EntidadeId")
                         .HasColumnType("int");
-
-                    b.Property<string>("NomeComputador")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("TipoAcaoId")
                         .HasColumnType("int");
