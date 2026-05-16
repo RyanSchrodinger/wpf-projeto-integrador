@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using wpf_projeto_integrador.Models;
+using wpf_projeto_integrador.View;
 
 namespace wpf_projeto_integrador
 {
@@ -16,6 +17,10 @@ namespace wpf_projeto_integrador
 
         }
 
+        private void btnLogs_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new LogsControl();
+        }
     }
         
 }
