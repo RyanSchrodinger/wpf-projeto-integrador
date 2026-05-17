@@ -54,6 +54,24 @@ namespace wpf_projeto_integrador
                : Visibility.Visible;
 
         }
+
+        private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
+        {
+           SubMenuServicos.Visibility =
+               SubMenuServicos.Visibility == Visibility.Visible
+               ? Visibility.Collapsed
+               : Visibility.Visible;
+
+        }
+
+        private void BtnGestaoLocacoes_Click(object sender, RoutedEventArgs e)
+        {
+            SubMenuLocacoes.Visibility =
+               SubMenuLocacoes.Visibility == Visibility.Visible
+               ? Visibility.Collapsed
+               : Visibility.Visible;
+
+        }
     }
         
 }
