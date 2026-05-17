@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.IconPacks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -40,36 +41,56 @@ namespace wpf_projeto_integrador
 
         private void BtnGestaoPessoas_Click(object sender, RoutedEventArgs e)
         {
+            bool aberto = SubMenuPessoas.Visibility == Visibility.Visible;
+
             SubMenuPessoas.Visibility =
-               SubMenuPessoas.Visibility == Visibility.Visible
-               ? Visibility.Collapsed
-               : Visibility.Visible;
+                aberto ? Visibility.Collapsed : Visibility.Visible;
+
+            SetaPessoas.Kind =
+                aberto
+                ? PackIconMaterialKind.ChevronDown
+                : PackIconMaterialKind.ChevronUp;
         }
 
         private void BtnGestaoFinanceira_Click(object sender, RoutedEventArgs e)
         {
-            SubMenuFinancas.Visibility =
-               SubMenuFinancas.Visibility == Visibility.Visible
-               ? Visibility.Collapsed
-               : Visibility.Visible;
+            bool aberto = SubMenuFinancas.Visibility == Visibility.Visible;
 
+            SubMenuFinancas.Visibility =
+                aberto ? Visibility.Collapsed : Visibility.Visible;
+
+            SetaFinancas.Kind =
+                aberto
+                ? PackIconMaterialKind.ChevronDown
+                : PackIconMaterialKind.ChevronUp;
         }
+        
 
         private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
         {
-           SubMenuServicos.Visibility =
-               SubMenuServicos.Visibility == Visibility.Visible
-               ? Visibility.Collapsed
-               : Visibility.Visible;
+            bool aberto = SubMenuServicos.Visibility == Visibility.Visible;
+
+            SubMenuServicos.Visibility =
+                aberto ? Visibility.Collapsed : Visibility.Visible;
+
+            SetaServicos.Kind =
+                aberto
+                ? PackIconMaterialKind.ChevronDown
+                : PackIconMaterialKind.ChevronUp;
 
         }
 
         private void BtnGestaoLocacoes_Click(object sender, RoutedEventArgs e)
         {
+            bool aberto = SubMenuLocacoes.Visibility == Visibility.Visible;
+
             SubMenuLocacoes.Visibility =
-               SubMenuLocacoes.Visibility == Visibility.Visible
-               ? Visibility.Collapsed
-               : Visibility.Visible;
+                aberto ? Visibility.Collapsed : Visibility.Visible;
+
+            SetaLocacoes.Kind =
+                aberto
+                ? PackIconMaterialKind.ChevronDown
+                : PackIconMaterialKind.ChevronUp;
 
         }
     }

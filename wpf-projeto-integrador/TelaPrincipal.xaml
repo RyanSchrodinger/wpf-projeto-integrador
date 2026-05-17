@@ -9,7 +9,7 @@
         Background="#151527">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MenuColumn" Width="260"/>
+            <ColumnDefinition x:Name="MenuColumn" Width="270"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -68,8 +68,8 @@
 
                     <StackPanel Orientation="Vertical">
 
-                        <Button Style="{StaticResource SidebarButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource MenuButton}">
+                            <StackPanel Orientation="Horizontal">
 
                                 <Icon:PackIconMaterial Kind="ViewDashboard"
                                        Width="22"
@@ -83,18 +83,33 @@
 
                         <StackPanel>
                             <Button Style="{StaticResource MenuButton}"
-                                     Click="BtnGestaoPessoas_Click">
+                                    Click="BtnGestaoPessoas_Click">
 
-                                <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
                                     <Icon:PackIconMaterial Kind="AccountGroup"
-                                           Width="24"
-                                           Height="24"/>
+                                                       Width="24"
+                                                       Height="24"
+                                                       VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="Gestão de Pessoas"
-                               Margin="14 0 0 0"/>
+                                    <TextBlock Grid.Column="1"
+                                           Text="Gestão de Pessoas"
+                                           Margin="14 0 0 0"
+                                           VerticalAlignment="Center"/>
 
-                                </StackPanel>
+                                    <Icon:PackIconMaterial x:Name="SetaPessoas"
+                                                       Grid.Column="2"
+                                                       Kind="ChevronDown"
+                                                       Width="14"
+                                                       Height="14"
+                                                       VerticalAlignment="Center"/>
+                                </Grid>
+
 
                             </Button>
 
@@ -102,24 +117,116 @@
                                         Visibility="Collapsed"
                                         Margin="42 0 0 0">
 
-                                <Button Content="Administradores"
-                                        Style="{StaticResource SubMenuButton}"/>
 
-                                <Button Content="Usuários"
-                                        Style="{StaticResource SubMenuButton}"/>
 
-                                <Button Content="Profissionais"
-                                        Style="{StaticResource SubMenuButton}"/>
 
-                                <Button Content="Clientes"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                <Button  Style="{StaticResource SubMenuButton}">
 
-                                <Button Content="Empresas"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                    <StackPanel Orientation="Horizontal">
 
-                                <Button Content="Profissional Cargo"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
 
+                                        <TextBlock Text="Usuários"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Administradores"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+                                  
+                                    <StackPanel Orientation="Horizontal">
+                                      
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Profissionais"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+                                
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Clientes"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Empresas"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Profissional Cargo"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
                             </StackPanel>
 
                         </StackPanel>
@@ -129,31 +236,93 @@
                             <Button Style="{StaticResource MenuButton}"
                                       Click="BtnGestaoFinanceira_Click">
 
-                                <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
 
                                     <Icon:PackIconMaterial Kind="Finance"
                                             Width="24"
                                             Height="24"/>
 
                                     <TextBlock Text="Gestão de Finanças"
-                                Margin="14 0 0 0"/>
+                                               Grid.Column="1"
+                                               Margin="14 0 0 0"
+                                               VerticalAlignment="Center"/>
 
-                                </StackPanel>
+                                    <Icon:PackIconMaterial x:Name="SetaFinancas"
+                                                           Grid.Column="2"
+                                                           Kind="ChevronDown"
+                                                           Width="14"
+                                                           Height="14"
+                                                           VerticalAlignment="Center"/>
 
+                                </Grid>
                             </Button>
 
                             <StackPanel x:Name="SubMenuFinancas"
                                          Visibility="Collapsed"
                                          Margin="42 0 0 0">
 
-                                <Button Content="Pagamentos"
-                                         Style="{StaticResource SubMenuButton}"/>
 
-                                <Button Content="Transações"
-                                         Style="{StaticResource SubMenuButton}"/>
+                                <Button  Style="{StaticResource SubMenuButton}">
 
-                                <Button Content="Forma Pagamento"
-                                         Style="{StaticResource SubMenuButton}"/>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Pagamentos"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Transações"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Forma Pagamento"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
 
 
                             </StackPanel>
@@ -165,16 +334,32 @@
                             <Button Style="{StaticResource MenuButton}"
                                     Click="BtnGestaoServicos_Click">
 
-                                <StackPanel Orientation="Horizontal">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
 
                                     <Icon:PackIconMaterial Kind="Hammer"
                                                             Width="24"
                                                             Height="24"/>
 
                                     <TextBlock Text="Gestão de Serviços"
-                                                Margin="14 0 0 0"/>
+                                               Margin="14 0 0 0"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Center"/>
 
-                                </StackPanel>
+                                    <Icon:PackIconMaterial x:Name="SetaServicos"
+                                                           Grid.Column="2"
+                                                           Kind="ChevronDown"
+                                                           Width="14"
+                                                           Height="14"
+                                                           VerticalAlignment="Center"/>
+                                </Grid>
+
 
                             </Button>
 
@@ -182,14 +367,81 @@
                                         Visibility="Collapsed"
                                         Margin="42 0 0 0">
 
-                                <Button Content="Pagamentos"
-                                        Style="{StaticResource SubMenuButton}"/>
 
-                                <Button Content="Transações"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                <Button  Style="{StaticResource SubMenuButton}">
 
-                                <Button Content="Forma Pagamento"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Serviços"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Pedidos"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Serviços Pedidos"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Avaliações"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
 
 
                             </StackPanel>
@@ -199,17 +451,30 @@
                         <StackPanel>
                             <Button Style="{StaticResource MenuButton}"
                                     Click="BtnGestaoLocacoes_Click">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <StackPanel Orientation="Horizontal">
 
                                     <Icon:PackIconMaterial Kind="AccountCard"
                                     Width="24"
                                     Height="24"/>
 
                                     <TextBlock Text="Gestão de Locações"
-                                                Margin="14 0 0 0"/>
+                                               Margin="14 0 0 0"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Center"/>
 
-                                </StackPanel>
+                                    <Icon:PackIconMaterial x:Name="SetaLocacoes"
+                                                           Grid.Column="2"
+                                                           Kind="ChevronDown"
+                                                           Width="14"
+                                                           Height="14"
+                                                           VerticalAlignment="Center"/>
+                                </Grid>
 
                             </Button>
 
@@ -217,14 +482,64 @@
                                         Visibility="Collapsed"
                                         Margin="42 0 0 0">
 
-                                <Button Content="Pagamentos"
-                                        Style="{StaticResource SubMenuButton}"/>
 
-                                <Button Content="Transações"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                <Button  Style="{StaticResource SubMenuButton}">
 
-                                <Button Content="Forma Pagamento"
-                                        Style="{StaticResource SubMenuButton}"/>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Locações"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Locações Itens"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
+
+
+                                <Button  Style="{StaticResource SubMenuButton}">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Ellipse Width="6"
+                                                 Height="6"
+                                                 Fill="#8B5CF6"
+                                                 VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Instrumentos"
+                                                   Margin="14 0 0 0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+
+                                </Button>
+
 
 
                             </StackPanel>
@@ -232,41 +547,8 @@
                         </StackPanel>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <Button Style="{StaticResource SidebarButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                <Icon:PackIconMaterial Kind="AccountCard"
-                                       Height="22"
-                                       Width="22"
-                                       Margin="0 0 12 0"/>
-
-                                <TextBlock Text="Gestão de Locações"/>
-
-                            </StackPanel>
-                        </Button>
-
-                        <Button Style="{StaticResource SidebarButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource MenuButton}">
+                            <StackPanel Orientation="Horizontal" >
 
                                 <Icon:PackIconMaterial Kind="Chat"
                                        Height="22"
@@ -278,8 +560,8 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource SidebarButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource MenuButton}">
+                            <StackPanel Orientation="Horizontal">
 
                                 <Icon:PackIconMaterial Kind="Github"
                                        Height="22"
@@ -292,10 +574,10 @@
                         </Button>
 
                         <Button x:Name="btnLogs"
-                                Style="{StaticResource SidebarButton}"
+                                Style="{StaticResource MenuButton}"
                                 Click="btnLogs_Click">
 
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
 
                                 <Icon:PackIconMaterial Kind="FileDocument"
                                        Height="22"
@@ -323,8 +605,6 @@
         <Grid Grid.Column="1" Margin="0 18 18 18">
 
             <ContentControl x:Name="MainContent" Margin="10,0,0,0"/>
-
-
 
 
 

@@ -15,6 +15,9 @@ namespace wpf_projeto_integrador.Data
 
         public DbSet<LogSistema> LogsSistema { get; set; }
         public DbSet<TipoAcao> TiposAcao { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Profissional> Profissionais { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,6 +32,9 @@ namespace wpf_projeto_integrador.Data
 
             modelBuilder.Entity<Usuario>().ToTable("Usuarios");
             modelBuilder.Entity<Administrador>().ToTable("Administradores");
+            modelBuilder.Entity<Cliente>().ToTable("Clientes");
+            modelBuilder.Entity<Profissional>().ToTable("Profissionais");
+            modelBuilder.Entity<Empresa>().ToTable("Empresas");
 
             base.OnModelCreating(modelBuilder);
 
@@ -92,6 +98,67 @@ namespace wpf_projeto_integrador.Data
                 .WithMany(t => t.Logs)
                 .HasForeignKey(l => l.TipoAcaoId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            // Cliente
+            modelBuilder.Entity<Cliente>(entity =>
+            {
+                entity.Property(c => c.Telefone)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(c => c.Rua)
+                    .HasMaxLength(100);
+
+                entity.Property(c => c.Numero)
+                    .HasMaxLength(10);
+
+                entity.Property(c => c.Cidade)
+                    .HasMaxLength(100);
+            });
+
+            // Profissional
+            modelBuilder.Entity<Profissional>(entity =>
+            {
+                entity.Property(p => p.Telefone)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(p => p.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(300);
+
+                entity.Property(p => p.Rua)
+                    .HasMaxLength(100);
+
+                entity.Property(p => p.Numero)
+                    .HasMaxLength(10);
+
+                entity.Property(p => p.Cidade)
+                    .HasMaxLength(100);
+            });
+
+
+            // Empresa
+            modelBuilder.Entity<Empresa>(entity =>
+            {
+                entity.Property(e => e.Cnpj)
+                    .IsRequired()
+                    .HasMaxLength(18);
+
+                entity.Property(e => e.NomeFantasia)
+                    .IsRequired()
+                    .HasMaxLength(150);
+
+                entity.Property(e => e.Telefone)
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Endereco)
+                    .HasMaxLength(200);
+
+                entity.HasIndex(e => e.Cnpj)
+                    .IsUnique();
+            });
         }
 
 
