@@ -58,5 +58,101 @@
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
 
+
+
+            <!-- BOTÃO PRINCIPAL -->
+            <Style x:Key="MenuButton"
+           TargetType="Button">
+
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Height" Value="48"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+
+                        <ControlTemplate TargetType="Button">
+
+                            <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10"
+                            Padding="14 0">
+
+                                <ContentPresenter VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsMouseOver"
+                                 Value="True">
+
+                                    <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="#2B2B52"/>
+
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+
+            <!-- BOTÃO SUBMENU -->
+            <Style x:Key="SubMenuButton"
+           TargetType="Button">
+
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#D7D7E8"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Height" Value="38"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="FontSize" Value="15"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+
+                        <ControlTemplate TargetType="Button">
+
+                            <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="8"
+                            Padding="12 0">
+
+                                <ContentPresenter VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsMouseOver"
+                                 Value="True">
+
+                                    <Setter TargetName="Bd"
+                                    Property="Background"
+                                    Value="#3A3A6A"/>
+
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+
+
     </Application.Resources>
 </Application>

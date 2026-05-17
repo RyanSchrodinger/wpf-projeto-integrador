@@ -15,7 +15,7 @@
 
         <!-- SIDEBAR -->
         <Border Grid.Column="0"
-                Margin="15"
+                Margin="15,15,5,15"
                 CornerRadius="28"
                 Background="#1F1F35">
 
@@ -59,140 +59,157 @@
                            FontWeight="Black"/>    
                 </StackPanel>
 
-                
 
 
-                <StackPanel Grid.Row="1"
-                            Orientation="Vertical">
 
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ScrollViewer Grid.Row="1"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
 
-                            <Icon:PackIconMaterial Kind="ViewDashboard"
-                                                    Width="22"
-                                                    Height="22" 
-                                                    Margin="0 0 12 0"/>
-                            
-                            <TextBlock Text="Dashboard"/>
+                    <StackPanel Orientation="Vertical">
 
-                        </StackPanel>
-                        
+                        <Button Style="{StaticResource SidebarButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
+                                <Icon:PackIconMaterial Kind="ViewDashboard"
+                                       Width="22"
+                                       Height="22" 
+                                       Margin="0 0 12 0"/>
 
-                    </Button>
-                    
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Icon:PackIconMaterial Kind="Account"
-                                                    Width="22"
-                                                    Height="22" 
-                                                    Margin="0 0 12 0"/>
+                                <TextBlock Text="Dashboard"/>
 
-                            <TextBlock Text="Gestão de Pessoas"/>
-                        </StackPanel>
+                            </StackPanel>
+                        </Button>
 
-                    </Button>
-                    
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            
-                            <Icon:PackIconMaterial Kind="Finance"
-                                                    Width="22"
-                                                    Height="22" 
-                                                    Margin="0 0 12 0"/>
+                        <StackPanel>
+                            <Button Style="{StaticResource MenuButton}"
+                                     Click="BtnGestaoPessoas_Click">
 
-                            <TextBlock Text="Gestão de Finanças"/>
-                        </StackPanel>     
-                    </Button>
+                                <StackPanel Orientation="Horizontal">
 
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Icon:PackIconMaterial Kind="AccountGroup"
+                                           Width="24"
+                                           Height="24"/>
 
-                            <Icon:PackIconMaterial Kind="Hammer" 
-                                                   Width="22"
-                                                   Height="22"
-                                                   Margin="0 0 12 0"/>
+                                    <TextBlock Text="Gestão de Pessoas"
+                               Margin="14 0 0 0"/>
 
-                            <TextBlock Text="Gestão de Serviços"/>
-                        </StackPanel>
-                    </Button>
+                                </StackPanel>
 
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Icon:PackIconMaterial Kind="AccountCard"
-                                                   Height="22"
-                                                   Width="22"
-                                                   Margin="0 0 12 0"/>
+                            </Button>
 
-                            <TextBlock Text="Gestão de Locações"/>
+                            <StackPanel x:Name="SubMenuPessoas"
+                                        Visibility="Collapsed"
+                                        Margin="42 0 0 0">
 
-                        </StackPanel>
-                        
-                        
-                        
-                    </Button>
+                                <Button Content="Administradores"
+                                        Style="{StaticResource SubMenuButton}"/>
 
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Icon:PackIconMaterial Kind="Chat"
-                               Height="22"
-                               Width="22"
-                               Margin="0 0 12 0"/>
+                                <Button Content="Usuários"
+                                        Style="{StaticResource SubMenuButton}"/>
 
-                            <TextBlock Text="Comunicação"/>
+                                <Button Content="Profissionais"
+                                        Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Clientes"
+                                        Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Empresas"
+                                        Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Profissional Cargo"
+                                        Style="{StaticResource SubMenuButton}"/>
+
+                            </StackPanel>
 
                         </StackPanel>
 
+                        <Button Style="{StaticResource SidebarButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
+                                <Icon:PackIconMaterial Kind="Finance"
+                                       Width="22"
+                                       Height="22" 
+                                       Margin="0 0 12 0"/>
 
-                    </Button>
+                                <TextBlock Text="Gestão de Finanças"/>
 
-                    <Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Icon:PackIconMaterial Kind="Github"
-                               Height="22"
-                               Width="22"
-                               Margin="0 0 12 0"/>
+                            </StackPanel>
+                        </Button>
 
-                            <TextBlock Text="Configuração"/>
+                        <Button Style="{StaticResource SidebarButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                        </StackPanel>
+                                <Icon:PackIconMaterial Kind="Hammer" 
+                                       Width="22"
+                                       Height="22"
+                                       Margin="0 0 12 0"/>
 
+                                <TextBlock Text="Gestão de Serviços"/>
 
+                            </StackPanel>
+                        </Button>
 
-                    </Button>
+                        <Button Style="{StaticResource SidebarButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                    <Button x:Name="btnLogs" Style="{StaticResource SidebarButton}"
-                            Click="btnLogs_Click">
+                                <Icon:PackIconMaterial Kind="AccountCard"
+                                       Height="22"
+                                       Width="22"
+                                       Margin="0 0 12 0"/>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Icon:PackIconMaterial Kind="FileDocument"
-                               Height="22"
-                               Width="22"
-                               Margin="0 0 12 0"/>
-                            
-                            <TextBlock Text="Logs"/>
+                                <TextBlock Text="Gestão de Locações"/>
 
+                            </StackPanel>
+                        </Button>
 
-                        </StackPanel>
-                    </Button>
-                    
-                    <!--<Button Style="{StaticResource SidebarButton}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Icon:PackIconMaterial Kind="Logout"
-                               Height="22"
-                               Width="22"
-                               Margin="0 0 12 0"/>
-                            <TextBlock Text="Sair"/>
-                        </StackPanel>
-                    </Button>-->
+                        <Button Style="{StaticResource SidebarButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
+                                <Icon:PackIconMaterial Kind="Chat"
+                                       Height="22"
+                                       Width="22"
+                                       Margin="0 0 12 0"/>
 
+                                <TextBlock Text="Comunicação"/>
 
+                            </StackPanel>
+                        </Button>
 
+                        <Button Style="{StaticResource SidebarButton}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                </StackPanel>
-                
+                                <Icon:PackIconMaterial Kind="Github"
+                                       Height="22"
+                                       Width="22"
+                                       Margin="0 0 12 0"/>
+
+                                <TextBlock Text="Configuração"/>
+
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btnLogs"
+                                Style="{StaticResource SidebarButton}"
+                                Click="btnLogs_Click">
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                <Icon:PackIconMaterial Kind="FileDocument"
+                                       Height="22"
+                                       Width="22"
+                                       Margin="0 0 12 0"/>
+
+                                <TextBlock Text="Logs"/>
+
+                            </StackPanel>
+
+                        </Button>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
             </Grid>
             
             
@@ -201,7 +218,7 @@
         <!-- CONTEÚDO PRINCIPAL -->
         <Grid Grid.Column="1" Margin="0 18 18 18">
 
-            <ContentControl x:Name="MainContent"/>
+            <ContentControl x:Name="MainContent" Margin="10,0,0,0"/>
 
 
 

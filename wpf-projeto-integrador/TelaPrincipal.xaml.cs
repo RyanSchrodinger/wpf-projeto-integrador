@@ -37,6 +37,14 @@ namespace wpf_projeto_integrador
             }
             MainContent.Content = new LogsControl();
         }
+
+        private void BtnGestaoPessoas_Click(object sender, RoutedEventArgs e)
+        {
+            SubMenuPessoas.Visibility =
+               SubMenuPessoas.Visibility == Visibility.Visible
+               ? Visibility.Collapsed
+               : Visibility.Visible;
+        }
     }
         
 }
