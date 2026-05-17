@@ -12,7 +12,6 @@ namespace wpf_projeto_integrador.Data
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
-
         public DbSet<LogSistema> LogsSistema { get; set; }
         public DbSet<TipoAcao> TiposAcao { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
@@ -48,7 +47,9 @@ namespace wpf_projeto_integrador.Data
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.DataCriacao)
                 .HasDefaultValueSql("GETDATE()");
-
+            modelBuilder.Entity<Usuario>()
+                .Property(u => u.Ativo)
+                .HasDefaultValue(true);
             modelBuilder.Entity<Administrador>()
                 .Property(a => a.NivelAcesso)
                 .HasConversion<string>();

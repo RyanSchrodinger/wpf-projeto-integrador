@@ -27,4 +27,8 @@
     <Resource Include="fotos\logo_musicstation.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="View\GestaoPessoas\" />
+  </ItemGroup>
+
 </Project>

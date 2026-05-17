@@ -1,8 +1,7 @@
 ﻿using MahApps.Metro.IconPacks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using wpf_pi.Views;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
 using static wpf_projeto_integrador.Models.Administrador;
@@ -28,7 +27,7 @@ namespace wpf_projeto_integrador
                 btnLogs.Visibility = Visibility.Collapsed;
             }
         }
-        
+
         private void btnLogs_Click(object sender, RoutedEventArgs e)
         {
             if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.Alto)
@@ -64,7 +63,7 @@ namespace wpf_projeto_integrador
                 ? PackIconMaterialKind.ChevronDown
                 : PackIconMaterialKind.ChevronUp;
         }
-        
+
 
         private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
         {
@@ -92,6 +91,11 @@ namespace wpf_projeto_integrador
                 ? PackIconMaterialKind.ChevronDown
                 : PackIconMaterialKind.ChevronUp;
 
+        }
+
+        private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new UsuariosView();
         }
     }
         

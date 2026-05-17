@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wpf_projeto_integrador.Data;
 
@@ -11,9 +12,11 @@ using wpf_projeto_integrador.Data;
 namespace wpf_projeto_integrador.Migrations
 {
     [DbContext(typeof(MusicStationContext))]
-    partial class MusicStationContextModelSnapshot : ModelSnapshot
+    [Migration("20260517175142_AddClassesTipoUsuario")]
+    partial class AddClassesTipoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +97,6 @@ namespace wpf_projeto_integrador.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
 
                     b.Property<DateTime>("DataCriacao")
                         .ValueGeneratedOnAdd()
