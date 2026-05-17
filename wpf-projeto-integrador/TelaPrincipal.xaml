@@ -30,7 +30,7 @@
                             Margin="18 20 18 0">
 
                     <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Top">    
+                                VerticalAlignment="Top">
 
                         <Button Style="{StaticResource IconButton}"
                                 Width="42"
@@ -56,15 +56,15 @@
                            Text="STATION"
                            Foreground="#F4C430"
                            FontSize="26"
-                           FontWeight="Black"/>    
+                           FontWeight="Black"/>
                 </StackPanel>
 
 
 
 
                 <ScrollViewer Grid.Row="1"
-              VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled">
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
 
                     <StackPanel Orientation="Vertical">
 
@@ -124,31 +124,98 @@
 
                         </StackPanel>
 
-                        <Button Style="{StaticResource SidebarButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                                <Icon:PackIconMaterial Kind="Finance"
-                                       Width="22"
-                                       Height="22" 
-                                       Margin="0 0 12 0"/>
+                        <StackPanel>
+                            <Button Style="{StaticResource MenuButton}"
+                                      Click="BtnGestaoFinanceira_Click">
 
-                                <TextBlock Text="Gestão de Finanças"/>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Icon:PackIconMaterial Kind="Finance"
+                                            Width="24"
+                                            Height="24"/>
+
+                                    <TextBlock Text="Gestão de Finanças"
+                                Margin="14 0 0 0"/>
+
+                                </StackPanel>
+
+                            </Button>
+
+                            <StackPanel x:Name="SubMenuFinancas"
+                                         Visibility="Collapsed"
+                                         Margin="42 0 0 0">
+
+                                <Button Content="Pagamentos"
+                                         Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Transações"
+                                         Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Forma Pagamento"
+                                         Style="{StaticResource SubMenuButton}"/>
+
 
                             </StackPanel>
-                        </Button>
 
-                        <Button Style="{StaticResource SidebarButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        </StackPanel>
 
-                                <Icon:PackIconMaterial Kind="Hammer" 
-                                       Width="22"
-                                       Height="22"
-                                       Margin="0 0 12 0"/>
 
-                                <TextBlock Text="Gestão de Serviços"/>
+                        <StackPanel>
+                            <Button Style="{StaticResource MenuButton}"
+                                    Click="BtnGestaoFinanceira_Click">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Icon:PackIconMaterial Kind="Hammer"
+                                                            Width="24"
+                                                            Height="24"/>
+
+                                    <TextBlock Text="Gestão de Serviços"
+                                                Margin="14 0 0 0"/>
+
+                                </StackPanel>
+
+                            </Button>
+
+                            <StackPanel x:Name="SubMenuServicos"
+                                        Visibility="Collapsed"
+                                        Margin="42 0 0 0">
+
+                                <Button Content="Pagamentos"
+                                        Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Transações"
+                                        Style="{StaticResource SubMenuButton}"/>
+
+                                <Button Content="Forma Pagamento"
+                                        Style="{StaticResource SubMenuButton}"/>
+
 
                             </StackPanel>
-                        </Button>
+
+                        </StackPanel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <Button Style="{StaticResource SidebarButton}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -210,9 +277,11 @@
 
                 </ScrollViewer>
 
+
+
             </Grid>
-            
-            
+
+
         </Border>
 
         <!-- CONTEÚDO PRINCIPAL -->

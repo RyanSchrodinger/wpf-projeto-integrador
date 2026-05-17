@@ -45,6 +45,15 @@ namespace wpf_projeto_integrador
                ? Visibility.Collapsed
                : Visibility.Visible;
         }
+
+        private void BtnGestaoFinanceira_Click(object sender, RoutedEventArgs e)
+        {
+            SubMenuFinancas.Visibility =
+               SubMenuFinancas.Visibility == Visibility.Visible
+               ? Visibility.Collapsed
+               : Visibility.Visible;
+
+        }
     }
         
 }
