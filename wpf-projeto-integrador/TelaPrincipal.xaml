@@ -162,7 +162,7 @@
 
                     </Button>
 
-                    <Button Style="{StaticResource SidebarButton}"
+                    <Button x:Name="btnLogs" Style="{StaticResource SidebarButton}"
                             Click="btnLogs_Click">
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

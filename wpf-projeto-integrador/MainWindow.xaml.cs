@@ -32,6 +32,8 @@ namespace wpf_projeto_integrador
 
             string? nomeUsuario = txtUsuario.Text;
             string? senha = txtSenha.Password;
+            
+
             if (string.IsNullOrWhiteSpace(nomeUsuario) || string.IsNullOrWhiteSpace(senha))
             {
                 MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -77,8 +79,7 @@ namespace wpf_projeto_integrador
 
 
 
-                    MessageBox.Show($"Bem-vindo, {adm.NomeUsuario}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
-                    FormMenu tela = new FormMenu();
+                    FormMenu tela = new FormMenu(adm);
                     tela.Show();
 
                     this.Close();

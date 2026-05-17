@@ -157,11 +157,11 @@
                     <DataTemplate>
 
                         <Border Background="#171726"
-                        BorderBrush="#2A2940"
-                        BorderThickness="1"
-                        CornerRadius="12"
-                        Padding="12"
-                        Margin="0 0 0 8">
+                                BorderBrush="#2A2940"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                Padding="12"
+                                Margin="0 0 0 8">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -173,18 +173,18 @@
 
                                 <!-- ICONE PRINCIPAL -->
                                 <Border Width="38"
-                                Height="38"
-                                CornerRadius="19"
-                                Background="#1F3B2C"
-                                VerticalAlignment="Center">
+                                        Height="38"
+                                        CornerRadius="19"
+                                        Background="#1F3B2C"
+                                        VerticalAlignment="Center">
 
                                     <iconPacks:PackIconMaterial
-                                Kind="LoginVariant"
-                                Width="18"
-                                Height="18"
-                                Foreground="#4ADE80"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
+                                                Kind="LoginVariant"
+                                                Width="18"
+                                                Height="18"
+                                                Foreground="#4ADE80"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
                                 </Border>
 
                                 <!-- TEXTO -->
@@ -197,31 +197,31 @@
                                        FontSize="14"/>
 
                                     <TextBlock Text="{Binding Descricao}"
-                                       Foreground="White"
-                                       FontSize="11"
-                                       Margin="0 2 0 0"
-                                       TextWrapping="Wrap"/>
+                                               Foreground="White"
+                                               FontSize="11"
+                                               Margin="0 2 0 0"
+                                               TextWrapping="Wrap"/>
 
                                     <Border Background="#2D1F4F"
-                                    CornerRadius="6"
-                                    Padding="7 2"
-                                    HorizontalAlignment="Left"
-                                    Margin="0 5 0 0">
+                                            CornerRadius="6"
+                                            Padding="7 2"
+                                            HorizontalAlignment="Left"
+                                            Margin="0 5 0 0">
 
                                         <TextBlock Foreground="#A855F7"
-                                           FontSize="9"
-                                           FontWeight="SemiBold">
-                                    <Run Text="{Binding Entidade}"/>
-                                    <Run Text=" #"/>
-                                    <Run Text="{Binding EntidadeId}"/>
+                                                   FontSize="9"
+                                                   FontWeight="SemiBold">
+                                            <Run Text="{Binding Entidade}"/>
+                                            <Run Text=" #"/>
+                                            <Run Text="{Binding EntidadeId}"/>
                                         </TextBlock>
                                     </Border>
                                 </StackPanel>
 
                                 <!-- USUARIO + PC -->
                                 <Grid Grid.Column="2"
-                              VerticalAlignment="Center"
-                              Margin="10 0 0 0">
+                                      VerticalAlignment="Center"
+                                      Margin="10 0 0 0">
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
@@ -234,23 +234,23 @@
                                         VerticalAlignment="Center">
 
                                         <iconPacks:PackIconMaterial
-                                    Kind="AccountOutline"
-                                    Width="12"
-                                    Height="12"
-                                    Foreground="#A855F7"
-                                    VerticalAlignment="Center"
-                                    Margin="0 0 5 0"/>
+                                                    Kind="AccountOutline"
+                                                    Width="12"
+                                                    Height="12"
+                                                    Foreground="#A855F7"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 5 0"/>
 
                                         <StackPanel VerticalAlignment="Center">
                                             <TextBlock Text="{Binding Usuario.NomeUsuario}"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"
-                                               FontSize="10"/>
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       FontSize="10"/>
 
                                             <TextBlock Text="Administrador"
-                                               Foreground="#9CA3AF"
-                                               FontSize="8"
-                                               Margin="0 1 0 0"/>
+                                                       Foreground="#9CA3AF"
+                                                       FontSize="8"
+                                                       Margin="0 1 0 0"/>
                                         </StackPanel>
                                     </StackPanel>
 
@@ -260,50 +260,50 @@
                                         VerticalAlignment="Center">
 
                                         <iconPacks:PackIconMaterial
-                                    Kind="DesktopClassic"
-                                    Width="13"
-                                    Height="13"
-                                    Foreground="#A855F7"
-                                    VerticalAlignment="Center"
-                                    Margin="0 0 5 0"/>
+                                                    Kind="DesktopClassic"
+                                                    Width="13"
+                                                    Height="13"
+                                                    Foreground="#A855F7"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 5 0"/>
 
                                         <TextBlock Text="{Binding NomeComputador}"
-                                           Foreground="White"
-                                           FontSize="11"
-                                           VerticalAlignment="Center"
-                                           TextTrimming="CharacterEllipsis"/>
+                                                   Foreground="White"
+                                                   FontSize="11"
+                                                   VerticalAlignment="Center"
+                                                   TextTrimming="CharacterEllipsis"/>
                                     </StackPanel>
                                 </Grid>
 
                                 <!-- DATA -->
                                 <StackPanel Grid.Column="3"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Right">
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right">
 
                                     <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center">
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center">
 
                                         <iconPacks:PackIconMaterial
-                                    Kind="ClockOutline"
-                                    Width="11"
-                                    Height="11"
-                                    Foreground="#9CA3AF"
-                                    VerticalAlignment="Center"
-                                    Margin="0 0 4 0"/>
+                                                    Kind="ClockOutline"
+                                                    Width="11"
+                                                    Height="11"
+                                                    Foreground="#9CA3AF"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 4 0"/>
 
                                         <TextBlock Text="{Binding DataHora, StringFormat=dd/MM/yyyy}"
-                                           Foreground="White"
-                                           FontWeight="SemiBold"
-                                           FontSize="10"
-                                           VerticalAlignment="Center"/>
+                                                    Foreground="White"
+                                                    FontWeight="SemiBold"
+                                                    FontSize="10"
+                                                    VerticalAlignment="Center"/>
                                     </StackPanel>
 
                                     <TextBlock Text="{Binding DataHora, StringFormat=HH:mm:ss}"
-                                       Foreground="#9CA3AF"
-                                       FontSize="9"
-                                       Margin="0 2 0 0"
-                                       HorizontalAlignment="Right"/>
+                                               Foreground="#9CA3AF"
+                                               FontSize="9"
+                                               Margin="0 2 0 0"
+                                               HorizontalAlignment="Right"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
