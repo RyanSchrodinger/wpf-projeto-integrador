@@ -34,9 +34,37 @@ namespace wpf_pi.Views
                     Email = u.Email,
                     NomeUsuario = u.NomeUsuario,
                     Status = u.Ativo ? "Ativo" : "Inativo",
-                    DataCadastro = u.DataCriacao.ToString("dd/MM/yyyy")
+                    DataCadastro = u.DataCriacao.ToString("dd/MM/yyyy"),
                 })
                 .ToList();
+
+
+            string[] cores =
+            {
+                "#7C3AED", // roxo
+                "#FBBF24", // amarelo
+                "#EC4899", // rosa
+                "#3B82F6", // azul
+                "#0F8B8D", // verde/azulado
+            };
+
+            int index = 0;
+
+
+            foreach (var usuario in usuarios)
+            {
+                usuario.Iniciais = string.Join("",
+                    (usuario.Nome ?? "")
+                        .Split(' ')
+                        .Where(p => !string.IsNullOrWhiteSpace(p))
+                        .Take(2)
+                        .Select(p => p[0]))
+                    .ToUpper();
+                usuario.CorPerfil = cores[index % cores.Length];
+
+                index++;
+
+            }
 
             foreach (var usuario in usuarios)
             {
@@ -111,5 +139,10 @@ namespace wpf_pi.Views
         public string Tipo { get; set; }
         public string Status { get; set; }
         public string DataCadastro { get; set; }
+
+        public string Iniciais { get; set; } = " ";
+
+        public string CorPerfil { get; set; } = "#7C3AED";
+
     }
 }
