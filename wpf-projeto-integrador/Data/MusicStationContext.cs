@@ -17,6 +17,8 @@ namespace wpf_projeto_integrador.Data
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Profissional> Profissionais { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Mensagem> Mensagens { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -160,8 +162,40 @@ namespace wpf_projeto_integrador.Data
                 entity.HasIndex(e => e.Cnpj)
                     .IsUnique();
             });
+
+
+            // CHAT
+            modelBuilder.Entity<Chat>()
+                .HasOne(c => c.Usuario1)
+                .WithMany()
+                .HasForeignKey(c => c.Usuario1Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Chat>()
+                .HasOne(c => c.Usuario2)
+                .WithMany()
+                .HasForeignKey(c => c.Usuario2Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // MENSAGEM
+            modelBuilder.Entity<Mensagem>()
+                .HasOne(m => m.Chat)
+                .WithMany(c => c.Mensagens)
+                .HasForeignKey(m => m.ChatId);
+
+            modelBuilder.Entity<Mensagem>()
+                .HasOne(m => m.Remetente)
+                .WithMany()
+                .HasForeignKey(m => m.RemetenteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // TAMANHO TEXTO
+            modelBuilder.Entity<Mensagem>()
+                .Property(m => m.Texto)
+                .HasMaxLength(1000);
         }
-
-
     }
+
+
+    
 }
