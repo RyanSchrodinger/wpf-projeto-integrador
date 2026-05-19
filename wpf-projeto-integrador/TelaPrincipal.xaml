@@ -548,7 +548,7 @@
                         </StackPanel>
 
 
-                        <Button Style="{StaticResource MenuButton}">
+                        <Button Style="{StaticResource MenuButton}" Click="Button_Click">
                             <StackPanel Orientation="Horizontal" >
 
                                 <Icon:PackIconMaterial Kind="Chat"

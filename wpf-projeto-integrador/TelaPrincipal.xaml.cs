@@ -4,6 +4,7 @@ using System.Windows.Media;
 using wpf_pi.Views;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
+using wpf_projeto_integrador.Views;
 using static wpf_projeto_integrador.Models.Administrador;
 
 namespace wpf_projeto_integrador
@@ -11,11 +12,12 @@ namespace wpf_projeto_integrador
     public partial class FormMenu : Window
     {
         private Administrador _administrador;
-
+        public int IdUsuarioLogado;
         public FormMenu(Administrador administrador)
         {
             InitializeComponent();
             _administrador = administrador;
+            IdUsuarioLogado = _administrador.Id;
             VerificarPermissoes();
         }
 
@@ -96,6 +98,11 @@ namespace wpf_projeto_integrador
         private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new UsuariosView();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new ComunicacaoView(IdUsuarioLogado);
         }
     }
         

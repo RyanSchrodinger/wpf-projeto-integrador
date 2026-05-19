@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wpf_projeto_integrador.Data;
 
@@ -11,9 +12,11 @@ using wpf_projeto_integrador.Data;
 namespace wpf_projeto_integrador.Migrations
 {
     [DbContext(typeof(MusicStationContext))]
-    partial class MusicStationContextModelSnapshot : ModelSnapshot
+    [Migration("20260519035509_AddClassesDeMensagem")]
+    partial class AddClassesDeMensagem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
