@@ -139,9 +139,7 @@ namespace wpf_pi.Views
         public string Tipo { get; set; }
         public string Status { get; set; }
         public string DataCadastro { get; set; }
-
         public string Iniciais { get; set; } = " ";
-
         public string CorPerfil { get; set; } = "#7C3AED";
 
     }

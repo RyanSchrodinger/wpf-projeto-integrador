@@ -37,6 +37,74 @@
     </UserControl.Resources>
 
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="22">
+            <StackPanel>
+                <TextBlock Text="Administradores"
+                           FontSize="31"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <TextBlock Text="Visão geral de todos os administradores cadastrados no sistema."
+                           FontSize="14"
+                       Foreground="#CBD5E1"
+                           Margin="0 0 4 0 "/>
+            </StackPanel>
+        </Grid>
+
+        <UniformGrid Grid.Row="1"
+                     Columns="5"
+                     Margin="0 18 0 16">
+
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAdministradores">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlto">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtotalAlto">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtToalAlto">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlo">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+
+
+
+        </UniformGrid>
+
+        
+      
+
+
     </Grid>
 </UserControl>
