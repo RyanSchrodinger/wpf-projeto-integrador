@@ -6,10 +6,16 @@ SELECT * FROM Profissionais
 SELECT * FROM Empresas
 
 INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
-VALUES ('Eduardo Jóse','111','Dudu','Dudu@gmail.com')
+VALUES ('Ryaaaaaaaaan','111','rddyan','rddyan@gmail.com')
 
 INSERT INTO Administradores(Id,NivelAcesso,Observacao)
-VALUES (3,'Medio', 'Adm com acesso moderado')
+VALUES (34,'Alto', 'Adm Supremo')
+
+INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
+VALUES ('João Pedro','111','jp','jp@gmail.com')
+
+INSERT INTO Administradores(Id,NivelAcesso,Observacao)
+VALUES (3,'Alto', 'Adm Supremo')
 
 -- INSERT Clientes, Profissionais e Empresas
 
@@ -111,3 +117,5 @@ VALUES
 (32, '12.345.678/0001-09', 'Top Studio', '1133330009', 'Rua XV, 900'),
 (33, '12.345.678/0001-10', 'Master Audio', '1133330010', 'Av Atlântica, 1000');
 
+INSERT INTO TiposAcao(Nome)
+VALUES ('Login')
