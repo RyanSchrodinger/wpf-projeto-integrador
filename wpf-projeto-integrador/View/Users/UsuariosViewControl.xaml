@@ -128,11 +128,11 @@
                      Style="{StaticResource InputFiltro}"
                      FontSize="14"
                      TextChanged="txtBusca_TextChanged"/>
-
+        
             <ComboBox x:Name="cmbTipo"
                       Grid.Column="1"
                       Margin="14 0 0 0"
-                      Style="{StaticResource InputFiltro}"
+                      Style="{StaticResource ComboBoxModerno}"
                       SelectionChanged="Filtro_Changed">
 
                 <ComboBoxItem Content="Todos" IsSelected="True"/>
@@ -145,7 +145,7 @@
             <ComboBox x:Name="cmbStatus"
                       Grid.Column="2"
                       Margin="14 0 0 0"
-                      Style="{StaticResource InputFiltro}"
+                      Style="{StaticResource ComboBoxModerno}"
                       SelectionChanged="Filtro_Changed">
 
                 <ComboBoxItem Content="Todos" IsSelected="True"/>
@@ -153,7 +153,7 @@
                 <ComboBoxItem Content="Inativo"/>
             </ComboBox>
 
-            <Button Grid.Column="3"
+            <Button Grid.Column="3" Style="{StaticResource BotaoRoxoTelas}"
                     Content="Limpar filtros"
                     Margin="14 0 0 0"
                     Background="#171D36"

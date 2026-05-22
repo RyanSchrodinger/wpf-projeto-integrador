@@ -4,6 +4,7 @@ using System.Windows.Media;
 using wpf_pi.Views;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
+using wpf_projeto_integrador.View.Users;
 using wpf_projeto_integrador.Views;
 using static wpf_projeto_integrador.Models.Administrador;
 
@@ -103,6 +104,11 @@ namespace wpf_projeto_integrador
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new ComunicacaoView(IdUsuarioLogado);
+        }
+
+        private void BtnAdministradores_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new AdministradorView();
         }
     }
         

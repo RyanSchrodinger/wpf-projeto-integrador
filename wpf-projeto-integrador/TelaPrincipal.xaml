@@ -140,7 +140,8 @@
 
 
 
-                                <Button  Style="{StaticResource SubMenuButton}">
+                                <Button Click="BtnAdministradores_Click"
+                                        Style="{StaticResource SubMenuButton}">
 
                                     <StackPanel Orientation="Horizontal">
 

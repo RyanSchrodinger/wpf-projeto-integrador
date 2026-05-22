@@ -25,18 +25,11 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <Style x:Key="InputFiltro" TargetType="Control">
-            <Setter Property="Background" Value="#11162D"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#252B46"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Height" Value="42"/>
-        </Style>
+        
 
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="22">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -44,13 +37,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="22">
+        <Grid >
             <StackPanel>
                 <TextBlock Text="Administradores"
                            FontSize="31"
                            FontWeight="Bold"
                            Foreground="White"/>
-                <TextBlock Text="Visão geral de todos os administradores cadastrados no sistema."
+                <TextBlock Text="Visão geral dos administradores cadastrados no sistema."
                            FontSize="14"
                        Foreground="#CBD5E1"
                            Margin="0 0 4 0 "/>
@@ -59,7 +52,7 @@
 
         <UniformGrid Grid.Row="1"
                      Columns="5"
-                     Margin="0 18 0 16">
+                     Margin="0 18 0 10">
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
@@ -69,41 +62,223 @@
                 </StackPanel>
             </Border>
 
+
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlto">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource CardResumo}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtotalAlto">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource CardResumo}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource TextoCard}">Nível Alto</TextBlock>
                     <TextBlock Style="{StaticResource NumeroCard}" Name="txtToalAlto">0</TextBlock>
                     <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
+                    <TextBlock Style="{StaticResource TextoCard}">Nível Médio</TextBlock>
                     <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlo">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">outro nivel</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlto">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">outro nivel</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtotalAlto">0</TextBlock>
                     <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
 
 
-
         </UniformGrid>
 
+        <Grid Grid.Row="2" Margin="0 0 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="14 0">
+
+                <TextBox Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="White"
+                         VerticalContentAlignment="Center"
+                         FontSize="14"/>
+
+            </Border>
+
+            <Border Grid.Column="1"
+                    Margin="14 0 0 0"
+                    Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="12 6">
+
+                <StackPanel>
+
+                    <!-- TEXTO PEQUENO -->
+                    <TextBlock Text="Nível de acesso"
+                               Foreground="#94A3B8"
+                               FontSize="11"
+                               Margin="2 0 0 2"/>
+
+                    <!-- COMBO -->
+                    <ComboBox x:Name="cmbTipo"
+                              Style="{StaticResource ComboBoxModerno}"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Foreground="White"
+                              FontSize="14"
+                              SelectionChanged="Filtro_Changed">
+
+                        <ComboBoxItem Content="Todos"
+                          IsSelected="True"/>
+                        <ComboBoxItem Content="Alto"/>
+                        <ComboBoxItem Content="Médio"/>
+                        <ComboBoxItem Content="Baixo"/>
+
+                    </ComboBox>
+
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Column="2"
+                    Margin="14 0 0 0"
+                    Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="12 6">
+
+                <StackPanel>
+
+                    <!-- TEXTO PEQUENO -->
+                    <TextBlock Text="Status"
+                               Foreground="#94A3B8"
+                               FontSize="11"
+                               Margin="2 0 0 2"/>
+
+                    <!-- COMBO -->
+                    <ComboBox x:Name="cmbStatus"
+                              Style="{StaticResource ComboBoxModerno}"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Foreground="White"
+                              FontSize="14"
+                              SelectionChanged="Filtro_Changed">
+
+                        <ComboBoxItem Content="Todos"
+                                      IsSelected="True"/>
+                        <ComboBoxItem Content="Ativo"/>
+                        <ComboBoxItem Content="Inativo"/>
+
+                    </ComboBox>
+
+                </StackPanel>
+
+            </Border>
+            
         
-      
+
+
+        <Button Grid.Column="3"
+                Style="{StaticResource BotaoRoxoTelas}"
+                Content="+ Novo Administrador"
+                Margin="10">
+            </Button>
+
+        </Grid>
+
+
+        <Border Grid.Row="3"
+                Background="#11162B"
+                BorderBrush="#1F2942"
+                BorderThickness="1"
+                CornerRadius="18"
+                Margin="0 0 15 0"
+                Padding="14 12">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Margin="0 0 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Lista de Administradores"
+                               Foreground="White"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+
+                        <TextBlock Text="Ordenar por:"
+                                   Foreground="#CBD5E1"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 5 0"/>
+
+                        <ComboBox Style="{StaticResource ComboBoxModerno}"
+                                  Width="160"
+                                  Height="34"
+                                  Background="#0F1428"
+                                  Foreground="White"
+                                  BorderBrush="#252B46">
+
+                            <ComboBoxItem Content="Mais recentes" IsSelected="True"/>
+                            <ComboBoxItem Content="Mais antigos"/>
+                            <ComboBoxItem Content="Nome"/>
+                        </ComboBox>
+
+                    </StackPanel>
+
+                </Grid>
+
+
+
+                </Grid>
+
+
+
+
+
+
+            </Border>
+
+
+
+
+
+
+
+
+       
+
+
+
 
 
     </Grid>

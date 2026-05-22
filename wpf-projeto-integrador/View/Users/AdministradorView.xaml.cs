@@ -24,5 +24,17 @@ namespace wpf_projeto_integrador.View.Users
         {
             InitializeComponent();
         }
+
+        private void txtBusca_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+   
+
+        private void Filtro_Changed(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
