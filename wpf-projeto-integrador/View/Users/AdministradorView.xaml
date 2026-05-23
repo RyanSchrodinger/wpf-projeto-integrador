@@ -51,7 +51,7 @@
         </Grid>
 
         <UniformGrid Grid.Row="1"
-                     Columns="5"
+                     Columns="6"
                      Margin="0 18 0 10">
 
             <Border Style="{StaticResource CardResumo}">
@@ -72,22 +72,30 @@
             </Border>
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Nível Médio</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlo">0</TextBlock>
+                    <TextBlock Style="{StaticResource TextoCard}">Nível Medio</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalMedio">0</TextBlock>
+                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}">Nível Baixo</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalBaixo">0</TextBlock>
                     <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextoCard}">outro nivel</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAlto">0</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}">0</TextBlock>
                     <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
+
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextoCard}">outro nivel</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtotalAlto">0</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}">0</TextBlock>
                     <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
@@ -110,11 +118,13 @@
                     Height="58"
                     Padding="14 0">
 
-                <TextBox Background="Transparent"
+                <TextBox Name="txtBusca"
+                         Background="Transparent"
                          BorderThickness="0"
                          Foreground="White"
                          VerticalContentAlignment="Center"
-                         FontSize="14"/>
+                         FontSize="14"
+                         TextChanged="txtBusca_TextChanged"/>
 
             </Border>
 
@@ -147,7 +157,7 @@
                         <ComboBoxItem Content="Todos"
                           IsSelected="True"/>
                         <ComboBoxItem Content="Alto"/>
-                        <ComboBoxItem Content="Médio"/>
+                        <ComboBoxItem Content="Medio"/>
                         <ComboBoxItem Content="Baixo"/>
 
                     </ComboBox>
