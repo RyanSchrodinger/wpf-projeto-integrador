@@ -19,8 +19,9 @@ namespace wpf_projeto_integrador.Models
         [Required, MaxLength(255)]
         public string SenhaHash { get; set; }
 
-        [Required,  MinLength(20)]
+        [Required,  MaxLength(20)]
         public string NomeUsuario  { get; set; }
+        public string? Telefone {  get; set; }
 
         [Required]
         [EmailAddress]

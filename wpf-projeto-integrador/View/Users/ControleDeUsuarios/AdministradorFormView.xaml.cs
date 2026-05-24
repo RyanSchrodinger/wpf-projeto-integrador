@@ -23,18 +23,42 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
     /// </summary>
     public partial class AdministradorFormView : UserControl
     {
+        public AdministradorViewModel adm;
         public AdministradorFormView()
         {
             InitializeComponent();
+            cmbStatus.Visibility = Visibility.Collapsed;
+            txtDataCadastro.Visibility = Visibility.Collapsed;
+            btnSalvar.Text = "Cadastrar Administrador";
+            btnDesativar.Visibility = Visibility.Collapsed;
+
+        }
+
+        public AdministradorFormView(AdministradorViewModel adm)
+        {
+            this.adm = adm;
+            InitializeComponent();
+            CarregarAdministrador(adm);
+            cmbStatus.Visibility = Visibility.Collapsed;
+            
         }
 
         private void BtnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            CadastrarUsuario();
+            if (btnSalvar.Text == "Cadastrar Administrador")
+            {
+                CadastrarUsuario();
+            }
+            else
+            {
+                
+            }
+            
         }
 
         private void BtnDesativar_Click(object sender, RoutedEventArgs e)
         {
+            DesativarConta();
 
         }
 
@@ -43,13 +67,30 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
 
         }
 
-        private void BtnVoltar_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void BtnVoltar_Click(  object sender,RoutedEventArgs e)
+        {
+            var telaPrincipal = (FormMenu)Window.GetWindow(this);
+
+            telaPrincipal.AbrirTela( new AdministradorView());
         }
 
 
-        #region Funções
+        #region Metodos
+
+        public void CarregarAdministrador(AdministradorViewModel adm)
+        {
+            txtEmail.Text = adm.Email;
+            txtDataCadastro.Text = adm.DataCadastro;
+            txtNome.Text = adm.Nome;
+            txtNomeUsuario.Text = adm.NomeUsuario;
+            txtTelefone.Text = adm.Telefone;
+            txtObservacao.Text = adm.Observacao;
+            txtNome.Text = adm.Nome.ToString();
+            cmbNivel.Text = adm.NivelAcesso.ToString();
+            cmbStatus.Text = adm.Status.ToString();
+
+        }
 
         public void LimparCampos()
         {
@@ -62,6 +103,64 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
             cmbStatus.SelectedIndex = -1;
             txtSenha.Clear();
             txtTelefone.Clear();
+        }
+
+        public void DesativarConta()
+        {
+            try
+            {
+                if (adm.Id == null)
+                {
+                    MessageBox.Show("Administrador não encontrado.");
+                    return;
+                }
+               
+                var resultado = MessageBox.Show(
+                    "Deseja realmente desativar esta conta?",
+                    "Confirmação",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+                if (resultado != MessageBoxResult.Yes)
+                    return;
+
+                using(var db = new MusicStationContext())
+                {
+                    var admm = db.Administradores
+                        .FirstOrDefault(a => a.Id ==adm.Id);
+
+                    if (admm == null)
+                    {
+                        MessageBox.Show("Administrador não encontrado.");
+                        return;
+                    }
+
+                    admm.Ativo = false;
+
+                    db.SaveChanges();
+
+                    MessageBox.Show(
+                        "Conta desativada com sucesso.",
+                        "Sucesso",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+
+                    var formMenu = (FormMenu)Window.GetWindow(this);
+
+                    formMenu.AbrirTela(new AdministradorView());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Erro ao desativar conta: {ex.Message}",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+
+
+
+
         }
 
         public void CadastrarUsuario()

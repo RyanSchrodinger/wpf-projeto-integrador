@@ -8,7 +8,6 @@ namespace wpf_projeto_integrador.Models
 {
     public class Profissional : Usuario
     {
-        public string Telefone { get; set; }
         public string Descricao { get; set; }
         public string? Rua { get; set; }
         public string? Numero { get; set; }

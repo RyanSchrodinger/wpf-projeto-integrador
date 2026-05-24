@@ -66,7 +66,11 @@ namespace wpf_projeto_integrador.View.Users
                         : "Inativo",
 
                     DataCadastro =
-                        a.DataCriacao.ToString("dd/MM/yyyy")
+                        a.DataCriacao.ToString("dd/MM/yyyy"),
+
+                    Observacao = a.Observacao.ToString(),
+
+                    Telefone = a.Telefone.ToString()
                 })
                 .ToList();
 
@@ -190,6 +194,27 @@ namespace wpf_projeto_integrador.View.Users
 
             telaPrincipal.AbrirTela( new AdministradorFormView());
         }
+
+        private void BtnVisualizar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            var admSelecionado = (sender as Button).DataContext as AdministradorViewModel;
+
+
+            if (admSelecionado == null)
+            {
+                MessageBox.Show("Administrador não encontrado.");
+                return;
+            }
+
+            var telaPrincipal = (FormMenu)Window.GetWindow(this);
+
+            telaPrincipal.AbrirTela( new AdministradorFormView(admSelecionado));
+        }
     }
 
     // =========================================
@@ -198,7 +223,9 @@ namespace wpf_projeto_integrador.View.Users
 
     public class AdministradorViewModel
     {
-        public int Id { get; set; }
+        public string Observacao { get; set; }
+        public string Telefone { get; set; }
+        public int Id { get; set; } 
 
         public string Nome { get; set; } = "";
 

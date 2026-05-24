@@ -507,7 +507,8 @@
                                                 Background="#151A32"
                                                 BorderBrush="#334155"
                                                 BorderThickness="1"
-                                                Margin="0 0 8 0">
+                                                Margin="0 0 8 0"
+                                                Click="BtnVisualizar_Click">
 
                                             <Icon:PackIconMaterial Kind="EyeOutline"
                                                Width="15"
@@ -519,7 +520,8 @@
                                                 Height="30"
                                                 Background="#151A32"
                                                 BorderBrush="#7C3AED"
-                                                BorderThickness="1">
+                                                BorderThickness="1"
+                                                Click="BtnEditar_Click">
 
                                             <Icon:PackIconMaterial Kind="PencilOutline"
                                                Width="15"

@@ -11,7 +11,7 @@
             <Setter Property="BorderBrush" Value="#252B46"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Height" Value="52"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Padding" Value="14 0"/>
         </Style>
 
@@ -180,159 +180,163 @@
                             Margin="-245 36 0 0"/>
                 </StackPanel>
 
-                <!-- CAMPOS -->
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="26"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Row="1"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="22"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="22"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="22"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="22"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                        <!-- CAMPOS -->
+                    <Grid Margin="0 0 8 0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="26"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- NOME -->
-                    <StackPanel Grid.Row="0" Grid.Column="0">
-                        <TextBlock Text="Nome completo *" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <TextBox x:Name="txtNome" Style="{StaticResource TextBoxCampo}"/>
-                        </Border>
-                    </StackPanel>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <!-- EMAIL -->
-                    <StackPanel Grid.Row="0" Grid.Column="2">
-                        <TextBlock Text="E-mail *" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <TextBox x:Name="txtEmail" Style="{StaticResource TextBoxCampo}"/>
-                        </Border>
-                    </StackPanel>
+                        <!-- NOME -->
+                        <StackPanel Grid.Row="0" Grid.Column="0">
+                            <TextBlock Text="Nome completo *" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <TextBox x:Name="txtNome" Style="{StaticResource TextBoxCampo}"/>
+                            </Border>
+                        </StackPanel>
 
-                    <!-- USUÁRIO -->
-                    <StackPanel Grid.Row="2" Grid.Column="0">
-                        <TextBlock Text="Nome de usuário *" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <TextBox x:Name="txtNomeUsuario" Style="{StaticResource TextBoxCampo}"/>
-                        </Border>
-                    </StackPanel>
+                        <!-- EMAIL -->
+                        <StackPanel Grid.Row="0" Grid.Column="2">
+                            <TextBlock Text="E-mail *" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <TextBox x:Name="txtEmail" Style="{StaticResource TextBoxCampo}"/>
+                            </Border>
+                        </StackPanel>
 
-                    <!-- SENHA -->
-                    <StackPanel Grid.Row="2" Grid.Column="2">
-                        <TextBlock Text="Senha *" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <Grid>
-                                <PasswordBox x:Name="txtSenha"
-                                             Background="Transparent"
-                                             BorderThickness="0"
-                                             Foreground="White"
-                                             FontSize="14"
-                                             VerticalContentAlignment="Center"/>
+                        <!-- USUÁRIO -->
+                        <StackPanel Grid.Row="2" Grid.Column="0">
+                            <TextBlock Text="Nome de usuário *" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <TextBox x:Name="txtNomeUsuario" Style="{StaticResource TextBoxCampo}"/>
+                            </Border>
+                        </StackPanel>
 
-                                <Icon:PackIconMaterial Kind="EyeOutline"
-                                                       Width="20"
-                                                       Height="20"
-                                                       Foreground="#94A3B8"
-                                                       HorizontalAlignment="Right"
-                                                       VerticalAlignment="Center"/>
-                            </Grid>
-                        </Border>
-                    </StackPanel>
+                        <!-- SENHA -->
+                        <StackPanel Grid.Row="2" Grid.Column="2">
+                            <TextBlock Text="Senha *" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <Grid>
+                                    <PasswordBox x:Name="txtSenha"
+                                                 Background="Transparent"
+                                                 BorderThickness="0"
+                                                 Foreground="White"
+                                                 FontSize="14"
+                                                 VerticalContentAlignment="Center"/>
 
-                    <!-- NIVEL -->
-                    <StackPanel Grid.Row="4" Grid.Column="0">
-                        <TextBlock Text="Nível de acesso *" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <ComboBox x:Name="cmbNivel"
-                                      Style="{StaticResource ComboBoxModerno}"
-                                      BorderThickness="0"
-                                      Background="Transparent">
-                                <ComboBoxItem Content="AdministradorGeral"/>
-                                <ComboBoxItem Content="Atendente"/>
-                                <ComboBoxItem Content="Suporte"/>
-                                <ComboBoxItem Content="Financeiro"/>
-                                <ComboBoxItem Content="Moderador"/>
-                            </ComboBox>
-                        </Border>
-                    </StackPanel>
+                                    <Icon:PackIconMaterial Kind="EyeOutline"
+                                                           Width="20"
+                                                           Height="20"
+                                                           Foreground="#94A3B8"
+                                                           HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
 
-                    <!-- STATUS -->
-                    <StackPanel Grid.Row="4" Grid.Column="2">
-                        <TextBlock Text="Status *" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <ComboBox x:Name="cmbStatus"
-                                      Style="{StaticResource ComboBoxModerno}"
-                                      BorderThickness="0"
-                                      Background="Transparent">
-                                <ComboBoxItem Content="Ativo"/>
-                                <ComboBoxItem Content="Inativo"/>
-                            </ComboBox>
-                        </Border>
-                    </StackPanel>
+                        <!-- NIVEL -->
+                        <StackPanel Grid.Row="4" Grid.Column="0">
+                            <TextBlock Text="Nível de acesso *" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <ComboBox x:Name="cmbNivel"
+                                          Style="{StaticResource ComboBoxModerno}"
+                                          BorderThickness="0"
+                                          Background="Transparent">
+                                    <ComboBoxItem Content="AdministradorGeral"/>
+                                    <ComboBoxItem Content="Atendente"/>
+                                    <ComboBoxItem Content="Suporte"/>
+                                    <ComboBoxItem Content="Financeiro"/>
+                                    <ComboBoxItem Content="Moderador"/>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
 
-                    <!-- TELEFONE -->
-                    <StackPanel Grid.Row="6" Grid.Column="0">
-                        <TextBlock Text="Telefone" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}">
-                            <TextBox x:Name="txtTelefone" Style="{StaticResource TextBoxCampo}"/>
-                        </Border>
-                    </StackPanel>
+                        <!-- STATUS -->
+                        <StackPanel Grid.Row="4" Grid.Column="2">
+                            <TextBlock Text="Status *" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <ComboBox x:Name="cmbStatus"
+                                          Style="{StaticResource ComboBoxModerno}"
+                                          BorderThickness="0"
+                                          Background="Transparent">
+                                    <ComboBoxItem Content="Ativo"/>
+                                    <ComboBoxItem Content="Inativo"/>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
 
-                    <!-- DATA -->
-                    <StackPanel Grid.Row="6" Grid.Column="2">
-                        <TextBlock Text="Data de cadastro" Style="{StaticResource LabelCampo}"/>
-                        <Border Style="{StaticResource InputBox}" Opacity="0.65">
-                            <Grid>
-                                <Icon:PackIconMaterial Kind="Calendar"
-                                                       Width="18"
-                                                       Height="18"
-                                                       Foreground="#94A3B8"
-                                                       VerticalAlignment="Center"/>
+                        <!-- TELEFONE -->
+                        <StackPanel Grid.Row="6" Grid.Column="0">
+                            <TextBlock Text="Telefone" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}">
+                                <TextBox x:Name="txtTelefone" Style="{StaticResource TextBoxCampo}"/>
+                            </Border>
+                        </StackPanel>
 
-                                <TextBox x:Name="txtDataCadastro"
-                                         Margin="30 0 0 0"
-                                         IsReadOnly="True"
-                                         Style="{StaticResource TextBoxCampo}"/>
-                            </Grid>
-                        </Border>
-                    </StackPanel>
+                        <!-- DATA -->
+                        <StackPanel Grid.Row="6" Grid.Column="2">
+                            <TextBlock Text="Data de cadastro" Style="{StaticResource LabelCampo}"/>
+                            <Border Style="{StaticResource InputBox}" Opacity="0.65">
+                                <Grid>
+                                    <Icon:PackIconMaterial Kind="Calendar"
+                                                           Width="18"
+                                                           Height="18"
+                                                           Foreground="#94A3B8"
+                                                           VerticalAlignment="Center"/>
 
-                    <!-- OBSERVAÇÃO -->
-                    <StackPanel Grid.Row="8"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3">
+                                    <TextBox x:Name="txtDataCadastro"
+                                             Margin="30 0 0 0"
+                                             Style="{StaticResource TextBoxCampo}"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
 
-                        <TextBlock Text="Observações"
-                                   Style="{StaticResource LabelCampo}"/>
+                        <!-- OBSERVAÇÃO -->
+                        <StackPanel Grid.Row="8"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3">
 
-                        <Border Background="#11162D"
-                                BorderBrush="#252B46"
-                                BorderThickness="1"
-                                CornerRadius="10"
-                                Height="110"
-                                Padding="14">
+                            <TextBlock Text="Observações"
+                                       Style="{StaticResource LabelCampo}"/>
+                            <Border Background="#11162D"
+                                    BorderBrush="#252B46"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Height="90"
+                                    Padding="14">
 
-                            <TextBox x:Name="txtObservacao"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     Foreground="White"
-                                     CaretBrush="White"
-                                     FontSize="14"
-                                     TextWrapping="Wrap"
-                                     AcceptsReturn="True"
-                                     VerticalScrollBarVisibility="Auto"/>
-                        </Border>
-                    </StackPanel>
-                </Grid>
+                                <TextBox x:Name="txtObservacao"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         Foreground="White"
+                                         CaretBrush="White"
+                                         FontSize="14"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         VerticalScrollBarVisibility="Auto"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+            
+            </ScrollViewer>
 
-                <!-- BOTÕES -->
+            <!-- BOTÕES -->
                 <Grid Grid.Row="2"
                       Margin="0 30 0 0">
 
@@ -349,7 +353,8 @@
                             Style="{StaticResource BotaoSecundario}"
                             Click="BtnCancelar_Click"/>
 
-                    <Button Grid.Column="2"
+                    <Button x:Name="btnDesativar"
+                            Grid.Column="2"
                             Style="{StaticResource BotaoDesativar}"
                             Click="BtnDesativar_Click">
 
@@ -375,7 +380,7 @@
                                                    Foreground="White"
                                                    Margin="0 0 8 0"/>
 
-                            <TextBlock Text="Salvar alterações"/>
+                            <TextBlock x:Name="btnSalvar" Text="Salvar alterações"/>
                         </StackPanel>
                     </Button>
                 </Grid>

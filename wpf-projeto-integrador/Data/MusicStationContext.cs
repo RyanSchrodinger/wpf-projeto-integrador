@@ -45,6 +45,12 @@ namespace wpf_projeto_integrador.Data
             modelBuilder.Entity<Usuario>()
                 .HasIndex(u => u.NomeUsuario)
                 .IsUnique();
+
+            modelBuilder.Entity<Usuario>()
+                        .Property(c => c.Telefone)
+                        .IsRequired()
+                        .HasMaxLength(20);
+
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.DataCriacao)
                 .HasDefaultValueSql("GETDATE()");
@@ -105,9 +111,6 @@ namespace wpf_projeto_integrador.Data
             // Cliente
             modelBuilder.Entity<Cliente>(entity =>
             {
-                entity.Property(c => c.Telefone)
-                    .IsRequired()
-                    .HasMaxLength(20);
 
                 entity.Property(c => c.Rua)
                     .HasMaxLength(100);
@@ -122,9 +125,6 @@ namespace wpf_projeto_integrador.Data
             // Profissional
             modelBuilder.Entity<Profissional>(entity =>
             {
-                entity.Property(p => p.Telefone)
-                    .IsRequired()
-                    .HasMaxLength(20);
 
                 entity.Property(p => p.Descricao)
                     .IsRequired()
