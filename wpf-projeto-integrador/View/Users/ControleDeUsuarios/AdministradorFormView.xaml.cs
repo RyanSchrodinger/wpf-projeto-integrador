@@ -51,6 +51,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
             }
             else
             {
+                AtualizarAdministrador();
                 
             }
             
@@ -158,6 +159,82 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                     MessageBoxImage.Error);
             }
 
+        }
+
+        public void AtualizarAdministrador()
+        {
+            try
+            {
+                using (var db = new MusicStationContext())
+                {
+                    var administrador = db.Administradores
+                        .FirstOrDefault(a => a.Id == adm.Id);
+
+                    if (administrador == null)
+                    {
+                        MessageBox.Show(
+                            "Administrador não encontrado.",
+                            "Erro",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+
+                        return;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(txtNome.Text) ||
+                        string.IsNullOrWhiteSpace(txtNomeUsuario.Text) ||
+                        string.IsNullOrWhiteSpace(txtEmail.Text))
+                    {
+                        MessageBox.Show(
+                            "Preencha os campos obrigatórios.",
+                            "Erro",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+
+                        return;
+                    }
+
+                    administrador.Nome = txtNome.Text;
+                    administrador.Email = txtEmail.Text;
+                    administrador.NomeUsuario = txtNomeUsuario.Text;
+                    administrador.Telefone = txtTelefone.Text;
+                    administrador.Observacao = txtObservacao.Text;
+
+                    administrador.NivelAcesso =
+                        Enum.Parse<Administrador.NivelAcessoEnum>(
+                            cmbNivel.Text);
+
+                    // SENHA
+                    // só altera se digitar algo
+
+                    if (!string.IsNullOrWhiteSpace(txtSenha.Password))
+                    {
+                        administrador.SenhaHash =
+                            BCrypt.Net.BCrypt.HashPassword(
+                                txtSenha.Password);
+                    }
+
+                    db.SaveChanges();
+
+                    MessageBox.Show(
+                        "Administrador atualizado com sucesso!",
+                        "Sucesso",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+
+                    var formMenu = (FormMenu)Window.GetWindow(this);
+
+                    formMenu.AbrirTela(new AdministradorView());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Erro ao atualizar administrador: {ex.Message}",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
 
         public void CadastrarUsuario()

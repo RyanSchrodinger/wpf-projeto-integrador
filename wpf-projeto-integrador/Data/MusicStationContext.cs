@@ -24,7 +24,16 @@ namespace wpf_projeto_integrador.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Server=Ryan\\SQLEXPRESS;Database=MusicStation;Trusted_Connection=True;TrustServerCertificate=True;");
+                  "Server=tcp:musicstation-db1.database.windows.net,1433;" +
+                    "Initial Catalog=MusicStation;" +
+                    "User ID=ryan;" +
+                    "Password=W@choswick01;" +
+                    "Encrypt=True;" +
+                    "TrustServerCertificate=False;",
+                    options =>
+                    {
+                        options.EnableRetryOnFailure();
+                    });
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

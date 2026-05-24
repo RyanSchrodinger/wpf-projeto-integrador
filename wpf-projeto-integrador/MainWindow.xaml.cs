@@ -64,7 +64,7 @@ namespace wpf_projeto_integrador
                     }
 
                     string senhaCorreta = adm.SenhaHash;
-                    if (senhaCorreta == adm.SenhaHash)
+                    if (senhaCorreta != adm.SenhaHash)
                     {
                         MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
