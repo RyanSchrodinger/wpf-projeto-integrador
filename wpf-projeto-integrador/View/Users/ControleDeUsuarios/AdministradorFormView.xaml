@@ -251,7 +251,9 @@
                         <TextBlock Text="Nível de acesso *" Style="{StaticResource LabelCampo}"/>
                         <Border Style="{StaticResource InputBox}">
                             <ComboBox x:Name="cmbNivel"
-                                      Style="{StaticResource ComboCampo}">
+                                      Style="{StaticResource ComboBoxModerno}"
+                                      BorderThickness="0"
+                                      Background="Transparent">
                                 <ComboBoxItem Content="Alto"/>
                                 <ComboBoxItem Content="Medio"/>
                                 <ComboBoxItem Content="Baixo"/>
@@ -264,7 +266,9 @@
                         <TextBlock Text="Status *" Style="{StaticResource LabelCampo}"/>
                         <Border Style="{StaticResource InputBox}">
                             <ComboBox x:Name="cmbStatus"
-                                      Style="{StaticResource ComboCampo}">
+                                      Style="{StaticResource ComboBoxModerno}"
+                                      BorderThickness="0"
+                                      Background="Transparent">
                                 <ComboBoxItem Content="Ativo"/>
                                 <ComboBoxItem Content="Inativo"/>
                             </ComboBox>
