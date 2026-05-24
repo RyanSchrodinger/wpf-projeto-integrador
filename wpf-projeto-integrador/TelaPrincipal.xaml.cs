@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.IconPacks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using wpf_pi.Views;
 using wpf_projeto_integrador.Models;
@@ -20,6 +21,11 @@ namespace wpf_projeto_integrador
             _administrador = administrador;
             IdUsuarioLogado = _administrador.Id;
             VerificarPermissoes();
+        }
+
+        public void AbrirTela(UserControl tela)
+        {
+            MainContent.Content = tela;
         }
 
 

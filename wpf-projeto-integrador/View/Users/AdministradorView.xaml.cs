@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using wpf_projeto_integrador.Data;
 using wpf_projeto_integrador.Models;
+using wpf_projeto_integrador.View.Users.ControleDeUsuarios;
+
 
 namespace wpf_projeto_integrador.View.Users
 {
@@ -180,9 +182,13 @@ namespace wpf_projeto_integrador.View.Users
                 administradores;
         }
 
-        private void txtBusca_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
+    
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var telaPrincipal = (FormMenu)Window.GetWindow(this);
+
+            telaPrincipal.AbrirTela( new AdministradorFormView());
         }
     }
 
