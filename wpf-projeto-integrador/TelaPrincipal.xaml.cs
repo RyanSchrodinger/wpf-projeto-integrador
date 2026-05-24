@@ -25,7 +25,7 @@ namespace wpf_projeto_integrador
 
         public void VerificarPermissoes()
         {
-            if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.Alto)
+            if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.AdministradorGeral)
             {
                 btnLogs.Visibility = Visibility.Collapsed;
             }
@@ -33,7 +33,7 @@ namespace wpf_projeto_integrador
 
         private void btnLogs_Click(object sender, RoutedEventArgs e)
         {
-            if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.Alto)
+            if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.AdministradorGeral)
             {
                 MessageBox.Show("Você não tem permissão.");
                 return;

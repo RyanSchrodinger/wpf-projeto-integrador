@@ -17,9 +17,11 @@ namespace wpf_projeto_integrador.Models
 
         public enum NivelAcessoEnum
         {
-            Baixo,  
-            Medio,
-            Alto
+            AdministradorGeral,
+            Atendente,
+            Suporte,
+            Financeiro,
+            Moderador
         }
     }
 }

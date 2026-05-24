@@ -30,15 +30,15 @@ namespace wpf_projeto_integrador.View.Users
                 db.Administradores.Count().ToString();
 
             txtToalAlto.Text =
-                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Alto)
+                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.AdministradorGeral)
                 .ToString();
 
             txtTotalMedio.Text =
-                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Medio)
+                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Financeiro)
                 .ToString();
 
             txtTotalBaixo.Text =
-                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Baixo)
+                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Atendente)
                 .ToString();
 
             //txtotalAlto.Text =

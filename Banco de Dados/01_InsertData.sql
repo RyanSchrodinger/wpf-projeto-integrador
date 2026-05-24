@@ -5,17 +5,29 @@ SELECT * FROM Clientes
 SELECT * FROM Profissionais
 SELECT * FROM Empresas
 
+
+-- Definindo o tipo de log "Login"
+INSERT INTO TiposAcao(Nome)
+VALUES ('Login')
+
+-- INSERT DE ALGUNS USUÁRIOS
 INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
-VALUES ('Ryaaaaaaaaan','111','rddyan','rddyan@gmail.com')
+VALUES ('Ryan','111','ryan','ryan@gmail.com')
+
+INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
+VALUES ('Anahi Alexandra','111','mei','anahi@gmail.com')
+
+INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
+VALUES ('Larrisa','111','lari','larissa@gmail.com')
 
 INSERT INTO Administradores(Id,NivelAcesso,Observacao)
-VALUES (34,'Alto', 'Adm Supremo')
-
-INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
-VALUES ('João Pedro','111','jp','jp@gmail.com')
+VALUES (1,'AdministradorGeral', 'Adm com maior acesso')
 
 INSERT INTO Administradores(Id,NivelAcesso,Observacao)
-VALUES (3,'Alto', 'Adm Supremo')
+VALUES (2,'AdministradorGeral', 'Adm com maior acesso')
+
+INSERT INTO Administradores(Id,NivelAcesso,Observacao)
+VALUES (3,'Financeiro', 'Finanças')
 
 -- INSERT Clientes, Profissionais e Empresas
 

@@ -58,7 +58,7 @@ namespace wpf_projeto_integrador.Data
             modelBuilder.Entity<Administrador>()
                 .ToTable(t => t.HasCheckConstraint(
                     "CK_Administrador_NivelAcesso",
-                    "NivelAcesso IN ('Baixo','Medio','Alto')"
+                    "NivelAcesso IN ('AdministradorGeral','Atendente','Suporte','Financeiro','Moderador')"
                  ));
 
 
