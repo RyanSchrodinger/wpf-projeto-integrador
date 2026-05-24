@@ -43,11 +43,11 @@ namespace wpf_projeto_integrador
             {
 
                 using (var db = new MusicStationContext())
-                {   
+                {
                     Administrador adm = db.Administradores
                         .FirstOrDefault(a =>
-                            a.NomeUsuario == nomeUsuario &&
-                            a.SenhaHash == senha);
+                            a.NomeUsuario == nomeUsuario);
+                            
 
 
                     if (adm == null)
@@ -55,6 +55,30 @@ namespace wpf_projeto_integrador
                         MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
+
+
+                    if (!adm.Ativo)
+                    {
+                        MessageBox.Show("Esta conta está desativada.", "Acesso negado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    string senhaCorreta = adm.SenhaHash;
+                    if (senhaCorreta == adm.SenhaHash)
+                    {
+                        MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    //bool senhaCorreta = BCrypt.Net.BCrypt.Verify(senha, adm.SenhaHash);
+                    
+
+                    //if (!senhaCorreta)
+                    //{
+                    //    MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //    return;
+                    //}
+
 
                     var login = db.TiposAcao.FirstOrDefault(t => t.Nome == "Login");
 

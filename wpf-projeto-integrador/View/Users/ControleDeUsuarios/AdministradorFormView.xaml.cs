@@ -158,9 +158,6 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                     MessageBoxImage.Error);
             }
 
-
-
-
         }
 
         public void CadastrarUsuario()
