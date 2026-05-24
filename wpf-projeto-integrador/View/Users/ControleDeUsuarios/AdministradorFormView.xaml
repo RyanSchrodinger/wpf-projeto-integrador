@@ -254,9 +254,11 @@
                                       Style="{StaticResource ComboBoxModerno}"
                                       BorderThickness="0"
                                       Background="Transparent">
-                                <ComboBoxItem Content="Alto"/>
-                                <ComboBoxItem Content="Medio"/>
-                                <ComboBoxItem Content="Baixo"/>
+                                <ComboBoxItem Content="AdministradorGeral"/>
+                                <ComboBoxItem Content="Atendente"/>
+                                <ComboBoxItem Content="Suporte"/>
+                                <ComboBoxItem Content="Financeiro"/>
+                                <ComboBoxItem Content="Moderador"/>
                             </ComboBox>
                         </Border>
                     </StackPanel>

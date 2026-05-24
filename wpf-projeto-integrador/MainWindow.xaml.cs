@@ -43,7 +43,7 @@ namespace wpf_projeto_integrador
             {
 
                 using (var db = new MusicStationContext())
-                {
+                {   
                     Administrador adm = db.Administradores
                         .FirstOrDefault(a =>
                             a.NomeUsuario == nomeUsuario &&
