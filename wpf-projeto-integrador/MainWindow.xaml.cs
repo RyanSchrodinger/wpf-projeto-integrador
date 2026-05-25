@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using wpf_projeto_integrador.Data;
+using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
 
 namespace wpf_projeto_integrador
@@ -130,6 +131,8 @@ namespace wpf_projeto_integrador
                     });
 
                     db.SaveChanges();
+
+                    SessaoUsuario.Iniciar(adm);
 
 
                     FormMenu tela = new FormMenu(adm);

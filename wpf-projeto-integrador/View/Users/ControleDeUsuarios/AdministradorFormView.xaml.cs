@@ -24,7 +24,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
     public partial class AdministradorFormView : UserControl
     {
         public AdministradorViewModel adm;
-        public AdministradorFormView(Administrador usuarioLogado)
+        public AdministradorFormView()
         {
             InitializeComponent();
             cmbStatus.Visibility = Visibility.Collapsed;
@@ -34,7 +34,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
 
         }
 
-        public AdministradorFormView(AdministradorViewModel adm, Administrador usuarioLogado)
+        public AdministradorFormView(AdministradorViewModel adm)
         {
             this.adm = adm;
             InitializeComponent();
@@ -287,11 +287,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                         MessageBoxImage.Information
                         );
 
-                    db.LogsSistema.Add(new LogSistema
-                    {
-                        UsuarioId = 
-
-                    });
+                   
                 }
 
                 
