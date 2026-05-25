@@ -146,9 +146,8 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                          "Administrador",
                          admm.Id,
                          true,
-                         null,
-                         "Controle de Administradores"
-                     );
+                         null,  
+                        "Edição de Administrador");
 
                     db.SaveChanges();
 
@@ -226,6 +225,19 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                             BCrypt.Net.BCrypt.HashPassword(
                                 txtSenha.Password);
                     }
+
+
+                    GerenciadorLogs.FazerRegistro(
+                        db,
+                        SessaoUsuario.usuarioLogado.Id,
+                        TipoAcaoLog.Atualizacao,
+                        $"Administrador {SessaoUsuario.usuarioLogado?.NomeUsuario} atualizou o administrador {administrador.NomeUsuario}.",
+                        "Administrador",
+                        administrador.Id,
+                        true,
+                        null,
+                        "Edição de Administrador"
+                        );
 
                     db.SaveChanges();
 
@@ -314,6 +326,8 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                     db.SaveChanges();
 
                 }
+
+
 
 
 
