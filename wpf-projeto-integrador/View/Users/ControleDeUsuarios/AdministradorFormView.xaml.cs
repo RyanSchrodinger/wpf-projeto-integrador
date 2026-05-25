@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using wpf_projeto_integrador.Data;
+using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
 
 namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
@@ -137,6 +138,18 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
 
                     admm.Ativo = false;
 
+                    GerenciadorLogs.FazerRegistro(
+                         db,
+                         SessaoUsuario.usuarioLogado?.Id,
+                         TipoAcaoLog.Desativacao,
+                         $"Administrador {SessaoUsuario.usuarioLogado?.NomeUsuario} desativou o administrador {admm.NomeUsuario}.",
+                         "Administrador",
+                         admm.Id,
+                         true,
+                         null,
+                         "Controle de Administradores"
+                     );
+
                     db.SaveChanges();
 
                     MessageBox.Show(
@@ -244,6 +257,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                 using (var db = new MusicStationContext())
                 {
 
+
                     if (string.IsNullOrWhiteSpace(cmbNivel.Text))
                     {
                         MessageBox.Show("Selecione um nível de acesso.");
@@ -278,7 +292,6 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
 
                     db.Administradores.Add(novoAdm);
 
-                    db.SaveChanges();
 
                     MessageBox.Show(
                         "Administrador cadastrado com sucesso!",
@@ -287,10 +300,22 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                         MessageBoxImage.Information
                         );
 
-                   
+                    GerenciadorLogs.FazerRegistro(
+                        db,
+                        SessaoUsuario.usuarioLogado.Id,
+                        TipoAcaoLog.Cadastro,
+                        $"Administrador {SessaoUsuario.usuarioLogado?.NomeUsuario} cadastrou o administrador {novoAdm.NomeUsuario}.",
+                        "Administrador",
+                        novoAdm.Id,
+                        true,
+                        null,
+                        "Cadastro de Administradores"
+                        );
+                    db.SaveChanges();
+
                 }
 
-                
+
 
             } 
             catch(Exception ex)
