@@ -24,7 +24,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
     public partial class AdministradorFormView : UserControl
     {
         public AdministradorViewModel adm;
-        public AdministradorFormView()
+        public AdministradorFormView(Administrador usuarioLogado)
         {
             InitializeComponent();
             cmbStatus.Visibility = Visibility.Collapsed;
@@ -34,7 +34,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
 
         }
 
-        public AdministradorFormView(AdministradorViewModel adm)
+        public AdministradorFormView(AdministradorViewModel adm, Administrador usuarioLogado)
         {
             this.adm = adm;
             InitializeComponent();
@@ -272,7 +272,8 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                         Email = email,
                         NivelAcesso = nivelAcesso,
                         DataCriacao = DateTime.Now,
-                        Ativo = true
+                        Ativo = true,
+                        Telefone = telefone,
                     };
 
                     db.Administradores.Add(novoAdm);
@@ -285,12 +286,26 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                         MessageBoxButton.OK,
                         MessageBoxImage.Information
                         );
+
+                    db.LogsSistema.Add(new LogSistema
+                    {
+                        UsuarioId = 
+
+                    });
                 }
+
+                
+
             } 
             catch(Exception ex)
             {
-                MessageBox.Show($"Ocorreu um erro ao tentar fazer login: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                       ex.InnerException?.Message ?? ex.Message,
+                       "Erro"
+                   );
             }
+
+            
             LimparCampos();
         }
        

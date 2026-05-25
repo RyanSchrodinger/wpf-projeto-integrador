@@ -13,7 +13,6 @@ namespace wpf_projeto_integrador.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<LogSistema> LogsSistema { get; set; }
-        public DbSet<TipoAcao> TiposAcao { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Profissional> Profissionais { get; set; }
@@ -56,11 +55,6 @@ namespace wpf_projeto_integrador.Data
                 .IsUnique();
 
             modelBuilder.Entity<Usuario>()
-                        .Property(c => c.Telefone)
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-            modelBuilder.Entity<Usuario>()
                 .Property(u => u.DataCriacao)
                 .HasDefaultValueSql("GETDATE()");
             modelBuilder.Entity<Usuario>()
@@ -75,47 +69,6 @@ namespace wpf_projeto_integrador.Data
                     "CK_Administrador_NivelAcesso",
                     "NivelAcesso IN ('AdministradorGeral','Atendente','Suporte','Financeiro','Moderador')"
                  ));
-
-
-            modelBuilder.Entity<TipoAcao>()
-               .HasIndex(t => t.Nome)
-               .IsUnique();
-
-            modelBuilder.Entity<TipoAcao>()
-                .Property(t => t.Nome)
-                .HasMaxLength(50)
-                .IsRequired();
-
-            modelBuilder.Entity<LogSistema>()
-                .Property(l => l.NomeComputador)
-                .HasMaxLength(100);
-
-            modelBuilder.Entity<LogSistema>()
-                .Property(l => l.Descricao)
-                .HasMaxLength(500)
-                .IsRequired();
-
-            modelBuilder.Entity<LogSistema>()
-                .Property(l => l.Entidade)
-                .HasMaxLength(100);
-
-
-            modelBuilder.Entity<LogSistema>()
-                .Property(l => l.DataHora)
-                .HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<LogSistema>()
-                .HasOne(l => l.Usuario)
-                .WithMany(u => u.Logs)
-                .HasForeignKey(l => l.UsuarioId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<LogSistema>()
-                .HasOne(l => l.TipoAcao)
-                .WithMany(t => t.Logs)
-                .HasForeignKey(l => l.TipoAcaoId)
-                .OnDelete(DeleteBehavior.Restrict);
-
 
             // Cliente
             modelBuilder.Entity<Cliente>(entity =>
@@ -147,6 +100,41 @@ namespace wpf_projeto_integrador.Data
 
                 entity.Property(p => p.Cidade)
                     .HasMaxLength(100);
+            });
+
+            //Log
+            modelBuilder.Entity<LogSistema>(entity =>
+            {
+                entity.HasKey(l => l.Id);
+
+                entity.Property(l => l.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                entity.Property(l => l.EntidadeAfetada)
+                    .HasMaxLength(100);
+
+                entity.Property(l => l.Tela)
+                    .HasMaxLength(100);
+
+                entity.Property(l => l.NomeComputador)
+                    .HasMaxLength(100);
+
+                entity.Property(l => l.Erro)
+                    .HasMaxLength(1000);
+
+                entity.Property(l => l.DataHora)
+                    .HasDefaultValueSql("GETDATE()");
+
+                // Relacionamento com Usuario
+                entity.HasOne(l => l.Usuario)
+                    .WithMany(u => u.Logs)
+                    .HasForeignKey(l => l.UsuarioId)
+                    .OnDelete(DeleteBehavior.SetNull);
+
+                // Salvar enum como int
+                entity.Property(l => l.TipoAcao)
+                    .HasConversion<int>();
             });
 
 

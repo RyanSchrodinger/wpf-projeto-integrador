@@ -17,34 +17,34 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Background="#171726"
-                CornerRadius="18"
+        <Border Grid.Row="0"
+                Background="#171726"
+                CornerRadius="22"
                 Padding="24"
-                Margin="20 20 20 10">
+                Margin="20 20 20 12">
 
             <Grid>
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- ICON -->
                 <Border Width="70"
                         Height="70"
                         CornerRadius="35"
                         Background="#6D28D9">
 
-                    <iconPacks:PackIconMaterial
-                        Kind="ClipboardTextClock"
-                        Width="34"
-                        Height="34"
-                        Foreground="White"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
+                    <iconPacks:PackIconMaterial Kind="ClipboardTextClock"
+                                                Width="34"
+                                                Height="34"
+                                                Foreground="White"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
                 </Border>
 
-                <!-- TEXTOS -->
                 <StackPanel Grid.Column="1"
                             Margin="18 0 0 0"
                             VerticalAlignment="Center">
@@ -54,11 +54,74 @@
                                FontSize="32"
                                FontWeight="Bold"/>
 
-                    <TextBlock Text="Monitore atividades e acessos administrativos"
+                    <TextBlock Text="Monitore atividades, acessos, erros e ações administrativas"
                                Foreground="#9CA3AF"
                                FontSize="14"
                                Margin="0 6 0 0"/>
                 </StackPanel>
+
+                <!-- CARD TOTAL -->
+                <Border Grid.Column="2"
+                        Background="#0F0F1A"
+                        CornerRadius="16"
+                        Padding="18 12"
+                        Margin="10 0 0 0">
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalLogs}"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Total"
+                                   Foreground="#9CA3AF"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD SUCESSO -->
+                <Border Grid.Column="3"
+                        Background="#102A1D"
+                        CornerRadius="16"
+                        Padding="18 12"
+                        Margin="10 0 0 0">
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalSucesso}"
+                                   Foreground="#4ADE80"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Sucessos"
+                                   Foreground="#86EFAC"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- CARD FALHA -->
+                <Border Grid.Column="4"
+                        Background="#2A1111"
+                        CornerRadius="16"
+                        Padding="18 12"
+                        Margin="10 0 0 0">
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalFalha}"
+                                   Foreground="#F87171"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Falhas"
+                                   Foreground="#FCA5A5"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
 
             </Grid>
         </Border>
@@ -66,91 +129,123 @@
         <!-- FILTROS -->
         <Border Grid.Row="1"
                 Background="#171726"
-                CornerRadius="18"
-                Padding="20"
-                Margin="20 0 20 10">
+                CornerRadius="20"
+                Padding="18"
+                Margin="20 0 20 12">
 
             <Grid>
-
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2.4*"/>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- PESQUISA -->
-                <Border Background="#0F0F1A"
-                        CornerRadius="10"
-                        Padding="12 8"
-                        Margin="0 0 10 0">
+                <Border Grid.Column="0"
+                        Background="#0F0F1A"
+                        CornerRadius="12"
+                        Padding="12 0"
+                        Height="44"
+                        Margin="0 0 10 0"
+                        BorderBrush="#2A2940"
+                        BorderThickness="1">
 
-                    <DockPanel>
+                    <DockPanel VerticalAlignment="Center">
 
-                        <iconPacks:PackIconMaterial
-                            Kind="Magnify"
-                            Width="18"
-                            Height="18"
-                            Foreground="#9CA3AF"
-                            Margin="0 0 8 0"/>
+                        <iconPacks:PackIconMaterial Kind="Magnify"
+                                                    Width="18"
+                                                    Height="18"
+                                                    Foreground="#9CA3AF"
+                                                    Margin="0 0 8 0"
+                                                    VerticalAlignment="Center"/>
 
-                        <TextBox BorderThickness="0"
+                        <TextBox x:Name="txtPesquisa"
+                                 BorderThickness="0"
                                  Background="Transparent"
                                  Foreground="White"
                                  FontSize="14"
                                  CaretBrush="White"
-                                 Text="Pesquisar usuário, ação ou entidade..."/>
+                                 VerticalContentAlignment="Center"/>
                     </DockPanel>
                 </Border>
 
-                <!-- COMBO ACAO -->
-                <ComboBox Grid.Column="1"
+                <!-- COMBO AÇÃO -->
+                <ComboBox x:Name="cmbAcao"
+                          Grid.Column="1"
+                          Height="44"
                           Margin="0 0 10 0"
                           Background="#0F0F1A"
                           Foreground="White"
                           BorderBrush="#2A2940"
-                          Height="42">
-
-                    <ComboBoxItem Content="Todas ações"/>
-                    <ComboBoxItem Content="Login"/>
-                    <ComboBoxItem Content="Logout"/>
-                    <ComboBoxItem Content="Criação"/>
-                    <ComboBoxItem Content="Alteração"/>
-                    <ComboBoxItem Content="Exclusão"/>
-                </ComboBox>
+                          Padding="10 0"/>
 
                 <!-- COMBO ENTIDADE -->
-                <ComboBox Grid.Column="2"
+                <ComboBox x:Name="cmbEntidade"
+                          Grid.Column="2"
+                          Height="44"
                           Margin="0 0 10 0"
                           Background="#0F0F1A"
                           Foreground="White"
                           BorderBrush="#2A2940"
-                          Height="42">
+                          Padding="10 0"/>
 
-                    <ComboBoxItem Content="Todas entidades"/>
-                    <ComboBoxItem Content="Administrador"/>
-                    <ComboBoxItem Content="Empresa"/>
-                    <ComboBoxItem Content="Instrumento"/>
-                    <ComboBoxItem Content="Usuário"/>
-                </ComboBox>
-
-                <!-- BOTAO -->
+                <!-- BOTÃO FILTRAR -->
                 <Button Grid.Column="3"
+                        Height="44"
+                        Padding="22 0"
+                        Margin="0 0 10 0"
                         Background="#7C3AED"
                         Foreground="White"
                         BorderThickness="0"
-                        Padding="24 10"
-                        Cursor="Hand"
                         FontWeight="Bold"
-                        Content="Filtrar"/>
+                        Cursor="Hand"
+                        Click="BtnFiltrar_Click">
+
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="FilterVariant"
+                                                    Width="17"
+                                                    Height="17"
+                                                    Foreground="White"
+                                                    Margin="0 0 7 0"
+                                                    VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Filtrar"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- BOTÃO LIMPAR -->
+                <Button Grid.Column="4"
+                        Height="44"
+                        Padding="18 0"
+                        Background="#27273A"
+                        Foreground="#D1D5DB"
+                        BorderThickness="0"
+                        FontWeight="SemiBold"
+                        Cursor="Hand"
+                        Click="BtnLimpar_Click">
+
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="Broom"
+                                                    Width="17"
+                                                    Height="17"
+                                                    Foreground="#D1D5DB"
+                                                    Margin="0 0 7 0"
+                                                    VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Limpar"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
             </Grid>
         </Border>
 
         <!-- LISTA -->
-        <!-- LISTA -->
         <ScrollViewer Grid.Row="2"
-              Margin="20 0 20 20"
-              VerticalScrollBarVisibility="Auto">
+                      Margin="20 0 20 20"
+                      VerticalScrollBarVisibility="Auto">
 
             <ItemsControl ItemsSource="{Binding Logs}">
                 <ItemsControl.ItemTemplate>
@@ -159,116 +254,142 @@
                         <Border Background="#171726"
                                 BorderBrush="#2A2940"
                                 BorderThickness="1"
-                                CornerRadius="12"
-                                Padding="12"
-                                Margin="0 0 0 8">
+                                CornerRadius="16"
+                                Padding="14"
+                                Margin="0 0 0 10">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48"/>
+                                    <ColumnDefinition Width="56"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="250"/>
-                                    <ColumnDefinition Width="105"/>
+                                    <ColumnDefinition Width="270"/>
+                                    <ColumnDefinition Width="125"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- ICONE PRINCIPAL -->
-                                <Border Width="38"
-                                        Height="38"
-                                        CornerRadius="19"
-                                        Background="#1F3B2C"
+                                <!-- ÍCONE DINÂMICO -->
+                                <Border Grid.Column="0"
+                                        Width="42"
+                                        Height="42"
+                                        CornerRadius="21"
+                                        Background="{Binding CorFundo}"
                                         VerticalAlignment="Center">
 
-                                    <iconPacks:PackIconMaterial
-                                                Kind="LoginVariant"
-                                                Width="18"
-                                                Height="18"
-                                                Foreground="#4ADE80"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"/>
+                                    <iconPacks:PackIconMaterial Kind="{Binding Icone}"
+                                                                Width="20"
+                                                                Height="20"
+                                                                Foreground="{Binding CorTexto}"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
                                 </Border>
 
-                                <!-- TEXTO -->
+                                <!-- INFORMAÇÕES DO LOG -->
                                 <StackPanel Grid.Column="1"
-                                    VerticalAlignment="Center">
+                                            VerticalAlignment="Center">
 
-                                    <TextBlock Text="{Binding TipoAcao.Nome}"
-                                       Foreground="#4ADE80"
-                                       FontWeight="Bold"
-                                       FontSize="14"/>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="{Binding TipoAcao}"
+                                                   Foreground="{Binding CorTexto}"
+                                                   FontWeight="Bold"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"/>
+
+                                        <Border Background="#27273A"
+                                                CornerRadius="8"
+                                                Padding="8 3"
+                                                Margin="10 0 0 0"
+                                                VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding Sucesso, StringFormat=Status: {0}}"
+                                                       Foreground="#D1D5DB"
+                                                       FontSize="10"
+                                                       FontWeight="SemiBold"/>
+                                        </Border>
+                                    </StackPanel>
 
                                     <TextBlock Text="{Binding Descricao}"
                                                Foreground="White"
-                                               FontSize="11"
-                                               Margin="0 2 0 0"
+                                               FontSize="12"
+                                               Margin="0 5 0 0"
                                                TextWrapping="Wrap"/>
 
-                                    <Border Background="#2D1F4F"
-                                            CornerRadius="6"
-                                            Padding="7 2"
-                                            HorizontalAlignment="Left"
-                                            Margin="0 5 0 0">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0 7 0 0">
 
-                                        <TextBlock Foreground="#A855F7"
-                                                   FontSize="9"
-                                                   FontWeight="SemiBold">
-                                            <Run Text="{Binding Entidade}"/>
-                                            <Run Text=" #"/>
-                                            <Run Text="{Binding EntidadeId}"/>
-                                        </TextBlock>
-                                    </Border>
+                                        <Border Background="#2D1F4F"
+                                                CornerRadius="7"
+                                                Padding="8 3"
+                                                Margin="0 0 8 0">
+
+                                            <TextBlock Foreground="#A855F7"
+                                                       FontSize="10"
+                                                       FontWeight="SemiBold">
+                                                <Run Text="{Binding EntidadeAfetada}"/>
+                                                <Run Text=" #"/>
+                                                <Run Text="{Binding EntidadeId}"/>
+                                            </TextBlock>
+                                        </Border>
+
+                                        <Border Background="#1E293B"
+                                                CornerRadius="7"
+                                                Padding="8 3">
+
+                                            <TextBlock Text="{Binding Erro}"
+                                                       Foreground="#FCA5A5"
+                                                       FontSize="10"
+                                                       FontWeight="SemiBold"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </Border>
+                                    </StackPanel>
                                 </StackPanel>
 
-                                <!-- USUARIO + PC -->
+                                <!-- USUÁRIO E COMPUTADOR -->
                                 <Grid Grid.Column="2"
                                       VerticalAlignment="Center"
-                                      Margin="10 0 0 0">
+                                      Margin="14 0 0 0">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="130"/>
-                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                    <!-- USUARIO -->
-                                    <StackPanel Grid.Column="0"
-                                        Orientation="Horizontal"
-                                        VerticalAlignment="Center">
+                                    <!-- USUÁRIO -->
+                                    <StackPanel Grid.Row="0"
+                                                Orientation="Horizontal"
+                                                Margin="0 0 0 8">
 
-                                        <iconPacks:PackIconMaterial
-                                                    Kind="AccountOutline"
-                                                    Width="12"
-                                                    Height="12"
-                                                    Foreground="#A855F7"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 5 0"/>
+                                        <iconPacks:PackIconMaterial Kind="AccountOutline"
+                                                                    Width="15"
+                                                                    Height="15"
+                                                                    Foreground="#A855F7"
+                                                                    Margin="0 0 7 0"
+                                                                    VerticalAlignment="Center"/>
 
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding Usuario.NomeUsuario}"
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding UsuarioNome}"
                                                        Foreground="White"
                                                        FontWeight="SemiBold"
-                                                       FontSize="10"/>
+                                                       FontSize="12"/>
 
-                                            <TextBlock Text="Administrador"
+                                            <TextBlock Text="Usuário responsável"
                                                        Foreground="#9CA3AF"
-                                                       FontSize="8"
-                                                       Margin="0 1 0 0"/>
+                                                       FontSize="9"/>
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <!-- PC -->
-                                    <StackPanel Grid.Column="1"
-                                        Orientation="Horizontal"
-                                        VerticalAlignment="Center">
+                                    <!-- COMPUTADOR -->
+                                    <StackPanel Grid.Row="1"
+                                                Orientation="Horizontal">
 
-                                        <iconPacks:PackIconMaterial
-                                                    Kind="DesktopClassic"
-                                                    Width="13"
-                                                    Height="13"
-                                                    Foreground="#A855F7"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 5 0"/>
+                                        <iconPacks:PackIconMaterial Kind="DesktopClassic"
+                                                                    Width="15"
+                                                                    Height="15"
+                                                                    Foreground="#A855F7"
+                                                                    Margin="0 0 7 0"
+                                                                    VerticalAlignment="Center"/>
 
                                         <TextBlock Text="{Binding NomeComputador}"
-                                                   Foreground="White"
+                                                   Foreground="#D1D5DB"
                                                    FontSize="11"
                                                    VerticalAlignment="Center"
                                                    TextTrimming="CharacterEllipsis"/>
@@ -281,29 +402,36 @@
                                             HorizontalAlignment="Right">
 
                                     <StackPanel Orientation="Horizontal"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center">
+                                                HorizontalAlignment="Right">
 
-                                        <iconPacks:PackIconMaterial
-                                                    Kind="ClockOutline"
-                                                    Width="11"
-                                                    Height="11"
-                                                    Foreground="#9CA3AF"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 4 0"/>
+                                        <iconPacks:PackIconMaterial Kind="CalendarMonthOutline"
+                                                                    Width="13"
+                                                                    Height="13"
+                                                                    Foreground="#9CA3AF"
+                                                                    Margin="0 0 5 0"
+                                                                    VerticalAlignment="Center"/>
 
                                         <TextBlock Text="{Binding DataHora, StringFormat=dd/MM/yyyy}"
-                                                    Foreground="White"
-                                                    FontWeight="SemiBold"
-                                                    FontSize="10"
-                                                    VerticalAlignment="Center"/>
+                                                   Foreground="White"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="11"/>
                                     </StackPanel>
 
-                                    <TextBlock Text="{Binding DataHora, StringFormat=HH:mm:ss}"
-                                               Foreground="#9CA3AF"
-                                               FontSize="9"
-                                               Margin="0 2 0 0"
-                                               HorizontalAlignment="Right"/>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Right"
+                                                Margin="0 5 0 0">
+
+                                        <iconPacks:PackIconMaterial Kind="ClockOutline"
+                                                                    Width="13"
+                                                                    Height="13"
+                                                                    Foreground="#9CA3AF"
+                                                                    Margin="0 0 5 0"
+                                                                    VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="{Binding DataHora, StringFormat=HH:mm:ss}"
+                                                   Foreground="#9CA3AF"
+                                                   FontSize="10"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -311,8 +439,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-
-
 
     </Grid>
 </UserControl>

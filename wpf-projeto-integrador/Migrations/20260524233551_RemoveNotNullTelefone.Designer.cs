@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wpf_projeto_integrador.Data;
 
@@ -11,9 +12,11 @@ using wpf_projeto_integrador.Data;
 namespace wpf_projeto_integrador.Migrations
 {
     [DbContext(typeof(MusicStationContext))]
-    partial class MusicStationContextModelSnapshot : ModelSnapshot
+    [Migration("20260524233551_RemoveNotNullTelefone")]
+    partial class RemoveNotNullTelefone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,35 +69,26 @@ namespace wpf_projeto_integrador.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("EntidadeAfetada")
+                    b.Property<string>("Entidade")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("EntidadeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Erro")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
                     b.Property<string>("NomeComputador")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("Sucesso")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Tela")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("TipoAcao")
+                    b.Property<int>("TipoAcaoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsuarioId")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TipoAcaoId");
 
                     b.HasIndex("UsuarioId");
 
@@ -133,6 +127,27 @@ namespace wpf_projeto_integrador.Migrations
                     b.HasIndex("RemetenteId");
 
                     b.ToTable("Mensagens");
+                });
+
+            modelBuilder.Entity("wpf_projeto_integrador.Models.TipoAcao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Nome")
+                        .IsUnique();
+
+                    b.ToTable("TiposAcao");
                 });
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.Usuario", b =>
@@ -296,10 +311,19 @@ namespace wpf_projeto_integrador.Migrations
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.LogSistema", b =>
                 {
+                    b.HasOne("wpf_projeto_integrador.Models.TipoAcao", "TipoAcao")
+                        .WithMany("Logs")
+                        .HasForeignKey("TipoAcaoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("wpf_projeto_integrador.Models.Usuario", "Usuario")
                         .WithMany("Logs")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("TipoAcao");
 
                     b.Navigation("Usuario");
                 });
@@ -362,6 +386,11 @@ namespace wpf_projeto_integrador.Migrations
             modelBuilder.Entity("wpf_projeto_integrador.Models.Chat", b =>
                 {
                     b.Navigation("Mensagens");
+                });
+
+            modelBuilder.Entity("wpf_projeto_integrador.Models.TipoAcao", b =>
+                {
+                    b.Navigation("Logs");
                 });
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.Usuario", b =>

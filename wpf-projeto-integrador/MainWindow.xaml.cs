@@ -47,11 +47,20 @@ namespace wpf_projeto_integrador
                     Administrador adm = db.Administradores
                         .FirstOrDefault(a =>
                             a.NomeUsuario == nomeUsuario);
-                            
-
 
                     if (adm == null)
                     {
+                        db.LogsSistema.Add(new LogSistema
+                        {
+                            TipoAcao = TipoAcaoLog.LoginFalha,
+                            Descricao = $"Tentativa de login com usuário inexistente: {nomeUsuario}",
+                            Tela = "Tela de Login",
+                            NomeComputador = Environment.MachineName,
+                            Sucesso = false
+                        });
+
+                        db.SaveChanges();
+
                         MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
@@ -59,48 +68,68 @@ namespace wpf_projeto_integrador
 
                     if (!adm.Ativo)
                     {
-                        MessageBox.Show("Esta conta está desativada.", "Acesso negado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        db.LogsSistema.Add(new LogSistema
+                        {
+                            UsuarioId = adm.Id,
+                            TipoAcao = TipoAcaoLog.AcessoNegado,
+                            EntidadeAfetada = "Administrador",
+                            EntidadeId = adm.Id,
+                            Descricao = $"Administrador {adm.NomeUsuario} tentou acessar com conta desativada.",
+                            Tela = "Tela de Login",
+                            NomeComputador = Environment.MachineName,
+                            Sucesso = false
+                        });
+
+                        db.SaveChanges();
+
+                        MessageBox.Show("Essa conta está desativada.", "Acesso negado", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
-                    string senhaCorreta = adm.SenhaHash;
-                    if (senhaCorreta != adm.SenhaHash)
-                    {
-                        MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-
-                    //bool senhaCorreta = BCrypt.Net.BCrypt.Verify(senha, adm.SenhaHash);
-                    
-
-                    //if (!senhaCorreta)
+                    //string senhaCorreta = adm.SenhaHash;
+                    //if (senhaCorreta != adm.SenhaHash)
                     //{
                     //    MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
                     //    return;
                     //}
 
+                    bool senhaCorreta = BCrypt.Net.BCrypt.Verify(senha, adm.SenhaHash);
 
-                    var login = db.TiposAcao.FirstOrDefault(t => t.Nome == "Login");
-
-                    if (login == null)
+                    if (!senhaCorreta)
                     {
-                        MessageBox.Show("Vish, vey. Deu probelma ai", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                        db.LogsSistema.Add(new LogSistema
+                        {
+                            UsuarioId = adm.Id,
+                            TipoAcao = TipoAcaoLog.LoginFalha,
+                            EntidadeAfetada = "Administrador",
+                            EntidadeId = adm.Id,
+                            Descricao = $"Senha incorreta para o administrador {adm.NomeUsuario}.",
+                            Tela = "Tela de Login",
+                            NomeComputador = Environment.MachineName,
+                            Sucesso = false
+                        });
+
+                        db.SaveChanges();
+
+                        MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
                     }
 
-                    var log = new LogSistema
+
+
+                    db.LogsSistema.Add(new LogSistema
                     {
                         UsuarioId = adm.Id,
-                        TipoAcaoId = login.Id,
-                        Entidade = "Administrador",
+                        TipoAcao = TipoAcaoLog.LoginSucesso,
+                        EntidadeAfetada = "Administrador",
                         EntidadeId = adm.Id,
                         Descricao = $"Administrador {adm.NomeUsuario} fez login.",
-                        DataHora = DateTime.Now,
-                        NomeComputador = Environment.MachineName
-                    };
+                        Tela = "Tela de Login",
+                        NomeComputador = Environment.MachineName,
+                        Sucesso = true
+                    });
 
-                    db.LogsSistema.Add(log);
                     db.SaveChanges();
-
 
 
                     FormMenu tela = new FormMenu(adm);
