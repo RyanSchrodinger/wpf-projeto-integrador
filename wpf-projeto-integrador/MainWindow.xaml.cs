@@ -51,6 +51,23 @@ namespace wpf_projeto_integrador
 
                     if (adm == null)
                     {
+
+
+                        GerenciadorLogs.FazerRegistro(
+                            db,
+                            null,
+                            TipoAcaoLog.LoginFalha,
+                            $"Tentativa de login com usuário inexistente: {nomeUsuario}",
+                            null,
+                            null,
+                            false,
+                            null,
+                            "Tela Login"
+
+
+                            );
+
+
                         db.LogsSistema.Add(new LogSistema
                         {
                             TipoAcao = TipoAcaoLog.LoginFalha,
@@ -69,17 +86,18 @@ namespace wpf_projeto_integrador
 
                     if (!adm.Ativo)
                     {
-                        db.LogsSistema.Add(new LogSistema
-                        {
-                            UsuarioId = adm.Id,
-                            TipoAcao = TipoAcaoLog.AcessoNegado,
-                            EntidadeAfetada = "Administrador",
-                            EntidadeId = adm.Id,
-                            Descricao = $"Administrador {adm.NomeUsuario} tentou acessar com conta desativada.",
-                            Tela = "Tela de Login",
-                            NomeComputador = Environment.MachineName,
-                            Sucesso = false
-                        });
+
+                        GerenciadorLogs.FazerRegistro(
+                            db,
+                            adm.Id,
+                            TipoAcaoLog.AcessoNegado,
+                            $"Administrador {adm.NomeUsuario} tentou acessar com conta desativada.",
+                            "Administrador",
+                            adm.Id,
+                            false,
+                            null,
+                            "Tela de Login"
+                            );
 
                         db.SaveChanges();
 
@@ -98,18 +116,20 @@ namespace wpf_projeto_integrador
 
                     if (!senhaCorreta)
                     {
-                        db.LogsSistema.Add(new LogSistema
-                        {
-                            UsuarioId = adm.Id,
-                            TipoAcao = TipoAcaoLog.LoginFalha,
-                            EntidadeAfetada = "Administrador",
-                            EntidadeId = adm.Id,
-                            Descricao = $"Senha incorreta para o administrador {adm.NomeUsuario}.",
-                            Tela = "Tela de Login",
-                            NomeComputador = Environment.MachineName,
-                            Sucesso = false
-                        });
 
+                        GerenciadorLogs.FazerRegistro(
+                            db,
+                            adm.Id,
+                            TipoAcaoLog.LoginFalha,
+                            $"Senha incorreta para o administrador {adm.NomeUsuario}.",
+                            "Administrador",
+                            adm.Id,
+                            false,
+                            null,
+                            "Tela de Login"
+
+
+                            );
                         db.SaveChanges();
 
                         MessageBox.Show("Nome de usuário ou senha incorretos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -118,17 +138,17 @@ namespace wpf_projeto_integrador
 
 
 
-                    db.LogsSistema.Add(new LogSistema
-                    {
-                        UsuarioId = adm.Id,
-                        TipoAcao = TipoAcaoLog.LoginSucesso,
-                        EntidadeAfetada = "Administrador",
-                        EntidadeId = adm.Id,
-                        Descricao = $"Administrador {adm.NomeUsuario} fez login.",
-                        Tela = "Tela de Login",
-                        NomeComputador = Environment.MachineName,
-                        Sucesso = true
-                    });
+                    GerenciadorLogs.FazerRegistro(
+                        db,
+                        adm.Id,
+                        TipoAcaoLog.LoginSucesso,
+                        $"Administrador {adm.NomeUsuario} fez login.",
+                        "Administrador",
+                        adm.Id,
+                        true,
+                        null,
+                        "Tela de Login"
+                        );
 
                     db.SaveChanges();
 

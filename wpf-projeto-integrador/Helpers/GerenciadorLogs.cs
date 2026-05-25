@@ -1,6 +1,4 @@
-﻿
-
-using System.Security.Cryptography.Pkcs;
+﻿using System.Security.Cryptography.Pkcs;
 using wpf_projeto_integrador.Data;
 using wpf_projeto_integrador.Models;
 
@@ -14,10 +12,11 @@ namespace wpf_projeto_integrador.Helpers
             var log = new LogSistema
             {
                 UsuarioId = usuarioId,
+                
                 TipoAcao = tipoAcao,
                 Descricao = descricao,
                 EntidadeAfetada = entidade,
-                DataHora = DateTime.Now,
+                EntidadeId = entidadeId,
                 NomeComputador = Environment.MachineName,
                 Tela = tela,
                 Sucesso = sucesso,
