@@ -38,11 +38,138 @@ namespace wpf_projeto_integrador
 
         public void VerificarPermissoes()
         {
-            if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.AdministradorGeral)
+            // Tudo oculto inicialmente
+            BtnDashboard.Visibility = Visibility.Collapsed;
+
+            BtnGestaoPessoas.Visibility = Visibility.Collapsed;
+            BtnUsuarios.Visibility = Visibility.Collapsed;
+            BtnAdministradores.Visibility = Visibility.Collapsed;
+            BtnProfissionais.Visibility = Visibility.Collapsed;
+            BtnClientes.Visibility = Visibility.Collapsed;
+            BtnEmpresas.Visibility = Visibility.Collapsed;
+            BtnProfissionalCargo.Visibility = Visibility.Collapsed;
+
+            BtnGestaoFinanceira.Visibility = Visibility.Collapsed;
+            BtnPagamentos.Visibility = Visibility.Collapsed;
+            BtnTransacoes.Visibility = Visibility.Collapsed;
+            BtnFormaPagamento.Visibility = Visibility.Collapsed;
+
+            BtnGestaoServicos.Visibility = Visibility.Collapsed;
+            BtnServicos.Visibility = Visibility.Collapsed;
+            BtnPedidos.Visibility = Visibility.Collapsed;
+            BtnServicosPedidos.Visibility = Visibility.Collapsed;
+            BtnAvaliacoes.Visibility = Visibility.Collapsed;
+
+            BtnGestaoLocacoes.Visibility = Visibility.Collapsed;
+            BtnLocacoes.Visibility = Visibility.Collapsed;
+            BtnLocacoesItens.Visibility = Visibility.Collapsed;
+            BtnInstrumentos.Visibility = Visibility.Collapsed;
+
+            BtnComunicacao.Visibility = Visibility.Collapsed;
+            BtnConfiguracao.Visibility = Visibility.Collapsed;
+            BtnLogs.Visibility = Visibility.Collapsed;
+
+
+            switch (_administrador.NivelAcesso)
             {
-                btnLogs.Visibility = Visibility.Collapsed;
+                case NivelAcessoEnum.AdministradorGeral:
+
+                    BtnDashboard.Visibility = Visibility.Visible;
+
+                    BtnGestaoPessoas.Visibility = Visibility.Visible;
+                    BtnUsuarios.Visibility = Visibility.Visible;
+                    BtnAdministradores.Visibility = Visibility.Visible;
+                    BtnProfissionais.Visibility = Visibility.Visible;
+                    BtnClientes.Visibility = Visibility.Visible;
+                    BtnEmpresas.Visibility = Visibility.Visible;
+                    BtnProfissionalCargo.Visibility = Visibility.Visible;
+
+                    BtnGestaoFinanceira.Visibility = Visibility.Visible;
+                    BtnPagamentos.Visibility = Visibility.Visible;
+                    BtnTransacoes.Visibility = Visibility.Visible;
+                    BtnFormaPagamento.Visibility = Visibility.Visible;
+
+                    BtnGestaoServicos.Visibility = Visibility.Visible;
+                    BtnServicos.Visibility = Visibility.Visible;
+                    BtnPedidos.Visibility = Visibility.Visible;
+                    BtnServicosPedidos.Visibility = Visibility.Visible;
+                    BtnAvaliacoes.Visibility = Visibility.Visible;
+
+                    BtnGestaoLocacoes.Visibility = Visibility.Visible;
+                    BtnLocacoes.Visibility = Visibility.Visible;
+                    BtnLocacoesItens.Visibility = Visibility.Visible;
+                    BtnInstrumentos.Visibility = Visibility.Visible;
+
+                    BtnComunicacao.Visibility = Visibility.Visible;
+                    BtnConfiguracao.Visibility = Visibility.Visible;
+                    BtnLogs.Visibility = Visibility.Visible;
+
+                    break;
+
+
+                case NivelAcessoEnum.Atendente:
+
+                    BtnDashboard.Visibility = Visibility.Visible;
+
+                    BtnGestaoPessoas.Visibility = Visibility.Visible;
+                    BtnClientes.Visibility = Visibility.Visible;
+
+                    BtnGestaoLocacoes.Visibility = Visibility.Visible;
+                    BtnLocacoes.Visibility = Visibility.Visible;
+                    BtnLocacoesItens.Visibility = Visibility.Visible;
+                    BtnInstrumentos.Visibility = Visibility.Visible;
+
+                    BtnComunicacao.Visibility = Visibility.Visible;
+
+                    break;
+
+
+                case NivelAcessoEnum.Financeiro:
+
+                    BtnDashboard.Visibility = Visibility.Visible;
+
+                    BtnGestaoFinanceira.Visibility = Visibility.Visible;
+                    BtnPagamentos.Visibility = Visibility.Visible;
+                    BtnTransacoes.Visibility = Visibility.Visible;
+                    BtnFormaPagamento.Visibility = Visibility.Visible;
+
+                    BtnComunicacao.Visibility = Visibility.Visible;
+
+                    break;
+
+
+                case NivelAcessoEnum.Suporte:
+
+                    BtnDashboard.Visibility = Visibility.Visible;
+
+                    BtnGestaoServicos.Visibility = Visibility.Visible;
+                    BtnServicos.Visibility = Visibility.Visible;
+                    BtnPedidos.Visibility = Visibility.Visible;
+                    BtnServicosPedidos.Visibility = Visibility.Visible;
+
+                    BtnComunicacao.Visibility = Visibility.Visible;
+
+                    break;
+
+
+                case NivelAcessoEnum.Moderador:
+
+                    BtnDashboard.Visibility = Visibility.Visible;
+
+                    BtnGestaoPessoas.Visibility = Visibility.Visible;
+                    BtnUsuarios.Visibility = Visibility.Visible;
+                    BtnClientes.Visibility = Visibility.Visible;
+
+                    BtnLogs.Visibility = Visibility.Visible;
+
+                    BtnComunicacao.Visibility = Visibility.Visible;
+
+                    break;
             }
         }
+
+
+
 
         private void btnLogs_Click(object sender, RoutedEventArgs e)
         {
