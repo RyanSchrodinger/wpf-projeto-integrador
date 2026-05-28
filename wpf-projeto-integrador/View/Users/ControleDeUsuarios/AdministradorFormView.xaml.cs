@@ -162,7 +162,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
                     
                     db.SaveChanges();
 
-                    MessageBox.Show(0
+                    MessageBox.Show(
                         "Conta reativada com sucesso.",
                         "Sucesso",
                         MessageBoxButton.OK,

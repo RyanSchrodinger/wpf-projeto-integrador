@@ -25,14 +25,7 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <Style x:Key="InputFiltro" TargetType="Control">
-            <Setter Property="Background" Value="#11162D"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#252B46"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Height" Value="42"/>
-        </Style>
+        
 
     </UserControl.Resources>
 
@@ -123,35 +116,106 @@
                 <ColumnDefinition Width="170"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="txtBusca"
-                     Grid.Column="0"
-                     Style="{StaticResource InputFiltro}"
-                     FontSize="14"
-                     TextChanged="txtBusca_TextChanged"/>
-        
-            <ComboBox x:Name="cmbTipo"
+            <Border Background="#11162D"
+                     BorderBrush="#252B46"
+                     BorderThickness="1"
+                     CornerRadius="10"
+                     Height="58"
+                     Padding="14 0">
+
+                <TextBox Name="txtBusca"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Foreground="White"
+                          VerticalContentAlignment="Center"
+                          FontSize="14"
+                          TextChanged="txtBusca_TextChanged"/>
+
+            </Border>
+
+
+
+            <Border Grid.Column="1"
+                    Margin="14 0 0 0"
+                    Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="12 6">
+
+                <StackPanel>
+
+                    <TextBlock Text="Tipo de Usuários"
+                               Foreground="#94A3B8"
+                               FontSize="11"
+                               Margin="2 0 0 2"/>
+
+
+
+
+
+
+
+
+                    <ComboBox x:Name="cmbTipo"
                       Grid.Column="1"
                       Margin="14 0 0 0"
                       Style="{StaticResource ComboBoxModerno}"
                       SelectionChanged="Filtro_Changed">
 
-                <ComboBoxItem Content="Todos" IsSelected="True"/>
-                <ComboBoxItem Content="Administrador"/>
-                <ComboBoxItem Content="Cliente"/>
-                <ComboBoxItem Content="Profissional"/>
-                <ComboBoxItem Content="Empresa"/>
-            </ComboBox>
+                        <ComboBoxItem Content="Todos" IsSelected="True"/>
+                        <ComboBoxItem Content="Administrador"/>
+                        <ComboBoxItem Content="Cliente"/>
+                        <ComboBoxItem Content="Profissional"/>
+                        <ComboBoxItem Content="Empresa"/>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
 
-            <ComboBox x:Name="cmbStatus"
+
+
+
+
+
+            <Border Grid.Column="2"
+                    Margin="14 0 0 0"
+                    Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="12 6">
+
+                <StackPanel>
+
+                    <TextBlock Text="Status"
+                   Foreground="#94A3B8"
+                   FontSize="11"
+                   Margin="2 0 0 2"/>
+
+
+
+
+
+
+
+                    <ComboBox x:Name="cmbStatus"
                       Grid.Column="2"
                       Margin="14 0 0 0"
                       Style="{StaticResource ComboBoxModerno}"
                       SelectionChanged="Filtro_Changed">
 
-                <ComboBoxItem Content="Todos" IsSelected="True"/>
-                <ComboBoxItem Content="Ativo"/>
-                <ComboBoxItem Content="Inativo"/>
-            </ComboBox>
+                        <ComboBoxItem Content="Todos" IsSelected="True"/>
+                        <ComboBoxItem Content="Ativo"/>
+                        <ComboBoxItem Content="Inativo"/>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+
+
+
 
             <Button Grid.Column="3" Style="{StaticResource BotaoRoxoTelas}"
                     Content="Limpar filtros"

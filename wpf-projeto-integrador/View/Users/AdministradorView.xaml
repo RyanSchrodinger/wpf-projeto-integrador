@@ -148,8 +148,7 @@
                     <!-- COMBO -->
                     <ComboBox x:Name="cmbTipo"
                               Style="{StaticResource ComboBoxModerno}"
-                              Background="Transparent"
-                              BorderThickness="0"
+                              
                               Foreground="White"
                               FontSize="14"
                               SelectionChanged="Filtro_Changed">
@@ -186,8 +185,7 @@
                     <!-- COMBO -->
                     <ComboBox x:Name="cmbStatus"
                               Style="{StaticResource ComboBoxModerno}"
-                              Background="Transparent"
-                              BorderThickness="0"
+                              
                               Foreground="White"
                               FontSize="14"
                               SelectionChanged="Filtro_Changed">
