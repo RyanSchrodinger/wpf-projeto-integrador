@@ -267,6 +267,19 @@
         </Style>
 
 
+        
+        
+        <Style x:Key="BotaoAtivar"
+                 TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="#14532D"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#22C55E"/>
+        </Style>
+
+
 
 
 

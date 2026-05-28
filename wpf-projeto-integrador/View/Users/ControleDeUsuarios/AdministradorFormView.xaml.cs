@@ -1,6 +1,9 @@
 ﻿
+using MahApps.Metro.IconPacks;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using wpf_projeto_integrador.Data;
 using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
@@ -27,9 +30,18 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
         {
             this.adm = adm;
             InitializeComponent();
+           
+            if (adm.Status.Equals("Inativo"))
+            {
+                txtBotaoDesativar.Text = "Ativar Usuário";
+                iconBotaoDesativar.Kind = PackIconMaterialKind.AccountCheck;
+                iconBotaoDesativar.Foreground =  new SolidColorBrush( System.Windows.Media.Color.FromRgb(34, 197, 94));
+                btnDesativar.Style = (Style)FindResource("BotaoAtivar");
+
+            }
             CarregarAdministrador(adm);
             cmbStatus.Visibility = Visibility.Collapsed;
-            
+
         }
 
         private void BtnSalvar_Click(object sender, RoutedEventArgs e)
@@ -48,7 +60,16 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
 
         private void BtnDesativar_Click(object sender, RoutedEventArgs e)
         {
-            DesativarConta();
+            if(txtBotaoDesativar.Text.Equals("Ativar Usuário"))
+            {
+                AtivarConta();
+            }
+            else
+            {
+                DesativarConta();
+            }
+           
+            
 
         }
 
@@ -94,6 +115,78 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
             txtSenha.Clear();
             txtTelefone.Clear();
         }
+
+
+        public void AtivarConta()
+        {
+            try
+            {
+                if (adm.Id == null)
+                {
+                    MessageBox.Show("Administrador não encontrado.");
+                    return;
+                }
+
+                var resultado = MessageBox.Show(
+                    "Deseja realmente ativar esta conta?",
+                    "Confirmação",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+                if (resultado != MessageBoxResult.Yes)
+                    return;
+
+                using (var db = new MusicStationContext())
+                {
+                    var admm = db.Administradores
+                        .FirstOrDefault(a => a.Id == adm.Id);
+
+                    if (admm == null)
+                    {
+                        MessageBox.Show("Administrador não encontrado.");
+                        return;
+                    }
+
+                    admm.Ativo = true;
+
+                    GerenciadorLogs.FazerRegistro(
+                        db,
+                        SessaoUsuario.usuarioLogado?.Id,
+                        TipoAcaoLog.Reativacao,
+                        $"Administrador {SessaoUsuario.usuarioLogado?.NomeUsuario} ativou o administrador {admm.NomeUsuario}.",
+                        "Administrador",
+                        admm.Id,
+                        true,
+                        null,
+                       "Edição de Administrador");
+                    
+                    
+                    db.SaveChanges();
+
+                    MessageBox.Show(0
+                        "Conta reativada com sucesso.",
+                        "Sucesso",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+
+                    var formMenu = (FormMenu)Window.GetWindow(this);
+
+                    formMenu.AbrirTela(new AdministradorView());
+
+                    
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Erro ao tivar conta: {ex.Message}",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+            
 
         public void DesativarConta()
         {

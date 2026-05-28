@@ -359,13 +359,15 @@
                             Click="BtnDesativar_Click">
 
                         <StackPanel Orientation="Horizontal">
-                            <Icon:PackIconMaterial Kind="AccountOff"
+                            <Icon:PackIconMaterial x:Name="iconBotaoDesativar"
+                                                   Kind="AccountOff"
                                                    Width="20"
                                                    Height="20"
                                                    Foreground="#F87171"
                                                    Margin="0 0 8 0"/>
 
-                            <TextBlock Text="Desativar conta"/>
+                            <TextBlock x:Name="txtBotaoDesativar"
+                                       Text="Desativar conta"/>
                         </StackPanel>
                     </Button>
 
