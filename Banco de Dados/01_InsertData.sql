@@ -81,18 +81,18 @@ VALUES
 -- =========================================
 
 INSERT INTO Clientes
-(Id, Telefone, Rua, Numero, Cidade)
+(Id, Rua, Numero, Cidade)
 VALUES
-(4, '11999990001', 'Rua das Flores', '120', 'São Paulo'),
-(5, '11999990002', 'Rua Azul', '45', 'Osasco'),
-(6, '11999990003', 'Av Central', '300', 'Barueri'),
-(7, '11999990004', 'Rua Verde', '88', 'Carapicuíba'),
-(8, '11999990005', 'Rua Horizonte', '12', 'Cotia'),
-(9, '11999990006', 'Rua Aurora', '77', 'São Paulo'),
-(10, '11999990007', 'Rua das Palmeiras', '220', 'Taboão'),
-(11, '11999990008', 'Rua da Paz', '65', 'Suzano'),
-(12, '11999990009', 'Rua do Lago', '91', 'Mauá'),
-(13, '11999990010', 'Rua Bela Vista', '55', 'Diadema');
+(4,  'Rua das Flores', '120', 'São Paulo'),
+(5,  'Rua Azul', '45', 'Osasco'),
+(6,	 'Av Central', '300', 'Barueri'),
+(7,  'Rua Verde', '88', 'Carapicuíba'),
+(8,  'Rua Horizonte', '12', 'Cotia'),
+(9,  'Rua Aurora', '77', 'São Paulo'),
+(10, 'Rua das Palmeiras', '220', 'Taboão'),
+(11, 'Rua da Paz', '65', 'Suzano'),
+(12, 'Rua do Lago', '91', 'Mauá'),
+(13, 'Rua Bela Vista', '55', 'Diadema');
 
 
 -- =========================================
@@ -101,33 +101,33 @@ VALUES
 -- =========================================
 
 INSERT INTO Profissionais
-(Id, Telefone, Descricao, Rua, Numero, Cidade)
+(Id,Descricao, Rua, Numero, Cidade)
 VALUES
-(14, '11988880001', 'Guitarrista profissional', 'Rua A', '10', 'São Paulo'),
-(15, '11988880002', 'Professora de piano', 'Rua B', '22', 'Osasco'),
-(16, '11988880003', 'Baterista experiente', 'Rua C', '33', 'Barueri'),
-(17, '11988880004', 'Cantora e compositora', 'Rua D', '44', 'Cotia'),
-(18, '11988880005', 'Técnico de áudio', 'Rua E', '55', 'Suzano'),
-(19, '11988880006', 'Violinista clássica', 'Rua F', '66', 'Mauá'),
-(20, '11988880007', 'Produtor musical', 'Rua G', '77', 'Diadema'),
-(21, '11988880008', 'Instrutora vocal', 'Rua H', '88', 'Taboão'),
-(22, '11988880009', 'Baixista profissional', 'Rua I', '99', 'Carapicuíba'),
-(23, '11988880010', 'DJ e produtora', 'Rua J', '100', 'São Paulo');
+(14, 'Guitarrista profissional', 'Rua A', '10', 'São Paulo'),
+(15, 'Professora de piano', 'Rua B', '22', 'Osasco'),
+(16, 'Baterista experiente', 'Rua C', '33', 'Barueri'),
+(17, 'Cantora e compositora', 'Rua D', '44', 'Cotia'),
+(18, 'Técnico de áudio', 'Rua E', '55', 'Suzano'),
+(19, 'Violinista clássica', 'Rua F', '66', 'Mauá'),
+(20, 'Produtor musical', 'Rua G', '77', 'Diadema'),
+(21, 'Instrutora vocal', 'Rua H', '88', 'Taboão'),
+(22, 'Baixista profissional', 'Rua I', '99', 'Carapicuíba'),
+(23, 'DJ e produtora', 'Rua J', '100', 'São Paulo');
 
 
 INSERT INTO Empresas
-(Id, Cnpj, NomeFantasia, Telefone, Endereco)
+(Id, Cnpj, NomeFantasia, Endereco)
 VALUES
-(24, '12.345.678/0001-01', 'Sound Tech', '1133330001', 'Av Paulista, 100'),
-(25, '12.345.678/0001-02', 'Music House', '1133330002', 'Rua Augusta, 200'),
-(26, '12.345.678/0001-03', 'Studio Beats', '1133330003', 'Av Brasil, 300'),
-(27, '12.345.678/0001-04', 'Power Music', '1133330004', 'Rua das Nações, 400'),
-(28, '12.345.678/0001-05', 'Live Eventos', '1133330005', 'Av Europa, 500'),
-(29, '12.345.678/0001-06', 'Audio Prime', '1133330006', 'Rua Central, 600'),
-(30, '12.345.678/0001-07', 'Mix Produções', '1133330007', 'Rua do Comércio, 700'),
-(31, '12.345.678/0001-08', 'Music Center', '1133330008', 'Av Independência, 800'),
-(32, '12.345.678/0001-09', 'Top Studio', '1133330009', 'Rua XV, 900'),
-(33, '12.345.678/0001-10', 'Master Audio', '1133330010', 'Av Atlântica, 1000');
+(24, '12.345.678/0001-01', 'Sound Tech', 'Av Paulista, 100'),
+(25, '12.345.678/0001-02', 'Music House','Rua Augusta, 200'),
+(26, '12.345.678/0001-03', 'Studio Beats', 'Av Brasil, 300'),
+(27, '12.345.678/0001-04', 'Power Music',  'Rua das Nações, 400'),
+(28, '12.345.678/0001-05', 'Live Eventos',  'Av Europa, 500'),
+(29, '12.345.678/0001-06', 'Audio Prime', 'Rua Central, 600'),
+(30, '12.345.678/0001-07', 'Mix Produções', 'Rua do Comércio, 700'),
+(31, '12.345.678/0001-08', 'Music Center', 'Av Independência, 800'),
+(32, '12.345.678/0001-09', 'Top Studio', 'Rua XV, 900'),
+(33, '12.345.678/0001-10', 'Master Audio', 'Av Atlântica, 1000');
 
 INSERT INTO TiposAcao(Nome)
 VALUES ('Login')

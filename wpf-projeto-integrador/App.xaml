@@ -162,8 +162,7 @@
             <Setter Property="BorderBrush" Value="#8B5CF6"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10 0"/>
+            <Setter Property="Padding" Value="10 0"/>   
             <Setter Property="VerticalContentAlignment" Value="Center"/>
 
             <Setter Property="Template">

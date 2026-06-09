@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using wpf_projeto_integrador.Models;
 
 namespace wpf_projeto_integrador.Data
@@ -23,16 +24,10 @@ namespace wpf_projeto_integrador.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                  "Server=tcp:musicstation-db1.database.windows.net,1433;" +
-                    "Initial Catalog=MusicStation;" +
-                    "User ID=ryan;" +
-                    "Password=W@choswick01;" +
-                    "Encrypt=True;" +
-                    "TrustServerCertificate=False;",
-                    options =>
-                    {
-                        options.EnableRetryOnFailure();
-                    });
+                 "Server=Ryan\\SQLEXPRESS;Database=MusicStation;Trusted_Connection=True;TrustServerCertificate=True;"
+             );
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
