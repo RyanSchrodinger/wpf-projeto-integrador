@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using wpf_pi.Views;
 using wpf_projeto_integrador.Data;
+using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
 using wpf_projeto_integrador.View.Users;
@@ -26,6 +27,7 @@ namespace wpf_projeto_integrador
             IdUsuarioLogado = _administrador.Id;
             VerificarPermissoes();
             IniciarVerificacaoUsuario();
+            CarregarContaLogada();
 
 
         }
@@ -249,6 +251,8 @@ namespace wpf_projeto_integrador
             _timerVerificacao.Start();
         }
 
+
+
         private void TimerVerificacao_Tick(object sender, EventArgs e)
         {
             if (!UsuarioAindaEstaAtivo())
@@ -278,7 +282,30 @@ namespace wpf_projeto_integrador
         }
 
 
+        private void CarregarContaLogada()
+        {
+            var usuario = SessaoUsuario.usuarioLogado ?? _administrador;
 
+            if (usuario == null)
+                return;
+
+            txtNomeUsuarioLogado.Text = usuario.Nome;
+            txtCargoUsuarioLogado.Text = usuario.NivelAcesso.ToString();
+            txtIniciaisUsuario.Text = GerarIniciais(usuario.Nome);
+        }
+
+        private string GerarIniciais(string nome)
+        {
+            if (string.IsNullOrWhiteSpace(nome))
+                return "?";
+
+            var partes = nome.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            if (partes.Length == 1)
+                return partes[0][0].ToString().ToUpper();
+
+            return $"{partes[0][0]}{partes[^1][0]}".ToUpper();
+        }
 
 
 
