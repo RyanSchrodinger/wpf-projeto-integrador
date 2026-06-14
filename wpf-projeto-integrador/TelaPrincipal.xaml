@@ -165,7 +165,9 @@
                                 </Button>
 
                                 <Button x:Name="BtnProfissionais"
-                                         Style="{StaticResource SubMenuButton}">
+                                        Click="BtnProfissional_Click"
+                                        Style="{StaticResource SubMenuButton}">
+                                    
 
                                     <StackPanel Orientation="Horizontal">
 

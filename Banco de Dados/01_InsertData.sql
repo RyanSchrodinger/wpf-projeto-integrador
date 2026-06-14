@@ -101,18 +101,36 @@ VALUES
 -- =========================================
 
 INSERT INTO Profissionais
-(Id,Descricao, Rua, Numero, Cidade)
+(Id, Descricao, Especialidade, Endereco, EmpresaId)
 VALUES
-(14, 'Guitarrista profissional', 'Rua A', '10', 'São Paulo'),
-(15, 'Professora de piano', 'Rua B', '22', 'Osasco'),
-(16, 'Baterista experiente', 'Rua C', '33', 'Barueri'),
-(17, 'Cantora e compositora', 'Rua D', '44', 'Cotia'),
-(18, 'Técnico de áudio', 'Rua E', '55', 'Suzano'),
-(19, 'Violinista clássica', 'Rua F', '66', 'Mauá'),
-(20, 'Produtor musical', 'Rua G', '77', 'Diadema'),
-(21, 'Instrutora vocal', 'Rua H', '88', 'Taboão'),
-(22, 'Baixista profissional', 'Rua I', '99', 'Carapicuíba'),
-(23, 'DJ e produtora', 'Rua J', '100', 'São Paulo');
+(14, 'Guitarrista profissional', 'Guitarra', 'Rua A, 10 - São Paulo', 24),
+
+(15, 'Professora de piano', 'Piano',
+ 'Rua B, 22 - Osasco', NULL),
+
+(16, 'Baterista experiente', 'Bateria',
+ 'Rua C, 33 - Barueri', 25),
+
+(17, 'Cantora e compositora', 'Canto',
+ 'Rua D, 44 - Cotia', NULL),
+
+(18, 'Técnico de áudio', 'Áudio',
+ 'Rua E, 55 - Suzano', 26),
+
+(19, 'Violinista clássica', 'Violino',
+ 'Rua F, 66 - Mauá', NULL),
+
+(20, 'Produtor musical', 'Produção Musical',
+ 'Rua G, 77 - Diadema', 27),
+
+(21, 'Instrutora vocal', 'Técnica Vocal',
+ 'Rua H, 88 - Taboão', NULL),
+
+(22, 'Baixista profissional', 'Baixo',
+ 'Rua I, 99 - Carapicuíba', 28),
+
+(23, 'DJ e produtora', 'DJ / Produção Musical',
+ 'Rua J, 100 - São Paulo', NULL);
 
 
 INSERT INTO Empresas

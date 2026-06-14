@@ -327,6 +327,12 @@ namespace wpf_projeto_integrador
         {
             MainContent.Content = new AdministradorView();
         }
+
+
+        private void BtnProfissional_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new ProfissionalView();
+        }
     }
         
 }

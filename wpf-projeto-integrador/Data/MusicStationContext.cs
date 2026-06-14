@@ -82,19 +82,20 @@ namespace wpf_projeto_integrador.Data
             // Profissional
             modelBuilder.Entity<Profissional>(entity =>
             {
-
                 entity.Property(p => p.Descricao)
                     .IsRequired()
                     .HasMaxLength(300);
 
-                entity.Property(p => p.Rua)
+                entity.Property(p => p.Especialidade)
                     .HasMaxLength(100);
 
-                entity.Property(p => p.Numero)
-                    .HasMaxLength(10);
+                entity.Property(p => p.Endereco)
+                    .HasMaxLength(200);
 
-                entity.Property(p => p.Cidade)
-                    .HasMaxLength(100);
+                entity.HasOne(p => p.Empresa)
+                    .WithMany(e => e.Profissionais)
+                    .HasForeignKey(p => p.EmpresaId)
+                    .OnDelete(DeleteBehavior.NoAction);
             });
 
             //Log

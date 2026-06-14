@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace wpf_projeto_integrador.Models
-{
-    public class Empresa : Usuario
+    namespace wpf_projeto_integrador.Models
     {
-        public string Cnpj { get; set; }
-        public string NomeFantasia { get; set; }
-        public string? Telefone { get; set; }
-        public string? Endereco { get; set; }
+        public class Empresa : Usuario
+        {
+            public string Cnpj { get; set; }
+            public string NomeFantasia { get; set; }
+            public string? Telefone { get; set; }
+            public string? Endereco { get; set; }
 
+        public ICollection<Profissional> Profissionais { get; set; } = new List<Profissional>();
+        }
     }
-}
