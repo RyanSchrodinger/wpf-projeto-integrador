@@ -68,15 +68,23 @@ namespace wpf_projeto_integrador.Data
             // Cliente
             modelBuilder.Entity<Cliente>(entity =>
             {
-
                 entity.Property(c => c.Rua)
                     .HasMaxLength(100);
 
                 entity.Property(c => c.Numero)
-                    .HasMaxLength(10);
+                    .HasMaxLength(20);
 
                 entity.Property(c => c.Cidade)
                     .HasMaxLength(100);
+
+                entity.Property(c => c.Bairro)
+                    .HasMaxLength(100);
+
+                entity.Property(c => c.Cep)
+                    .HasMaxLength(9);
+
+                entity.Property(c => c.Estado)
+                    .HasMaxLength(2);
             });
 
             // Profissional

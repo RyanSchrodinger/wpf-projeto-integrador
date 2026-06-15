@@ -28,7 +28,7 @@ namespace wpf_projeto_integrador.Models
         [StringLength(255)]
         public string Email { get; set; } 
         public bool Ativo { get; set; } = true;
-        public DateTime DataCriacao { get; set; }
+        public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public ICollection<LogSistema> Logs { get; set; } = new List<LogSistema>();
 
