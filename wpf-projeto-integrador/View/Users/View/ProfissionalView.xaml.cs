@@ -151,7 +151,9 @@ namespace wpf_projeto_integrador.View.Users
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Abrir tela de cadastro de profissional.");
+            var telaPrincipal = (FormMenu)Window.GetWindow(this);
+
+            telaPrincipal.AbrirTela(new ProfissionalFormView());
         }
 
         private void BtnVisualizar_Click(object sender, RoutedEventArgs e)
@@ -187,11 +189,9 @@ namespace wpf_projeto_integrador.View.Users
                 return;
             }
 
-            MessageBox.Show($"Editar profissional: {profissional.Nome}");
+            var telaPrincipal = (FormMenu)Window.GetWindow(this);
 
-            // Quando tiver a tela de formulário:
-            // var telaPrincipal = (FormMenu)Window.GetWindow(this);
-            // telaPrincipal.AbrirTela(new ProfissionalFormView(profissional));
+            telaPrincipal.AbrirTela(new ProfissionalFormView(profissional));
         }
 
         private void BtnDesativar_Click(object sender, RoutedEventArgs e)
@@ -265,6 +265,7 @@ namespace wpf_projeto_integrador.View.Users
         public string Endereco { get; set; } = "";
 
         public string Iniciais { get; set; } = "";
+        
 
         public string CorPerfil { get; set; } = "";
     }

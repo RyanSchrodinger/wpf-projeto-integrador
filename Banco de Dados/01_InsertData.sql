@@ -147,5 +147,3 @@ VALUES
 (32, '12.345.678/0001-09', 'Top Studio', 'Rua XV, 900'),
 (33, '12.345.678/0001-10', 'Master Audio', 'Av Atlântica, 1000');
 
-INSERT INTO TiposAcao(Nome)
-VALUES ('Login')

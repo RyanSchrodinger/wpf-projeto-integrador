@@ -303,6 +303,67 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
+        
+        <!--Estilo Referente ao Forms de Gerenciamento-->
+
+        <Style x:Key="InputBox" TargetType="Border">
+            <Setter Property="Background" Value="#11162D"/>
+            <Setter Property="BorderBrush" Value="#252B46"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="14 0"/>
+        </Style>
+
+        <Style x:Key="LabelCampo" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#CBD5E1"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0 0 0 7"/>
+        </Style>
+
+        <Style x:Key="TextBoxCampo" TargetType="TextBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ComboCampo" TargetType="ComboBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BotaoSalvar" TargetType="Button">
+            <Setter Property="Background" Value="#7C3AED"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="BotaoSecundario" TargetType="Button">
+            <Setter Property="Background" Value="#11162D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#252B46"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style x:Key="BotaoDesativar" TargetType="Button">
+            <Setter Property="Background" Value="#2A1320"/>
+            <Setter Property="Foreground" Value="#F87171"/>
+            <Setter Property="BorderBrush" Value="#EF4444"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
 
 
 

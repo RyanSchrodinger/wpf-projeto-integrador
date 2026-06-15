@@ -12,11 +12,7 @@ namespace wpf_projeto_integrador.Models
 
         public string? Especialidade { get; set; }
 
-        public string? Telefone { get; set; }
-
         public string? Endereco { get; set; }
-
-        public bool Ativo { get; set; }
 
         public int? EmpresaId { get; set; }
         public Empresa? Empresa { get; set; }
