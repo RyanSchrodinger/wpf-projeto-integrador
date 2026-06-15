@@ -14,25 +14,25 @@
 
         <!-- TÍTULO -->
         <StackPanel>
-            <TextBlock Text="Clientes"
-                       FontSize="31"
-                       FontWeight="Bold"
-                       Foreground="White"/>
+            <TextBlock Text="Profissionais"
+                   FontSize="31"
+                   FontWeight="Bold"
+                   Foreground="White"/>
 
-            <TextBlock Text="Visão geral dos clientes cadastrados no sistema."
-                       FontSize="14"
-                       Foreground="#CBD5E1"/>
+            <TextBlock Text="Visão geral dos profissionais cadastrados no sistema."
+                   FontSize="14"
+                   Foreground="#CBD5E1"/>
         </StackPanel>
 
         <!-- CARDS -->
         <UniformGrid Grid.Row="1"
-                     Columns="4"
-                     Margin="0 18 0 10">
+                 Columns="4"
+                 Margin="0 18 0 10">
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Total de Clientes</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalClientes">0</TextBlock>
+                    <TextBlock Style="{StaticResource TextoCard}">Total de Profissionais</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalProfissionais">0</TextBlock>
                     <TextBlock Text="Cadastrados no sistema" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
@@ -41,23 +41,23 @@
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextoCard}">Ativos</TextBlock>
                     <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAtivos">0</TextBlock>
-                    <TextBlock Text="Clientes ativos" Foreground="#22C55E" FontSize="11"/>
+                    <TextBlock Text="Disponíveis na plataforma" Foreground="#22C55E" FontSize="11"/>
                 </StackPanel>
             </Border>
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Inativos</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalInativos">0</TextBlock>
-                    <TextBlock Text="Clientes desativados" Foreground="#EF4444" FontSize="11"/>
+                    <TextBlock Style="{StaticResource TextoCard}">Autônomos</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAutonomos">0</TextBlock>
+                    <TextBlock Text="Sem empresa vinculada" Foreground="#38BDF8" FontSize="11"/>
                 </StackPanel>
             </Border>
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Novos Clientes</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalNovos">0</TextBlock>
-                    <TextBlock Text="Últimos 30 dias" Foreground="#38BDF8" FontSize="11"/>
+                    <TextBlock Style="{StaticResource TextoCard}">Com Empresa</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalComEmpresa">0</TextBlock>
+                    <TextBlock Text="Vinculados a empresas" Foreground="#FACC15" FontSize="11"/>
                 </StackPanel>
             </Border>
 
@@ -73,40 +73,67 @@
             </Grid.ColumnDefinitions>
 
             <Border Background="#11162D"
-                    BorderBrush="#252B46"
-                    BorderThickness="1"
-                    CornerRadius="10"
-                    Height="58"
-                    Padding="14 0">
+                BorderBrush="#252B46"
+                BorderThickness="1"
+                CornerRadius="10"
+                Height="58"
+                Padding="14 0">
 
                 <TextBox Name="txtBusca"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Foreground="White"
-                         VerticalContentAlignment="Center"
-                         FontSize="14"
-                         TextChanged="txtBusca_TextChanged"/>
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="White"
+                     VerticalContentAlignment="Center"
+                     FontSize="14"
+                     TextChanged="txtBusca_TextChanged"/>
             </Border>
 
             <Border Grid.Column="1"
-                    Margin="14 0 0 0"
-                    Background="#11162D"
-                    BorderBrush="#252B46"
-                    BorderThickness="1"
-                    CornerRadius="10"
-                    Height="58"
-                    Padding="12 6">
+                Margin="14 0 0 0"
+                Background="#11162D"
+                BorderBrush="#252B46"
+                BorderThickness="1"
+                CornerRadius="10"
+                Height="58"
+                Padding="12 6">
+
+                <StackPanel>
+                    <TextBlock Text="Tipo"
+                           Foreground="#94A3B8"
+                           FontSize="11"/>
+
+                    <ComboBox x:Name="cmbTipo"
+                          Style="{StaticResource ComboBoxModerno}"
+                          Foreground="White"
+                          FontSize="14"
+                          SelectionChanged="Filtro_Changed">
+
+                        <ComboBoxItem Content="Todos" IsSelected="True"/>
+                        <ComboBoxItem Content="Autônomo"/>
+                        <ComboBoxItem Content="Com Empresa"/>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2"
+                Margin="14 0 0 0"
+                Background="#11162D"
+                BorderBrush="#252B46"
+                BorderThickness="1"
+                CornerRadius="10"
+                Height="58"
+                Padding="12 6">
 
                 <StackPanel>
                     <TextBlock Text="Status"
-                               Foreground="#94A3B8"
-                               FontSize="11"/>
+                           Foreground="#94A3B8"
+                           FontSize="11"/>
 
                     <ComboBox x:Name="cmbStatus"
-                              Style="{StaticResource ComboBoxModerno}"
-                              Foreground="White"
-                              FontSize="14"
-                              SelectionChanged="Filtro_Changed">
+                          Style="{StaticResource ComboBoxModerno}"
+                          Foreground="White"
+                          FontSize="14"
+                          SelectionChanged="Filtro_Changed">
 
                         <ComboBoxItem Content="Todos" IsSelected="True"/>
                         <ComboBoxItem Content="Ativo"/>
@@ -115,46 +142,21 @@
                 </StackPanel>
             </Border>
 
-            <Border Grid.Column="2"
-                    Margin="14 0 0 0"
-                    Background="#11162D"
-                    BorderBrush="#252B46"
-                    BorderThickness="1"
-                    CornerRadius="10"
-                    Height="58"
-                    Padding="12 6">
-
-                <StackPanel>
-                    <TextBlock Text="Cidade"
-                               Foreground="#94A3B8"
-                               FontSize="11"/>
-
-                    <ComboBox x:Name="cmbCidade"
-                              Style="{StaticResource ComboBoxModerno}"
-                              Foreground="White"
-                              FontSize="14"
-                              SelectionChanged="Filtro_Changed">
-
-                        <ComboBoxItem Content="Todas" IsSelected="True"/>
-                    </ComboBox>
-                </StackPanel>
-            </Border>
-
             <Button Grid.Column="3"
-                    Style="{StaticResource BotaoRoxoTelas}"
-                    Content="+ Novo Cliente"
-                    Margin="10"
-                    Click="BtnNovoCliente_Click"/>
+                Style="{StaticResource BotaoRoxoTelas}"
+                Content="+ Novo Profissional"
+                Margin="10"
+                Click="Button_Click"/>
         </Grid>
 
         <!-- LISTA -->
         <Border Grid.Row="3"
-                Background="#11162B"
-                BorderBrush="#1F2942"
-                BorderThickness="1"
-                CornerRadius="18"
-                Margin="0 0 15 0"
-                Padding="14 12">
+            Background="#11162B"
+            BorderBrush="#1F2942"
+            BorderThickness="1"
+            CornerRadius="18"
+            Margin="0 0 15 0"
+            Padding="14 12">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -162,26 +164,26 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Lista de Clientes"
-                           Foreground="White"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           Margin="0 0 0 10"/>
+                <TextBlock Text="Lista de Profissionais"
+                       Foreground="White"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Margin="0 0 0 10"/>
 
                 <DataGrid Grid.Row="1"
-                          Name="dgClientes"
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          IsReadOnly="True"
-                          HeadersVisibility="Column"
-                          GridLinesVisibility="None"
-                          Background="Transparent"
-                          BorderThickness="0"
-                          Foreground="White"
-                          RowHeight="64"
-                          ColumnHeaderHeight="34"
-                          RowBackground="Transparent"
-                          AlternatingRowBackground="Transparent">
+      Name="dgProfissionais"
+      AutoGenerateColumns="False"
+      CanUserAddRows="False"
+      IsReadOnly="True"
+      HeadersVisibility="Column"
+      GridLinesVisibility="None"
+      Background="Transparent"
+      BorderThickness="0"
+      Foreground="White"
+      RowHeight="64"
+      ColumnHeaderHeight="34"
+      RowBackground="Transparent"
+      AlternatingRowBackground="Transparent">
 
                     <DataGrid.Resources>
 
@@ -202,15 +204,15 @@
                                     <ControlTemplate TargetType="DataGridRow">
                                         <Grid>
                                             <Border Background="#151B34"
-                                                    BorderBrush="#252B46"
-                                                    BorderThickness="1"
-                                                    CornerRadius="8">
+                                BorderBrush="#252B46"
+                                BorderThickness="1"
+                                CornerRadius="8">
 
                                                 <Grid>
                                                     <Border Width="3"
-                                                            Background="{Binding CorPerfil}"
-                                                            HorizontalAlignment="Left"
-                                                            CornerRadius="8 0 0 8"/>
+                                        Background="{Binding CorPerfil}"
+                                        HorizontalAlignment="Left"
+                                        CornerRadius="8 0 0 8"/>
 
                                                     <SelectiveScrollingGrid Margin="6 0 0 0">
                                                         <SelectiveScrollingGrid.ColumnDefinitions>
@@ -241,33 +243,33 @@
 
                     <DataGrid.Columns>
 
-                        <DataGridTemplateColumn Header="Cliente" Width="3*">
+                        <DataGridTemplateColumn Header="Profissional" Width="3*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 
                                         <Border Width="38"
-                                                Height="38"
-                                                CornerRadius="19"
-                                                Background="{Binding CorPerfil}">
+                            Height="38"
+                            CornerRadius="19"
+                            Background="{Binding CorPerfil}">
 
                                             <TextBlock Text="{Binding Iniciais}"
-                                                       Foreground="White"
-                                                       FontWeight="Bold"
-                                                       FontSize="11"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
+                                   Foreground="White"
+                                   FontWeight="Bold"
+                                   FontSize="11"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
                                         </Border>
 
                                         <StackPanel Margin="10 0 0 0">
                                             <TextBlock Text="{Binding Nome}"
-                                                       Foreground="White"
-                                                       FontWeight="SemiBold"
-                                                       FontSize="13"/>
+                                   Foreground="White"
+                                   FontWeight="SemiBold"
+                                   FontSize="13"/>
 
                                             <TextBlock Text="{Binding Email}"
-                                                       Foreground="#94A3B8"
-                                                       FontSize="11"/>
+                                   Foreground="#94A3B8"
+                                   FontSize="11"/>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -276,23 +278,71 @@
                         </DataGridTemplateColumn>
 
                         <DataGridTextColumn Header="Usuário"
-                                            Binding="{Binding NomeUsuario}"
-                                            Width="1.3*"/>
+                        Binding="{Binding NomeUsuario}"
+                        Width="1.3*"/>
 
-                        <DataGridTextColumn Header="Telefone"
-                                            Binding="{Binding Telefone}"
-                                            Width="1.4*"/>
+                        <DataGridTemplateColumn Header="Especialidade" Width="1.5*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Background="#2B1B57"
+                        CornerRadius="8"
+                        Padding="8 2"
+                        HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding Especialidade}"
+                               Foreground="#A855F7"
+                               FontWeight="SemiBold"
+                               FontSize="10"/>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Cidade"
-                                            Binding="{Binding Cidade}"
-                                            Width="1.4*"/>
+                        <DataGridTextColumn Header="Empresa"
+                        Binding="{Binding NomeEmpresa}"
+                        Width="1.6*"/>
+
+                        <DataGridTemplateColumn Header="Tipo" Width="1.2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="8"
+                        Padding="8 2"
+                        HorizontalAlignment="Left">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="#0B2A5B"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding TipoProfissional}" Value="Autônomo">
+                                                        <Setter Property="Background" Value="#3A2F11"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                        <TextBlock Text="{Binding TipoProfissional}"
+                               FontWeight="SemiBold"
+                               FontSize="10">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="#3B82F6"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding TipoProfissional}" Value="Autônomo">
+                                                            <Setter Property="Foreground" Value="#FACC15"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
                         <DataGridTemplateColumn Header="Status" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Border CornerRadius="8"
-                                            Padding="8 2"
-                                            HorizontalAlignment="Left">
+                        Padding="8 2"
+                        HorizontalAlignment="Left">
                                         <Border.Style>
                                             <Style TargetType="Border">
                                                 <Setter Property="Background" Value="#0F3B2E"/>
@@ -305,8 +355,8 @@
                                         </Border.Style>
 
                                         <TextBlock Text="{Binding Status}"
-                                                   FontWeight="SemiBold"
-                                                   FontSize="10">
+                               FontWeight="SemiBold"
+                               FontSize="10">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Setter Property="Foreground" Value="#22C55E"/>
@@ -324,8 +374,8 @@
                         </DataGridTemplateColumn>
 
                         <DataGridTextColumn Header="Cadastro"
-                                            Binding="{Binding DataCriacao}"
-                                            Width="1.2*"/>
+                        Binding="{Binding DataCadastro}"
+                        Width="1.2*"/>
 
                         <DataGridTemplateColumn Header="Ações" Width="110">
                             <DataGridTemplateColumn.CellTemplate>
@@ -333,30 +383,30 @@
                                     <StackPanel Orientation="Horizontal">
 
                                         <Button Width="34"
-                                                Height="30"
-                                                Background="#151A32"
-                                                BorderBrush="#334155"
-                                                BorderThickness="1"
-                                                Margin="0 0 8 0"
-                                                Click="BtnVisualizar_Click">
+                            Height="30"
+                            Background="#151A32"
+                            BorderBrush="#334155"
+                            BorderThickness="1"
+                            Margin="0 0 8 0"
+                            Click="BtnVisualizar_Click">
 
                                             <Icon:PackIconMaterial Kind="EyeOutline"
-                                                                   Width="15"
-                                                                   Height="15"
-                                                                   Foreground="White"/>
+                                               Width="15"
+                                               Height="15"
+                                               Foreground="White"/>
                                         </Button>
 
                                         <Button Width="34"
-                                                Height="30"
-                                                Background="#151A32"
-                                                BorderBrush="#7C3AED"
-                                                BorderThickness="1"
-                                                Click="BtnEditar_Click">
+                            Height="30"
+                            Background="#151A32"
+                            BorderBrush="#7C3AED"
+                            BorderThickness="1"
+                            Click="BtnEditar_Click">
 
                                             <Icon:PackIconMaterial Kind="PencilOutline"
-                                                                   Width="15"
-                                                                   Height="15"
-                                                                   Foreground="White"/>
+                                               Width="15"
+                                               Height="15"
+                                               Foreground="White"/>
                                         </Button>
 
                                     </StackPanel>

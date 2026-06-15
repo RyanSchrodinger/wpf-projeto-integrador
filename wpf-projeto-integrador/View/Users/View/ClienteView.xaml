@@ -19,7 +19,7 @@
                        FontWeight="Bold"
                        Foreground="White"/>
 
-            <TextBlock Text="Visualize e gerencie todos os clientes cadastrados no sistema."
+            <TextBlock Text="Visão geral dos clientes cadastrados no sistema."
                        FontSize="14"
                        Foreground="#CBD5E1"/>
         </StackPanel>
@@ -27,28 +27,28 @@
         <!-- CARDS -->
         <UniformGrid Grid.Row="1"
                      Columns="4"
-                     Margin="0 18 0 18">
+                     Margin="0 18 0 10">
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextoCard}">Total de Clientes</TextBlock>
                     <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalClientes">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                    <TextBlock Text="Cadastrados no sistema" Foreground="#8B5CF6" FontSize="11"/>
                 </StackPanel>
             </Border>
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Clientes Ativos</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtClientesAtivos">0</TextBlock>
-                    <TextBlock Text="Clientes disponíveis" Foreground="#22C55E" FontSize="11"/>
+                    <TextBlock Style="{StaticResource TextoCard}">Ativos</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAtivos">0</TextBlock>
+                    <TextBlock Text="Clientes ativos" Foreground="#22C55E" FontSize="11"/>
                 </StackPanel>
             </Border>
 
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Clientes Inativos</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtClientesInativos">0</TextBlock>
+                    <TextBlock Style="{StaticResource TextoCard}">Inativos</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalInativos">0</TextBlock>
                     <TextBlock Text="Clientes desativados" Foreground="#EF4444" FontSize="11"/>
                 </StackPanel>
             </Border>
@@ -56,7 +56,7 @@
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
                     <TextBlock Style="{StaticResource TextoCard}">Novos Clientes</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtNovosClientes">0</TextBlock>
+                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalNovos">0</TextBlock>
                     <TextBlock Text="Últimos 30 dias" Foreground="#38BDF8" FontSize="11"/>
                 </StackPanel>
             </Border>
@@ -64,119 +64,88 @@
         </UniformGrid>
 
         <!-- FILTROS -->
-        <Border Grid.Row="2"
-                Background="#11162D"
-                BorderBrush="#252B46"
-                BorderThickness="1"
-                CornerRadius="14"
-                Padding="14"
-                Margin="0 0 15 14">
+        <Grid Grid.Row="2" Margin="0 0 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="220"/>
-                    <ColumnDefinition Width="220"/>
-                    <ColumnDefinition Width="190"/>
-                </Grid.ColumnDefinitions>
+            <Border Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="14 0">
 
-                <Border Background="#0F1428"
-                        BorderBrush="#2A3150"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Height="48"
-                        Padding="12 0">
+                <TextBox Name="txtBusca"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="White"
+                         VerticalContentAlignment="Center"
+                         FontSize="14"
+                         TextChanged="txtBusca_TextChanged"/>
+            </Border>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+            <Border Grid.Column="1"
+                    Margin="14 0 0 0"
+                    Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="12 6">
 
-                        <Icon:PackIconMaterial Kind="Magnify"
-                                               Width="18"
-                                               Height="18"
-                                               Foreground="#94A3B8"
-                                               VerticalAlignment="Center"
-                                               Margin="0 0 10 0"/>
+                <StackPanel>
+                    <TextBlock Text="Status"
+                               Foreground="#94A3B8"
+                               FontSize="11"/>
 
-                        <TextBox Grid.Column="1"
-                                 Name="txtBusca"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 Foreground="White"
-                                 VerticalContentAlignment="Center"
-                                 FontSize="14"
-                                 TextChanged="txtBusca_TextChanged"/>
-                    </Grid>
-                </Border>
+                    <ComboBox x:Name="cmbStatus"
+                              Style="{StaticResource ComboBoxModerno}"
+                              Foreground="White"
+                              FontSize="14"
+                              SelectionChanged="Filtro_Changed">
 
-                <Border Grid.Column="1"
-                        Margin="14 0 0 0"
-                        Background="#0F1428"
-                        BorderBrush="#2A3150"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Height="48"
-                        Padding="12 5">
+                        <ComboBoxItem Content="Todos" IsSelected="True"/>
+                        <ComboBoxItem Content="Ativo"/>
+                        <ComboBoxItem Content="Inativo"/>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
 
-                    <StackPanel>
-                        <TextBlock Text="Status"
-                                   Foreground="#94A3B8"
-                                   FontSize="11"/>
+            <Border Grid.Column="2"
+                    Margin="14 0 0 0"
+                    Background="#11162D"
+                    BorderBrush="#252B46"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Height="58"
+                    Padding="12 6">
 
-                        <ComboBox x:Name="cmbStatus"
-                                  Style="{StaticResource ComboBoxModerno}"
-                                  Foreground="White"
-                                  FontSize="13"
-                                  SelectionChanged="Filtro_Changed">
-                            <ComboBoxItem Content="Todos" IsSelected="True"/>
-                            <ComboBoxItem Content="Ativo"/>
-                            <ComboBoxItem Content="Inativo"/>
-                        </ComboBox>
-                    </StackPanel>
-                </Border>
+                <StackPanel>
+                    <TextBlock Text="Cidade"
+                               Foreground="#94A3B8"
+                               FontSize="11"/>
 
-                <Border Grid.Column="2"
-                        Margin="14 0 0 0"
-                        Background="#0F1428"
-                        BorderBrush="#2A3150"
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Height="48"
-                        Padding="12 5">
+                    <ComboBox x:Name="cmbCidade"
+                              Style="{StaticResource ComboBoxModerno}"
+                              Foreground="White"
+                              FontSize="14"
+                              SelectionChanged="Filtro_Changed">
 
-                    <StackPanel>
-                        <TextBlock Text="Cidade"
-                                   Foreground="#94A3B8"
-                                   FontSize="11"/>
+                        <ComboBoxItem Content="Todas" IsSelected="True"/>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
 
-                        <ComboBox x:Name="cmbCidade"
-                                  Style="{StaticResource ComboBoxModerno}"
-                                  Foreground="White"
-                                  FontSize="13"
-                                  SelectionChanged="Filtro_Changed">
-                            <ComboBoxItem Content="Todas" IsSelected="True"/>
-                        </ComboBox>
-                    </StackPanel>
-                </Border>
-
-                <Button Grid.Column="3"
-                        Style="{StaticResource BotaoRoxoTelas}"
-                        Margin="14 0 0 0"
-                        Click="BtnLimparFiltros_Click">
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Icon:PackIconMaterial Kind="FilterRemoveOutline"
-                                               Width="15"
-                                               Height="15"
-                                               Foreground="White"
-                                               Margin="0 0 8 0"/>
-                        <TextBlock Text="Limpar filtros"/>
-                    </StackPanel>
-                </Button>
-            </Grid>
-        </Border>
+            <Button Grid.Column="3"
+                    Style="{StaticResource BotaoRoxoTelas}"
+                    Content="+ Novo Cliente"
+                    Margin="10"
+                    Click="BtnNovoCliente_Click"/>
+        </Grid>
 
         <!-- LISTA -->
         <Border Grid.Row="3"
@@ -226,32 +195,34 @@
                         </Style>
 
                         <Style TargetType="DataGridRow">
+                            <Setter Property="Margin" Value="0 0 0 4"/>
                             <Setter Property="Background" Value="Transparent"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridRow">
-                                        <Border Background="#151B34"
-                                                BorderBrush="#252B46"
-                                                BorderThickness="1"
-                                                CornerRadius="8"
-                                                Margin="0 0 0 4">
+                                        <Grid>
+                                            <Border Background="#151B34"
+                                                    BorderBrush="#252B46"
+                                                    BorderThickness="1"
+                                                    CornerRadius="8">
 
-                                            <Grid>
-                                                <Border Width="3"
-                                                        Background="{Binding CorPerfil}"
-                                                        HorizontalAlignment="Left"
-                                                        CornerRadius="8 0 0 8"/>
+                                                <Grid>
+                                                    <Border Width="3"
+                                                            Background="{Binding CorPerfil}"
+                                                            HorizontalAlignment="Left"
+                                                            CornerRadius="8 0 0 8"/>
 
-                                                <SelectiveScrollingGrid Margin="6 0 0 0">
-                                                    <SelectiveScrollingGrid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </SelectiveScrollingGrid.ColumnDefinitions>
+                                                    <SelectiveScrollingGrid Margin="6 0 0 0">
+                                                        <SelectiveScrollingGrid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </SelectiveScrollingGrid.ColumnDefinitions>
 
-                                                    <DataGridCellsPresenter Grid.Column="1"/>
-                                                </SelectiveScrollingGrid>
-                                            </Grid>
-                                        </Border>
+                                                        <DataGridCellsPresenter Grid.Column="1"/>
+                                                    </SelectiveScrollingGrid>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -270,7 +241,7 @@
 
                     <DataGrid.Columns>
 
-                        <DataGridTemplateColumn Header="Cliente" Width="2.5*">
+                        <DataGridTemplateColumn Header="Cliente" Width="3*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -306,15 +277,15 @@
 
                         <DataGridTextColumn Header="Usuário"
                                             Binding="{Binding NomeUsuario}"
-                                            Width="1.2*"/>
+                                            Width="1.3*"/>
 
                         <DataGridTextColumn Header="Telefone"
                                             Binding="{Binding Telefone}"
                                             Width="1.4*"/>
 
                         <DataGridTextColumn Header="Cidade"
-                                            Binding="{Binding CidadeEstado}"
-                                            Width="1.5*"/>
+                                            Binding="{Binding Cidade}"
+                                            Width="1.4*"/>
 
                         <DataGridTemplateColumn Header="Status" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
@@ -322,7 +293,6 @@
                                     <Border CornerRadius="8"
                                             Padding="8 2"
                                             HorizontalAlignment="Left">
-
                                         <Border.Style>
                                             <Style TargetType="Border">
                                                 <Setter Property="Background" Value="#0F3B2E"/>
@@ -337,7 +307,6 @@
                                         <TextBlock Text="{Binding Status}"
                                                    FontWeight="SemiBold"
                                                    FontSize="10">
-
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Setter Property="Foreground" Value="#22C55E"/>
@@ -348,7 +317,6 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBlock.Style>
-
                                         </TextBlock>
                                     </Border>
                                 </DataTemplate>
@@ -356,8 +324,8 @@
                         </DataGridTemplateColumn>
 
                         <DataGridTextColumn Header="Cadastro"
-                                            Binding="{Binding DataCadastro}"
-                                            Width="1.1*"/>
+                                            Binding="{Binding DataCriacao}"
+                                            Width="1.2*"/>
 
                         <DataGridTemplateColumn Header="Ações" Width="110">
                             <DataGridTemplateColumn.CellTemplate>
