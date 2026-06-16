@@ -30,6 +30,8 @@ namespace wpf_projeto_integrador
             VerificarPermissoes();
             IniciarVerificacaoUsuario();
             CarregarContaLogada();
+            MainContent.Content = new DashBoardView();
+
 
 
         }
