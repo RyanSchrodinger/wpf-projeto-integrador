@@ -8,6 +8,7 @@ using wpf_projeto_integrador.Data;
 using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
+using wpf_projeto_integrador.View.Demais;
 using wpf_projeto_integrador.View.Users;
 using wpf_projeto_integrador.View.Users.View;
 using wpf_projeto_integrador.Views;
@@ -313,7 +314,10 @@ namespace wpf_projeto_integrador
 
 
 
-
+        private void BtnDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new DashBoardView();
+        }
         private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new UsuariosView();
@@ -338,6 +342,10 @@ namespace wpf_projeto_integrador
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new ClienteView();
+        }
+        private void BtnEmpresas_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new EmpresaView();
         }
     }
         

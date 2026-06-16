@@ -10,7 +10,9 @@
         {
             public string Cnpj { get; set; }
             public string NomeFantasia { get; set; }
-            public string? Telefone { get; set; }
+
+            public string? Responsavel { get; set; }
+
             public string? Endereco { get; set; }
 
         public ICollection<Profissional> Profissionais { get; set; } = new List<Profissional>();

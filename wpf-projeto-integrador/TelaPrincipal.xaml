@@ -71,6 +71,7 @@
 
 
                         <Button x:Name="BtnDashboard"
+                                Click="BtnDashboard_Click"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
 
@@ -207,6 +208,7 @@
 
 
                                 <Button x:Name="BtnEmpresas"
+                                        Click="BtnEmpresas_Click"
                                         Style="{StaticResource SubMenuButton}">
 
                                     <StackPanel Orientation="Horizontal">

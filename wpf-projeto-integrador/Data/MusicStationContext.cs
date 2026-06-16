@@ -149,18 +149,18 @@ namespace wpf_projeto_integrador.Data
                     .IsRequired()
                     .HasMaxLength(18);
 
+                entity.HasIndex(e => e.Cnpj)
+                    .IsUnique();
+
                 entity.Property(e => e.NomeFantasia)
                     .IsRequired()
-                    .HasMaxLength(150);
+                    .HasMaxLength(100);
 
-                entity.Property(e => e.Telefone)
-                    .HasMaxLength(20);
+                entity.Property(e => e.Responsavel)
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Endereco)
                     .HasMaxLength(200);
-
-                entity.HasIndex(e => e.Cnpj)
-                    .IsUnique();
             });
 
 
