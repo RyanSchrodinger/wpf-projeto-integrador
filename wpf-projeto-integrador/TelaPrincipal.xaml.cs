@@ -9,6 +9,7 @@ using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
 using wpf_projeto_integrador.View.Users;
+using wpf_projeto_integrador.View.Users.View;
 using wpf_projeto_integrador.Views;
 using static wpf_projeto_integrador.Models.Administrador;
 
@@ -332,6 +333,11 @@ namespace wpf_projeto_integrador
         private void BtnProfissional_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new ProfissionalView();
+        }
+
+        private void BtnClientes_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new ClienteView();
         }
     }
         

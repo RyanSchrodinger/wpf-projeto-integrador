@@ -226,21 +226,13 @@ namespace wpf_projeto_integrador.View.Users
         public string Observacao { get; set; }
         public string Telefone { get; set; }
         public int Id { get; set; } 
-
         public string Nome { get; set; } = "";
-
         public string Email { get; set; } = "";
-
         public string NomeUsuario { get; set; } = "";
-
         public string NivelAcesso { get; set; } = "";
-
         public string Status { get; set; } = "";
-
         public string DataCadastro { get; set; } = "";
-
         public string Iniciais { get; set; } = "";
-
         public string CorPerfil { get; set; } = "";
     }
 }

@@ -186,6 +186,7 @@
 
 
                                 <Button x:Name="BtnClientes"
+                                        Click="BtnClientes_Click"
                                         Style="{StaticResource SubMenuButton}">
 
                                     <StackPanel Orientation="Horizontal">
