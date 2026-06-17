@@ -19,7 +19,10 @@ namespace wpf_projeto_integrador.Data
         public DbSet<Profissional> Profissionais { get; set; }
         public DbSet<Chat> Chats { get; set; }
         public DbSet<Mensagem> Mensagens { get; set; }
-
+        public DbSet<Pagamento> Pagamentos { get; set; }
+        public DbSet<FormaPagamento> FormasPagamento { get; set; }
+        public DbSet<CategoriaPagamento> CategoriasPagamento { get; set; }
+        public DbSet<StatusPagamento> StatusPagamentos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -193,7 +196,85 @@ namespace wpf_projeto_integrador.Data
             modelBuilder.Entity<Mensagem>()
                 .Property(m => m.Texto)
                 .HasMaxLength(1000);
+
+
+            modelBuilder.Entity<FormaPagamento>(entity =>
+            {
+                entity.Property(f => f.Nome)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasIndex(f => f.Nome).IsUnique();
+
+                entity.HasData(
+                    new FormaPagamento { Id = 1, Nome = "Pix" },
+                    new FormaPagamento { Id = 2, Nome = "Cartão de Crédito" },
+                    new FormaPagamento { Id = 3, Nome = "Cartão de Débito" },
+                    new FormaPagamento { Id = 4, Nome = "Dinheiro" },
+                    new FormaPagamento { Id = 5, Nome = "Boleto" },
+                    new FormaPagamento { Id = 6, Nome = "Transferência Bancária" }
+                );
+            });
+
+            modelBuilder.Entity<StatusPagamento>(entity =>
+            {
+                entity.Property(s => s.Nome)
+                    .IsRequired()
+                    .HasMaxLength(30);
+
+                entity.HasIndex(s => s.Nome).IsUnique();
+
+                entity.HasData(
+                    new StatusPagamento { Id = 1, Nome = "Pendente" },
+                    new StatusPagamento { Id = 2, Nome = "Pago" },
+                    new StatusPagamento { Id = 3, Nome = "Vencido" },
+                    new StatusPagamento { Id = 4, Nome = "Cancelado" }
+                );
+            });
+
+            modelBuilder.Entity<CategoriaPagamento>(entity =>
+            {
+                entity.Property(c => c.Nome)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasIndex(c => c.Nome).IsUnique();
+
+                entity.HasData(
+                    new CategoriaPagamento { Id = 1, Nome = "Serviço" },
+                    new CategoriaPagamento { Id = 2, Nome = "Locação" },
+                    new CategoriaPagamento { Id = 3, Nome = "Venda" },
+                    new CategoriaPagamento { Id = 4, Nome = "Multa" },
+                    new CategoriaPagamento { Id = 5, Nome = "Outro" }
+                );
+            });
+
+            modelBuilder.Entity<Pagamento>(entity =>
+            {
+                entity.Property(p => p.Valor)
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(p => p.Observacoes)
+                    .HasMaxLength(500);
+
+                entity.HasOne(p => p.FormaPagamento)
+                    .WithMany(f => f.Pagamentos)
+                    .HasForeignKey(p => p.FormaPagamentoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(p => p.StatusPagamento)
+                    .WithMany(s => s.Pagamentos)
+                    .HasForeignKey(p => p.StatusPagamentoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(p => p.CategoriaPagamento)
+                    .WithMany(c => c.Pagamentos)
+                    .HasForeignKey(p => p.CategoriaPagamentoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
+
+
     }
 
 
