@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="Music Station - Painel Administrador"
+        KeyDown="Window_KeyDown"
         Height="720"
         Width="1180"
         WindowStartupLocation="CenterScreen"

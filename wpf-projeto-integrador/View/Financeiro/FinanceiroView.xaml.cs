@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using LiveChartsCore;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
@@ -18,7 +19,12 @@ namespace wpf_projeto_integrador.View.Financeiro
 {
     public partial class FinanceiroView : UserControl
     {
+
+        //define o tipo de moeda do brasil
         private readonly CultureInfo cultura = new("pt-BR");
+
+        //Lista do tipo "FinanceiroViewModel" que vai receber valores do banco
+        //Assim nao precisa consultar do banco toda hora q for aplicar um filtro 
         private List<FinanceiroViewModel> pagamentos = new();
 
         public FinanceiroView()
@@ -28,35 +34,43 @@ namespace wpf_projeto_integrador.View.Financeiro
             CarregarFinanceiro();
         }
 
+        //Metodo que carrega os combobox
         private void CarregarCombos()
         {
             using var db = new MusicStationContext();
 
+            //Busca todas as categorias cadastradas no banco e ordena pelo nome
             var categorias = db.CategoriasPagamento
                 .OrderBy(c => c.Nome)
                 .Select(c => c.Nome)
                 .ToList();
 
+            //Adiciona a opção "Todas"
             categorias.Insert(0, "Todas");
 
             cmbCategoria.ItemsSource = categorias;
             cmbCategoria.SelectedIndex = 0;
 
-            var status = db.StatusPagamentos
+            //Busca todos os status cadastrados no banco e ordena pelo nome
+           var status = db.StatusPagamentos
                 .OrderBy(s => s.Nome)
                 .Select(s => s.Nome)
                 .ToList();
 
+            //Busca todos os status cadastrados no banco e ordena pelo nome
             status.Insert(0, "Todos");
 
             cmbStatus.ItemsSource = status;
             cmbStatus.SelectedIndex = 0;
         }
 
+        // Carrega os pagamentos do banco junto com seus relacionamentos
         private void CarregarFinanceiro()
         {
             using var db = new MusicStationContext();
 
+            // Busca todos os pagamentos do banco e carrega também os dados relacionados (cliente, empresa, profissional,
+            // forma de pagamento, status e categoria) facilitando e muito a vida do serhumano 
             var listaBanco = db.Pagamentos
                 .Include(p => p.Cliente)
                 .Include(p => p.Empresa)
@@ -67,8 +81,12 @@ namespace wpf_projeto_integrador.View.Financeiro
                 .OrderByDescending(p => p.DataPagamento ?? p.DataVencimento)
                 .ToList();
 
+
+            //pego a parte mal tratada do banco e passo cada conteudo dentro ja formatado para o FinanceiroViewModel. No caso ele cria um novo
+            //objeto com esses valores preenchidos q veio do select
             pagamentos = listaBanco.Select(p => new FinanceiroViewModel
             {
+                //aqui precisamos passar o valor de cada propriedade dele, ja q estamos criando u novo objeto precisamos passar um valor ne 
                 Id = p.Id,
 
                 Cliente = p.Cliente != null
@@ -224,6 +242,7 @@ namespace wpf_projeto_integrador.View.Financeiro
                    
                 })
                 .ToArray();
+            graficoCategorias.LegendTextPaint = new SolidColorPaint(SKColors.White);
         }
 
         private void AtualizarGraficoMensal(List<FinanceiroViewModel> lista)
@@ -279,7 +298,7 @@ namespace wpf_projeto_integrador.View.Financeiro
                 }
             };
 
-            graficoReceitaMensal.LegendPosition = LegendPosition.Hidden;
+            graficoReceitaMensal.LegendPosition = LiveChartsCore.Measure.LegendPosition.Hidden;
         }
 
         private void AtualizarResumoRapido(List<FinanceiroViewModel> lista)

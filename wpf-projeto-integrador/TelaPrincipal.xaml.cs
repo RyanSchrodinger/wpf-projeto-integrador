@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.IconPacks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using wpf_pi.Views;
@@ -31,10 +32,40 @@ namespace wpf_projeto_integrador
             VerificarPermissoes();
             IniciarVerificacaoUsuario();
             CarregarContaLogada();
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
             MainContent.Content = new DashBoardView();
 
 
 
+        }
+
+        private bool telaCheia = false;
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F11)
+            {
+                AlternarTelaCheia();
+            }
+        }
+
+        private void AlternarTelaCheia()
+        {
+            if (!telaCheia)
+            {
+                WindowStyle = WindowStyle.None;
+                WindowState = WindowState.Maximized;
+
+                telaCheia = true;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Normal;
+
+                telaCheia = false;
+            }
         }
 
         public void AbrirTela(UserControl tela)
