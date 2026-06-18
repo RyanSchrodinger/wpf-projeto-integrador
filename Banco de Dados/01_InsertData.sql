@@ -4,6 +4,7 @@ SELECT * FROM Administradores
 SELECT * FROM Clientes
 SELECT * FROM Profissionais
 SELECT * FROM Empresas
+SELECT * FROM Pagamentos
 
 
 -- Definindo o tipo de log "Login"
@@ -147,3 +148,54 @@ VALUES
 (32, '12.345.678/0001-09', 'Top Studio', 'Rua XV, 900'),
 (33, '12.345.678/0001-10', 'Master Audio', 'Av Atlântica, 1000');
 
+
+
+INSERT INTO Pagamentos
+(
+    Valor,
+    DataVencimento,
+    DataPagamento,
+    FormaPagamentoId,
+    StatusPagamentoId,
+    CategoriaPagamentoId,
+    Observacoes,
+    ClienteId,
+    EmpresaId,
+    ProfissionalId
+)
+VALUES
+-- JANEIRO
+(180.00, '2026-01-05', '2026-01-05', 1, 2, 1, 'Aula de violão iniciante com profissional', 4, NULL, 14),
+(320.00, '2026-01-12', '2026-01-12', 2, 2, 2, 'Locação de guitarra para evento', 5, 24, NULL),
+(750.00, '2026-01-22', '2026-01-22', 1, 2, 3, 'Venda de violão acústico', 6, 24, NULL),
+
+-- FEVEREIRO
+(250.00, '2026-02-03', '2026-02-03', 1, 2, 1, 'Regulagem de guitarra com profissional', 7, NULL, 15),
+(480.00, '2026-02-10', '2026-02-10', 3, 2, 2, 'Locação de teclado Yamaha', 8, 25, NULL),
+(1200.00, '2026-02-18', '2026-02-18', 2, 2, 3, 'Venda de interface de áudio', 9, 25, NULL),
+(90.00, '2026-02-26', NULL, 5, 1, 1, 'Pagamento pendente de aula avulsa', 10, NULL, 16),
+
+-- MARÇO
+(300.00, '2026-03-04', '2026-03-04', 1, 2, 1, 'Aula de guitarra avançada', 11, NULL, 17),
+(650.00, '2026-03-11', '2026-03-11', 2, 2, 2, 'Locação de bateria Pearl', 12, 26, NULL),
+(1600.00, '2026-03-19', '2026-03-19', 1, 2, 3, 'Venda de teclado usado', 13, 26, NULL),
+(120.00, '2026-03-25', NULL, 4, 3, 4, 'Multa por atraso na devolução', 4, 24, NULL),
+
+-- ABRIL
+(420.00, '2026-04-02', '2026-04-02', 1, 2, 1, 'Gravação em estúdio com técnico de áudio', 5, NULL, 18),
+(700.00, '2026-04-09', '2026-04-09', 3, 2, 2, 'Locação de kit de microfones', 6, 27, NULL),
+(980.00, '2026-04-17', '2026-04-17', 2, 2, 3, 'Venda de pedal de efeito', 7, 27, NULL),
+(210.00, '2026-04-28', NULL, 5, 1, 2, 'Locação pendente de caixa amplificada', 8, 28, NULL),
+
+-- MAIO
+(500.00, '2026-05-06', '2026-05-06', 1, 2, 1, 'Serviço de mixagem', 9, NULL, 20),
+(900.00, '2026-05-13', '2026-05-13', 2, 2, 2, 'Locação de equipamento para show', 10, 29, NULL),
+(2100.00, '2026-05-20', '2026-05-20', 1, 2, 3, 'Venda de guitarra semi-nova', 11, 30, NULL),
+(150.00, '2026-05-29', NULL, 4, 3, 4, 'Multa por atraso de instrumento', 12, 29, NULL),
+
+-- JUNHO
+(650.00, '2026-06-03', '2026-06-03', 1, 2, 1, 'Produção musical básica', 13, NULL, 21),
+(1100.00, '2026-06-08', '2026-06-08', 3, 2, 2, 'Locação de bateria para gravação', 4, 31, NULL),
+(2700.00, '2026-06-14', '2026-06-14', 2, 2, 3, 'Venda de baixo elétrico', 5, 32, NULL),
+(350.00, '2026-06-17', '2026-06-17', 1, 2, 1, 'Aula intensiva de violão', 6, NULL, 22),
+(280.00, '2026-06-21', NULL, 5, 1, 2, 'Locação pendente de amplificador', 7, 33, NULL);

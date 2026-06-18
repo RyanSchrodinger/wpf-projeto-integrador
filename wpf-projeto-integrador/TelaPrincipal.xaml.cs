@@ -9,6 +9,7 @@ using wpf_projeto_integrador.Helpers;
 using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
 using wpf_projeto_integrador.View.Demais;
+using wpf_projeto_integrador.View.Financeiro;
 using wpf_projeto_integrador.View.Users;
 using wpf_projeto_integrador.View.Users.View;
 using wpf_projeto_integrador.Views;
@@ -56,9 +57,9 @@ namespace wpf_projeto_integrador
             BtnProfissionalCargo.Visibility = Visibility.Collapsed;
 
             BtnGestaoFinanceira.Visibility = Visibility.Collapsed;
-            BtnPagamentos.Visibility = Visibility.Collapsed;
-            BtnTransacoes.Visibility = Visibility.Collapsed;
-            BtnFormaPagamento.Visibility = Visibility.Collapsed;
+            //BtnPagamentos.Visibility = Visibility.Collapsed;
+            //BtnTransacoes.Visibility = Visibility.Collapsed;
+            //BtnFormaPagamento.Visibility = Visibility.Collapsed;
 
             BtnGestaoServicos.Visibility = Visibility.Collapsed;
             BtnServicos.Visibility = Visibility.Collapsed;
@@ -91,9 +92,7 @@ namespace wpf_projeto_integrador
                     BtnProfissionalCargo.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
-                    BtnPagamentos.Visibility = Visibility.Visible;
-                    BtnTransacoes.Visibility = Visibility.Visible;
-                    BtnFormaPagamento.Visibility = Visibility.Visible;
+                   
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
                     BtnServicos.Visibility = Visibility.Visible;
@@ -135,9 +134,9 @@ namespace wpf_projeto_integrador
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
-                    BtnPagamentos.Visibility = Visibility.Visible;
-                    BtnTransacoes.Visibility = Visibility.Visible;
-                    BtnFormaPagamento.Visibility = Visibility.Visible;
+                    //BtnPagamentos.Visibility = Visibility.Visible;
+                    //BtnTransacoes.Visibility = Visibility.Visible;
+                    //BtnFormaPagamento.Visibility = Visibility.Visible;
 
                     BtnComunicacao.Visibility = Visibility.Visible;
 
@@ -202,15 +201,19 @@ namespace wpf_projeto_integrador
 
         private void BtnGestaoFinanceira_Click(object sender, RoutedEventArgs e)
         {
-            bool aberto = SubMenuFinancas.Visibility == Visibility.Visible;
 
-            SubMenuFinancas.Visibility =
-                aberto ? Visibility.Collapsed : Visibility.Visible;
+            MainContent.Content = new FinanceiroView();
 
-            SetaFinancas.Kind =
-                aberto
-                ? PackIconMaterialKind.ChevronDown
-                : PackIconMaterialKind.ChevronUp;
+
+            //bool aberto = SubMenuFinancas.Visibility == Visibility.Visible;
+
+            //SubMenuFinancas.Visibility =
+            //    aberto ? Visibility.Collapsed : Visibility.Visible;
+
+            //SetaFinancas.Kind =
+            //    aberto
+            //    ? PackIconMaterialKind.ChevronDown
+            //    : PackIconMaterialKind.ChevronUp;
         }
 
 
