@@ -5,6 +5,128 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        
+
+        <!-- App.xaml - COLE dentro de Application.Resources -->
+
+        <SolidColorBrush x:Key="CorPrimaria" Color="#7C3AED"/>
+        <SolidColorBrush x:Key="CorMenuAtivo" Color="#2A2D3E"/>
+        <SolidColorBrush x:Key="CorFundoMenu" Color="#1F222C"/>
+        <SolidColorBrush x:Key="CorTextoInativo" Color="#8B92A3"/>
+        <SolidColorBrush x:Key="CorTextoAtivo" Color="#E5E7EB"/>
+
+        <Style x:Key="MenuButton" TargetType="Button">
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Margin" Value="8 4"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource CorTextoInativo}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="7"
+                        Padding="12 0">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#242838"/>
+                                <Setter Property="Foreground" Value="{StaticResource CorTextoAtivo}"/>
+                            </Trigger>
+
+                            <Trigger Property="Tag" Value="Ativo">
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource CorMenuAtivo}"/>
+                                <Setter Property="Foreground" Value="{StaticResource CorTextoAtivo}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SubMenuButton" TargetType="Button">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#8B92A3"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Grid>
+
+                            <!-- Linha cinza -->
+                            <Border Width="3"
+                            Background="#50535F"
+                            HorizontalAlignment="Left"
+                            Margin="8,0,0,0"/>
+
+                            <!-- Linha roxa -->
+                            <Border x:Name="Marker"
+                            Width="3"
+                            Height="20"
+                            Background="Transparent"
+                            CornerRadius="2"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="8,0,0,0"/>
+
+                            <!-- Fundo Hover -->
+                            <Border x:Name="Hover"
+                            Margin="18,2,0,2"
+                            CornerRadius="6"
+                            Background="Transparent">
+
+                                <ContentPresenter
+                            Margin="18,0,8,0"
+                            VerticalAlignment="Center"/>
+
+                            </Border>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Hover"
+                                Property="Background"
+                                Value="#2A2D3E"/>
+
+                                <Setter Property="Foreground"
+                                Value="#7C3AED"/>
+                            </Trigger>
+
+                            <Trigger Property="Tag" Value="Ativo">
+
+                                <Setter TargetName="Marker"
+                                Property="Background"
+                                Value="#7C3AED"/>
+
+                                <Setter Property="Foreground"
+                                Value="#7C3AED"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
         <Style x:Key="IconButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -61,98 +183,9 @@
 
 
             <!-- BOTÃO PRINCIPAL -->
-            <Style x:Key="MenuButton"
-           TargetType="Button">
-
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Height" Value="48"/>
-                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
-
-                <Setter Property="Template">
-                    <Setter.Value>
-
-                        <ControlTemplate TargetType="Button">
-
-                            <Border x:Name="Bd"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="10"
-                            Padding="14 0">
-
-                                <ContentPresenter VerticalAlignment="Center"/>
-
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsMouseOver"
-                                 Value="True">
-
-                                    <Setter TargetName="Bd"
-                                    Property="Background"
-                                    Value="#2B2B52"/>
-
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-
-                    </Setter.Value>
-                </Setter>
-
-            </Style>
-
+            
             <!-- BOTÃO SUBMENU -->
-            <Style x:Key="SubMenuButton"
-           TargetType="Button">
-
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="#D7D7E8"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Height" Value="38"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                <Setter Property="FontSize" Value="15"/>
-
-                <Setter Property="Template">
-                    <Setter.Value>
-
-                        <ControlTemplate TargetType="Button">
-
-                            <Border x:Name="Bd"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="8"
-                            Padding="12 0">
-
-                                <ContentPresenter VerticalAlignment="Center"/>
-
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-
-                                <Trigger Property="IsMouseOver"
-                                 Value="True">
-
-                                    <Setter TargetName="Bd"
-                                    Property="Background"
-                                    Value="#3A3A6A"/>
-
-                                </Trigger>
-
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-
-                    </Setter.Value>
-                </Setter>
-
-            </Style>
-
+    
 
         <Style x:Key="ComboBoxModerno" TargetType="{x:Type ComboBox}">
             <Setter Property="Height" Value="35"/>

@@ -120,132 +120,38 @@
                             </Button>
 
                             <StackPanel x:Name="SubMenuPessoas"
-                                        Visibility="Collapsed"
-                                        Margin="42 0 0 0">
+            Visibility="Collapsed"
+            Margin="34 6 0 10">
 
+    <Button x:Name="BtnUsuarios"
+            Click="BtnUsuarios_Click"
+            Style="{StaticResource SubMenuButton}"
+            Content="Usuários"/>
 
+    <Button x:Name="BtnAdministradores"
+            Click="BtnAdministradores_Click"
+            Style="{StaticResource SubMenuButton}"
+            Content="Administradores"/>
 
+    <Button x:Name="BtnProfissionais"
+            Click="BtnProfissional_Click"
+            Style="{StaticResource SubMenuButton}"
+            Content="Profissionais"/>
 
-                                <Button x:Name="BtnUsuarios"
-                                        Click="BtnUsuarios_Click"
-                                        Style="{StaticResource SubMenuButton}">
+    <Button x:Name="BtnClientes"
+            Click="BtnClientes_Click"
+            Style="{StaticResource SubMenuButton}"
+            Content="Clientes"/>
 
-                                    <StackPanel Orientation="Horizontal">
+    <Button x:Name="BtnEmpresas"
+            Click="BtnEmpresas_Click"
+            Style="{StaticResource SubMenuButton}"
+            Content="Empresas"/>
 
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Usuários"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-
-                                <Button x:Name="BtnAdministradores"
-                                        Click="BtnAdministradores_Click"
-                                        Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Administradores"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-                                <Button x:Name="BtnProfissionais"
-                                        Click="BtnProfissional_Click"
-                                        Style="{StaticResource SubMenuButton}">
-                                    
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Profissionais"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-                                <Button x:Name="BtnClientes"
-                                        Click="BtnClientes_Click"
-                                        Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Clientes"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-
-                                <Button x:Name="BtnEmpresas"
-                                        Click="BtnEmpresas_Click"
-                                        Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Empresas"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-                                <Button x:Name="BtnProfissionalCargo"
-                                        Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Profissional Cargo"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-                            </StackPanel>
+    <Button x:Name="BtnProfissionalCargo"
+            Style="{StaticResource SubMenuButton}"
+            Content="Profissional Cargo"/>
+</StackPanel>
 
                         </StackPanel>
 

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 using wpf_pi.Views;
 using wpf_projeto_integrador.Data;
@@ -24,30 +23,30 @@ namespace wpf_projeto_integrador
         private Administrador _administrador;
 
         public int IdUsuarioLogado;
+        private bool telaCheia = false;
+
         public FormMenu(Administrador administrador)
         {
             InitializeComponent();
+
             _administrador = administrador;
             IdUsuarioLogado = _administrador.Id;
+
             VerificarPermissoes();
             IniciarVerificacaoUsuario();
             CarregarContaLogada();
+
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
+
             MainContent.Content = new DashBoardView();
-
-
-
+            SelecionarMenu(BtnDashboard);
         }
-
-        private bool telaCheia = false;
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F11)
-            {
                 AlternarTelaCheia();
-            }
         }
 
         private void AlternarTelaCheia()
@@ -56,14 +55,12 @@ namespace wpf_projeto_integrador
             {
                 WindowStyle = WindowStyle.None;
                 WindowState = WindowState.Maximized;
-
                 telaCheia = true;
             }
             else
             {
                 WindowStyle = WindowStyle.SingleBorderWindow;
                 WindowState = WindowState.Normal;
-
                 telaCheia = false;
             }
         }
@@ -73,10 +70,59 @@ namespace wpf_projeto_integrador
             MainContent.Content = tela;
         }
 
+        private void LimparSelecaoMenu()
+        {
+            BtnDashboard.Tag = null;
+
+            BtnGestaoPessoas.Tag = null;
+            BtnGestaoFinanceira.Tag = null;
+            BtnGestaoServicos.Tag = null;
+            BtnGestaoLocacoes.Tag = null;
+            BtnComunicacao.Tag = null;
+            BtnConfiguracao.Tag = null;
+            BtnLogs.Tag = null;
+
+            BtnUsuarios.Tag = null;
+            BtnAdministradores.Tag = null;
+            BtnProfissionais.Tag = null;
+            BtnClientes.Tag = null;
+            BtnEmpresas.Tag = null;
+            BtnProfissionalCargo.Tag = null;
+
+            BtnServicos.Tag = null;
+            BtnPedidos.Tag = null;
+            BtnServicosPedidos.Tag = null;
+            BtnAvaliacoes.Tag = null;
+
+            BtnLocacoes.Tag = null;
+            BtnLocacoesItens.Tag = null;
+            BtnInstrumentos.Tag = null;
+        }
+
+        private void SelecionarMenu(Button menuPrincipal, Button submenu = null)
+        {
+            LimparSelecaoMenu();
+
+            if (menuPrincipal != null)
+                menuPrincipal.Tag = "Ativo";
+
+            if (submenu != null)
+                submenu.Tag = "Ativo";
+        }
+
+        private void AbrirSubMenu(StackPanel submenu, PackIconMaterial seta)
+        {
+            bool aberto = submenu.Visibility == Visibility.Visible;
+
+            submenu.Visibility = aberto ? Visibility.Collapsed : Visibility.Visible;
+
+            seta.Kind = aberto
+                ? PackIconMaterialKind.ChevronDown
+                : PackIconMaterialKind.ChevronUp;
+        }
 
         public void VerificarPermissoes()
         {
-            // Tudo oculto inicialmente
             BtnDashboard.Visibility = Visibility.Collapsed;
 
             BtnGestaoPessoas.Visibility = Visibility.Collapsed;
@@ -88,9 +134,6 @@ namespace wpf_projeto_integrador
             BtnProfissionalCargo.Visibility = Visibility.Collapsed;
 
             BtnGestaoFinanceira.Visibility = Visibility.Collapsed;
-            //BtnPagamentos.Visibility = Visibility.Collapsed;
-            //BtnTransacoes.Visibility = Visibility.Collapsed;
-            //BtnFormaPagamento.Visibility = Visibility.Collapsed;
 
             BtnGestaoServicos.Visibility = Visibility.Collapsed;
             BtnServicos.Visibility = Visibility.Collapsed;
@@ -107,11 +150,9 @@ namespace wpf_projeto_integrador
             BtnConfiguracao.Visibility = Visibility.Collapsed;
             BtnLogs.Visibility = Visibility.Collapsed;
 
-
             switch (_administrador.NivelAcesso)
             {
                 case NivelAcessoEnum.AdministradorGeral:
-
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoPessoas.Visibility = Visibility.Visible;
@@ -123,7 +164,6 @@ namespace wpf_projeto_integrador
                     BtnProfissionalCargo.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
-                   
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
                     BtnServicos.Visibility = Visibility.Visible;
@@ -139,12 +179,9 @@ namespace wpf_projeto_integrador
                     BtnComunicacao.Visibility = Visibility.Visible;
                     BtnConfiguracao.Visibility = Visibility.Visible;
                     BtnLogs.Visibility = Visibility.Visible;
-
                     break;
 
-
                 case NivelAcessoEnum.Atendente:
-
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoPessoas.Visibility = Visibility.Visible;
@@ -156,26 +193,16 @@ namespace wpf_projeto_integrador
                     BtnInstrumentos.Visibility = Visibility.Visible;
 
                     BtnComunicacao.Visibility = Visibility.Visible;
-
                     break;
 
-
                 case NivelAcessoEnum.Financeiro:
-
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
-                    //BtnPagamentos.Visibility = Visibility.Visible;
-                    //BtnTransacoes.Visibility = Visibility.Visible;
-                    //BtnFormaPagamento.Visibility = Visibility.Visible;
-
                     BtnComunicacao.Visibility = Visibility.Visible;
-
                     break;
 
-
                 case NivelAcessoEnum.Suporte:
-
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
@@ -184,12 +211,9 @@ namespace wpf_projeto_integrador
                     BtnServicosPedidos.Visibility = Visibility.Visible;
 
                     BtnComunicacao.Visibility = Visibility.Visible;
-
                     break;
 
-
                 case NivelAcessoEnum.Moderador:
-
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoPessoas.Visibility = Visibility.Visible;
@@ -197,89 +221,10 @@ namespace wpf_projeto_integrador
                     BtnClientes.Visibility = Visibility.Visible;
 
                     BtnLogs.Visibility = Visibility.Visible;
-
                     BtnComunicacao.Visibility = Visibility.Visible;
-
                     break;
             }
         }
-
-
-
-
-        private void btnLogs_Click(object sender, RoutedEventArgs e)
-        {
-            if (_administrador.NivelAcesso != Administrador.NivelAcessoEnum.AdministradorGeral)
-            {
-                MessageBox.Show("Você não tem permissão.");
-                return;
-            }
-            MainContent.Content = new LogsControl();
-        }
-
-        private void BtnGestaoPessoas_Click(object sender, RoutedEventArgs e)
-        {
-            bool aberto = SubMenuPessoas.Visibility == Visibility.Visible;
-
-            SubMenuPessoas.Visibility =
-                aberto ? Visibility.Collapsed : Visibility.Visible;
-
-            SetaPessoas.Kind =
-                aberto
-                ? PackIconMaterialKind.ChevronDown
-                : PackIconMaterialKind.ChevronUp;
-        }
-
-        private void BtnGestaoFinanceira_Click(object sender, RoutedEventArgs e)
-        {
-
-            MainContent.Content = new FinanceiroView();
-
-
-            //bool aberto = SubMenuFinancas.Visibility == Visibility.Visible;
-
-            //SubMenuFinancas.Visibility =
-            //    aberto ? Visibility.Collapsed : Visibility.Visible;
-
-            //SetaFinancas.Kind =
-            //    aberto
-            //    ? PackIconMaterialKind.ChevronDown
-            //    : PackIconMaterialKind.ChevronUp;
-        }
-
-
-        private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
-        {
-            bool aberto = SubMenuServicos.Visibility == Visibility.Visible;
-
-            SubMenuServicos.Visibility =
-                aberto ? Visibility.Collapsed : Visibility.Visible;
-
-            SetaServicos.Kind =
-                aberto
-                ? PackIconMaterialKind.ChevronDown
-                : PackIconMaterialKind.ChevronUp;
-
-        }
-
-        private void BtnGestaoLocacoes_Click(object sender, RoutedEventArgs e)
-        {
-            bool aberto = SubMenuLocacoes.Visibility == Visibility.Visible;
-
-            SubMenuLocacoes.Visibility =
-                aberto ? Visibility.Collapsed : Visibility.Visible;
-
-            SetaLocacoes.Kind =
-                aberto
-                ? PackIconMaterialKind.ChevronDown
-                : PackIconMaterialKind.ChevronUp;
-
-        }
-
-
-
-
-
 
         private void IniciarVerificacaoUsuario()
         {
@@ -288,8 +233,6 @@ namespace wpf_projeto_integrador
             _timerVerificacao.Tick += TimerVerificacao_Tick;
             _timerVerificacao.Start();
         }
-
-
 
         private void TimerVerificacao_Tick(object sender, EventArgs e)
         {
@@ -306,7 +249,7 @@ namespace wpf_projeto_integrador
                 MainWindow login = new MainWindow();
                 login.Show();
 
-                this.Close();
+                Close();
             }
         }
 
@@ -318,7 +261,6 @@ namespace wpf_projeto_integrador
                 a.Id == IdUsuarioLogado &&
                 a.Ativo);
         }
-
 
         private void CarregarContaLogada()
         {
@@ -345,44 +287,82 @@ namespace wpf_projeto_integrador
             return $"{partes[0][0]}{partes[^1][0]}".ToUpper();
         }
 
-
-
-
-
-
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new DashBoardView();
+            SelecionarMenu(BtnDashboard);
         }
+
+        private void BtnGestaoPessoas_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirSubMenu(SubMenuPessoas, SetaPessoas);
+            SelecionarMenu(BtnGestaoPessoas);
+        }
+
         private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new UsuariosView();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainContent.Content = new ComunicacaoView(IdUsuarioLogado);
+            SelecionarMenu(BtnGestaoPessoas, BtnUsuarios);
         }
 
         private void BtnAdministradores_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new AdministradorView();
+            SelecionarMenu(BtnGestaoPessoas, BtnAdministradores);
         }
-
 
         private void BtnProfissional_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new ProfissionalView();
+            SelecionarMenu(BtnGestaoPessoas, BtnProfissionais);
         }
 
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new ClienteView();
+            SelecionarMenu(BtnGestaoPessoas, BtnClientes);
         }
+
         private void BtnEmpresas_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new EmpresaView();
+            SelecionarMenu(BtnGestaoPessoas, BtnEmpresas);
+        }
+
+        private void BtnGestaoFinanceira_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new FinanceiroView();
+            SelecionarMenu(BtnGestaoFinanceira);
+        }
+
+        private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirSubMenu(SubMenuServicos, SetaServicos);
+            SelecionarMenu(BtnGestaoServicos);
+        }
+
+        private void BtnGestaoLocacoes_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirSubMenu(SubMenuLocacoes, SetaLocacoes);
+            SelecionarMenu(BtnGestaoLocacoes);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new ComunicacaoView(IdUsuarioLogado);
+            SelecionarMenu(BtnComunicacao);
+        }
+
+        private void btnLogs_Click(object sender, RoutedEventArgs e)
+        {
+            if (_administrador.NivelAcesso != NivelAcessoEnum.AdministradorGeral)
+            {
+                MessageBox.Show("Você não tem permissão.");
+                return;
+            }
+
+            MainContent.Content = new LogsControl();
+            SelecionarMenu(BtnLogs);
         }
     }
-        
 }
