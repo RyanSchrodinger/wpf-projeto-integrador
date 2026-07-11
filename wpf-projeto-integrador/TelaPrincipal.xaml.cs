@@ -95,9 +95,7 @@ namespace wpf_projeto_integrador
 
             
 
-            BtnLocacoes.Tag = null;
-            BtnLocacoesItens.Tag = null;
-            BtnInstrumentos.Tag = null;
+            
         }
 
         private void SelecionarMenu(Button menuPrincipal, Button submenu = null)
@@ -140,9 +138,7 @@ namespace wpf_projeto_integrador
             
 
             BtnGestaoLocacoes.Visibility = Visibility.Collapsed;
-            BtnLocacoes.Visibility = Visibility.Collapsed;
-            BtnLocacoesItens.Visibility = Visibility.Collapsed;
-            BtnInstrumentos.Visibility = Visibility.Collapsed;
+            
 
             BtnComunicacao.Visibility = Visibility.Collapsed;
             BtnConfiguracao.Visibility = Visibility.Collapsed;
@@ -168,9 +164,7 @@ namespace wpf_projeto_integrador
                    
 
                     BtnGestaoLocacoes.Visibility = Visibility.Visible;
-                    BtnLocacoes.Visibility = Visibility.Visible;
-                    BtnLocacoesItens.Visibility = Visibility.Visible;
-                    BtnInstrumentos.Visibility = Visibility.Visible;
+                    
 
                     BtnComunicacao.Visibility = Visibility.Visible;
                     BtnConfiguracao.Visibility = Visibility.Visible;
@@ -184,9 +178,7 @@ namespace wpf_projeto_integrador
                     BtnClientes.Visibility = Visibility.Visible;
 
                     BtnGestaoLocacoes.Visibility = Visibility.Visible;
-                    BtnLocacoes.Visibility = Visibility.Visible;
-                    BtnLocacoesItens.Visibility = Visibility.Visible;
-                    BtnInstrumentos.Visibility = Visibility.Visible;
+                    
 
                     BtnComunicacao.Visibility = Visibility.Visible;
                     break;
@@ -358,7 +350,7 @@ namespace wpf_projeto_integrador
 
         private void BtnGestaoLocacoes_Click(object sender, RoutedEventArgs e)
         {
-            AbrirSubMenu(SubMenuLocacoes, SetaLocacoes);
+            
             SelecionarMenu(BtnGestaoLocacoes);
         }
 

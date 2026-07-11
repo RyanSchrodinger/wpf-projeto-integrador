@@ -17,7 +17,7 @@ namespace wpf_projeto_integrador.Models
         public string? Estado { get; set; }
         public ICollection<Avaliacao> Avaliacoes { get; set; } = new List<Avaliacao>();
         public ICollection<Pedido> Pedidos { get; set; }   = new List<Pedido>();
-
+        public ICollection<Locacao> Locacoes { get; set; } =new List<Locacao>();
         public ICollection<Pagamento> Pagamentos { get; set; }  = new List<Pagamento>();
 
        

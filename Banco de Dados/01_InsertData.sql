@@ -764,7 +764,7 @@ BEGIN TRY
 
     SELECT @ServicoId = IdServico
     FROM Servicos
-    WHERE ProfissionalId = 15
+    WHERE ProfissionalId = 14
       AND Nome = 'Aula de Piano';
 
     IF @ServicoId IS NULL
@@ -830,3 +830,27 @@ BEGIN CATCH
 
 END CATCH;
 GO
+
+SELECT
+    IdServico,
+    Nome,
+    EmpresaId,
+    ProfissionalId
+FROM Servicos
+WHERE Nome = 'Aula de Piano';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

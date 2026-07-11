@@ -27,6 +27,9 @@ namespace wpf_projeto_integrador.Data
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<ServicoPedido> ServicosPedidos { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
+        public DbSet<Equipamento> Equipamentos { get; set; }
+        public DbSet<Locacao> Locacoes { get; set; }
+        public DbSet<ItemLocacao> ItensLocacao { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -438,6 +441,85 @@ namespace wpf_projeto_integrador.Data
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<Equipamento>(entity =>
+            {
+                entity.HasKey(e => e.IdEquipamento);
+
+                entity.Property(e => e.Nome)
+                    .HasMaxLength(100)
+                    .IsRequired();
+
+                entity.Property(e => e.Descricao)
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Valor)
+                    .HasColumnType("decimal(10,2)")
+                    .IsRequired();
+
+                entity.Property(e => e.QuantidadeTotal)
+                    .IsRequired();
+
+                entity.Property(e => e.QuantidadeDisponivel)
+                    .IsRequired();
+
+                entity.Property(e => e.Ativo)
+                    .HasDefaultValue(true)
+                    .IsRequired();
+
+                entity.HasOne(e => e.Empresa)
+                    .WithMany(empresa => empresa.Equipamentos)
+                    .HasForeignKey(e => e.EmpresaId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<Locacao>(entity =>
+            {
+                entity.HasKey(l => l.IdLocacao);
+
+                entity.Property(l => l.DataLocacao)
+                    .IsRequired();
+
+                entity.Property(l => l.Status)
+                    .IsRequired();
+
+                entity.Property(l => l.ValorTotal)
+                    .HasColumnType("decimal(10,2)")
+                    .IsRequired();
+
+                entity.Property(l => l.Observacao)
+                    .HasMaxLength(500);
+
+                entity.HasOne(l => l.Cliente)
+                    .WithMany(cliente => cliente.Locacoes)
+                    .HasForeignKey(l => l.ClienteId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<ItemLocacao>(entity =>
+            {
+                entity.HasKey(i => i.IdItemLocacao);
+
+                entity.Property(i => i.Quantidade)
+                    .IsRequired();
+
+                entity.Property(i => i.Valor)
+                    .HasColumnType("decimal(10,2)")
+                    .IsRequired();
+
+                entity.Property(i => i.ValorTotal)
+                    .HasColumnType("decimal(10,2)")
+                    .IsRequired();
+
+                entity.HasOne(i => i.Locacao)
+                    .WithMany(locacao => locacao.ItensLocacao)
+                    .HasForeignKey(i => i.LocacaoId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(i => i.Equipamento)
+                    .WithMany(equipamento => equipamento.ItensLocacao)
+                    .HasForeignKey(i => i.EquipamentoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
 
 

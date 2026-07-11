@@ -18,6 +18,7 @@
             public ICollection<Profissional> Profissionais { get; set; } = new List<Profissional>();
 
             public ICollection<Servico> Servicos { get; set; } = new List<Servico>();
+            public ICollection<Equipamento> Equipamentos { get; set; } = new List<Equipamento>();
 
         }
     

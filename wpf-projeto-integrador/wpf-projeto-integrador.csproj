@@ -39,4 +39,8 @@
     <Resource Include="fotos\logo_musicstation.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Locacoes\" />
+  </ItemGroup>
+
 </Project>
