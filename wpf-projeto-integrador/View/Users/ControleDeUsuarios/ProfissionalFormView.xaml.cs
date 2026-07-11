@@ -126,7 +126,7 @@ namespace wpf_projeto_integrador.View.Users.ControleDeUsuarios
             if (cmbEmpresa.SelectedItem is ComboBoxItem item &&
                 item.Tag != null)
             {
-                return Convert.ToInt32(item.Tag);
+                return Convert.ToInt32(item.Tag);   
             }
 
             return null;

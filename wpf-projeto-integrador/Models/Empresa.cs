@@ -15,6 +15,10 @@
 
             public string? Endereco { get; set; }
 
-        public ICollection<Profissional> Profissionais { get; set; } = new List<Profissional>();
+            public ICollection<Profissional> Profissionais { get; set; } = new List<Profissional>();
+
+            public ICollection<Servico> Servicos { get; set; } = new List<Servico>();
+
         }
+    
     }

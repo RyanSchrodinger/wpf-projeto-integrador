@@ -23,6 +23,10 @@ namespace wpf_projeto_integrador.Data
         public DbSet<FormaPagamento> FormasPagamento { get; set; }
         public DbSet<CategoriaPagamento> CategoriasPagamento { get; set; }
         public DbSet<StatusPagamento> StatusPagamentos { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Servico> Servicos { get; set; }
+        public DbSet<ServicoPedido> ServicosPedidos { get; set; }
+        public DbSet<Avaliacao> Avaliacoes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -272,6 +276,168 @@ namespace wpf_projeto_integrador.Data
                     .HasForeignKey(p => p.CategoriaPagamentoId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+
+            // =========================================================
+            // PEDIDO
+            // =========================================================
+
+            modelBuilder.Entity<Pedido>(entity =>
+            {
+                entity.ToTable("Pedidos");
+
+                entity.HasKey(p => p.IdPedido);
+
+                entity.Property(p => p.DataPedido)
+                    .HasDefaultValueSql("GETDATE()")
+                    .IsRequired();
+
+                entity.Property(p => p.Total)
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(p => p.Status)
+                    .HasConversion<string>()
+                    .HasMaxLength(30)
+                    .HasDefaultValue(StatusPedido.Pendente)
+                    .IsRequired();
+
+                entity.HasOne(p => p.Cliente)
+                    .WithMany(c => c.Pedidos)
+                    .HasForeignKey(p => p.ClienteId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =========================================================
+            // SERVIÇO
+            // =========================================================
+
+            modelBuilder.Entity<Servico>(entity =>
+            {
+                entity.ToTable("Servicos", tabela =>
+                {
+                    tabela.HasCheckConstraint(
+                        "CK_Servico_Prestador",
+                        @"(
+                [EmpresaId] IS NOT NULL
+                AND [ProfissionalId] IS NULL
+              )
+              OR
+              (
+                [EmpresaId] IS NULL
+                AND [ProfissionalId] IS NOT NULL
+              )"
+                    );
+                });
+
+                entity.HasKey(s => s.IdServico);
+
+                entity.Property(s => s.Nome)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(s => s.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(300);
+
+                entity.Property(s => s.Preco)
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(s => s.Ativo)
+                    .HasDefaultValue(true);
+
+                entity.HasOne(s => s.Empresa)
+                    .WithMany(e => e.Servicos)
+                    .HasForeignKey(s => s.EmpresaId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(s => s.Profissional)
+                    .WithMany(p => p.Servicos)
+                    .HasForeignKey(s => s.ProfissionalId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+
+            // =========================================================
+            // SERVIÇO DO PEDIDO
+            // =========================================================
+
+            modelBuilder.Entity<ServicoPedido>(entity =>
+            {
+                entity.ToTable("ServicosPedidos");
+
+                entity.HasKey(sp => sp.IdItem);
+
+                entity.Property(sp => sp.ValorServico)
+                    .HasColumnType("decimal(18,2)")
+                    .IsRequired();
+
+                entity.Property(sp => sp.Observacao)
+                    .HasMaxLength(200)
+                    .HasDefaultValue("-");
+
+                entity.Property(sp => sp.Status)
+                    .HasConversion<string>()
+                    .HasMaxLength(30)
+                    .HasDefaultValue(StatusServicoPedido.Pendente)
+                    .IsRequired();
+
+                entity.HasOne(sp => sp.Pedido)
+                    .WithMany(p => p.ServicosPedidos)
+                    .HasForeignKey(sp => sp.PedidoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(sp => sp.Servico)
+                    .WithMany(s => s.ServicosPedidos)
+                    .HasForeignKey(sp => sp.ServicoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(sp => sp.Profissional)
+                    .WithMany(p => p.ServicosPedidos)
+                    .HasForeignKey(sp => sp.ProfissionalId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =========================================================
+            // AVALIAÇÃO
+            // =========================================================
+
+            modelBuilder.Entity<Avaliacao>(entity =>
+            {
+                entity.ToTable("Avaliacoes");
+
+                entity.HasKey(a => a.Id);
+
+                entity.Property(a => a.Nota)
+                    .IsRequired();
+
+                entity.Property(a => a.Comentario)
+                    .HasMaxLength(300);
+
+                entity.Property(a => a.DataAvaliacao)
+                    .HasDefaultValueSql("GETDATE()");
+
+                entity.ToTable("Avaliacoes", tabela =>
+                {
+                    tabela.HasCheckConstraint(
+                        "CK_Avaliacao_Nota",
+                        "[Nota] BETWEEN 1 AND 5"
+                    );
+                });
+
+                entity.HasOne(a => a.Cliente)
+                    .WithMany(c => c.Avaliacoes)
+                    .HasForeignKey(a => a.ClienteId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(a => a.ServicoPedido)
+                    .WithOne(sp => sp.Avaliacao)
+                    .HasForeignKey<Avaliacao>(a => a.ServicoPedidoId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
         }
 
 

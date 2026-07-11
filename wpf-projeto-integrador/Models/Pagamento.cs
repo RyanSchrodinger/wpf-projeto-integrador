@@ -14,6 +14,8 @@ namespace wpf_projeto_integrador.Models
 
         public DateTime DataVencimento { get; set; }
         public DateTime? DataPagamento { get; set; }
+        public int? PedidoId { get; set; }
+        public Pedido? Pedido { get; set; }
 
         public int FormaPagamentoId { get; set; }
         public FormaPagamento FormaPagamento { get; set; }

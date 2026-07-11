@@ -10,6 +10,7 @@ using wpf_projeto_integrador.Models;
 using wpf_projeto_integrador.View;
 using wpf_projeto_integrador.View.Demais;
 using wpf_projeto_integrador.View.Financeiro;
+using wpf_projeto_integrador.View.GestaoServicos;
 using wpf_projeto_integrador.View.Users;
 using wpf_projeto_integrador.View.Users.View;
 using wpf_projeto_integrador.Views;
@@ -92,10 +93,7 @@ namespace wpf_projeto_integrador
             BtnVisaoGeralFinanceiro.Tag = null;
             BtnDashboardFinanceiro.Tag = null;
 
-            BtnServicos.Tag = null;
-            BtnPedidos.Tag = null;
-            BtnServicosPedidos.Tag = null;
-            BtnAvaliacoes.Tag = null;
+            
 
             BtnLocacoes.Tag = null;
             BtnLocacoesItens.Tag = null;
@@ -139,11 +137,7 @@ namespace wpf_projeto_integrador
             BtnVisaoGeralFinanceiro.Visibility = Visibility.Collapsed;
             BtnDashboardFinanceiro.Visibility = Visibility.Collapsed;
 
-            BtnGestaoServicos.Visibility = Visibility.Collapsed;
-            BtnServicos.Visibility = Visibility.Collapsed;
-            BtnPedidos.Visibility = Visibility.Collapsed;
-            BtnServicosPedidos.Visibility = Visibility.Collapsed;
-            BtnAvaliacoes.Visibility = Visibility.Collapsed;
+            
 
             BtnGestaoLocacoes.Visibility = Visibility.Collapsed;
             BtnLocacoes.Visibility = Visibility.Collapsed;
@@ -171,10 +165,7 @@ namespace wpf_projeto_integrador
                     BtnDashboardFinanceiro.Visibility = Visibility.Visible;
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
-                    BtnServicos.Visibility = Visibility.Visible;
-                    BtnPedidos.Visibility = Visibility.Visible;
-                    BtnServicosPedidos.Visibility = Visibility.Visible;
-                    BtnAvaliacoes.Visibility = Visibility.Visible;
+                   
 
                     BtnGestaoLocacoes.Visibility = Visibility.Visible;
                     BtnLocacoes.Visibility = Visibility.Visible;
@@ -213,9 +204,7 @@ namespace wpf_projeto_integrador
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
-                    BtnServicos.Visibility = Visibility.Visible;
-                    BtnPedidos.Visibility = Visibility.Visible;
-                    BtnServicosPedidos.Visibility = Visibility.Visible;
+                    
 
                     BtnComunicacao.Visibility = Visibility.Visible;
                     break;
@@ -360,9 +349,12 @@ namespace wpf_projeto_integrador
 
         private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
         {
-            AbrirSubMenu(SubMenuServicos, SetaServicos);
+            MainContent.Content = new GestaoServicosView();
+
             SelecionarMenu(BtnGestaoServicos);
         }
+
+        
 
         private void BtnGestaoLocacoes_Click(object sender, RoutedEventArgs e)
         {

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wpf_projeto_integrador.Data;
 
@@ -11,9 +12,11 @@ using wpf_projeto_integrador.Data;
 namespace wpf_projeto_integrador.Migrations
 {
     [DbContext(typeof(MusicStationContext))]
-    partial class MusicStationContextModelSnapshot : ModelSnapshot
+    [Migration("20260711205814_GestaoServico")]
+    partial class GestaoServico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -387,7 +390,7 @@ namespace wpf_projeto_integrador.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int?>("EmpresaId")
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -398,19 +401,12 @@ namespace wpf_projeto_integrador.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ProfissionalId")
-                        .HasColumnType("int");
-
                     b.HasKey("IdServico");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("EmpresaId", "Nome")
+                        .IsUnique();
 
-                    b.HasIndex("ProfissionalId");
-
-                    b.ToTable("Servicos", null, t =>
-                        {
-                            t.HasCheckConstraint("CK_Servico_Prestador", "(\r\n                [EmpresaId] IS NOT NULL\r\n                AND [ProfissionalId] IS NULL\r\n              )\r\n              OR\r\n              (\r\n                [EmpresaId] IS NULL\r\n                AND [ProfissionalId] IS NOT NULL\r\n              )");
-                        });
+                    b.ToTable("Servicos", (string)null);
                 });
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.ServicoPedido", b =>
@@ -793,16 +789,10 @@ namespace wpf_projeto_integrador.Migrations
                     b.HasOne("wpf_projeto_integrador.Models.Empresa", "Empresa")
                         .WithMany("Servicos")
                         .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("wpf_projeto_integrador.Models.Profissional", "Profissional")
-                        .WithMany("Servicos")
-                        .HasForeignKey("ProfissionalId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Empresa");
-
-                    b.Navigation("Profissional");
                 });
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.ServicoPedido", b =>
@@ -935,8 +925,6 @@ namespace wpf_projeto_integrador.Migrations
 
             modelBuilder.Entity("wpf_projeto_integrador.Models.Profissional", b =>
                 {
-                    b.Navigation("Servicos");
-
                     b.Navigation("ServicosPedidos");
                 });
 #pragma warning restore 612, 618

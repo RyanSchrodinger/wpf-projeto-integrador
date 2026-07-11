@@ -199,3 +199,634 @@ VALUES
 (2700.00, '2026-06-14', '2026-06-14', 2, 2, 3, 'Venda de baixo elétrico', 5, 32, NULL),
 (350.00, '2026-06-17', '2026-06-17', 1, 2, 1, 'Aula intensiva de violão', 6, NULL, 22),
 (280.00, '2026-06-21', NULL, 5, 1, 2, 'Locação pendente de amplificador', 7, 33, NULL);
+
+
+USE MusicStation;
+GO
+
+BEGIN TRANSACTION;
+
+BEGIN TRY
+
+    ------------------------------------------------------------
+    -- SERVIÇOS
+    ------------------------------------------------------------
+
+    INSERT INTO Servicos
+    (
+        EmpresaId,
+        Nome,
+        Descricao,
+        Preco,
+        Ativo
+    )
+    VALUES
+    (24, 'Aula de Guitarra',
+        'Aula individual de guitarra para alunos iniciantes e intermediários.',
+        180.00, 1),
+
+    (25, 'Aula de Piano',
+        'Aula de piano com conteúdo teórico e prático.',
+        220.00, 1),
+
+    (26, 'Gravação em Estúdio',
+        'Gravação profissional de voz e instrumentos.',
+        500.00, 1),
+
+    (27, 'Produção Musical',
+        'Produção completa de música, incluindo arranjo e acompanhamento.',
+        850.00, 1),
+
+    (28, 'Sonorização de Evento',
+        'Montagem e operação de equipamentos de áudio para eventos.',
+        1200.00, 1),
+
+    (29, 'Mixagem',
+        'Mixagem profissional de faixas musicais.',
+        500.00, 1),
+
+    (30, 'Masterização',
+        'Finalização e masterização para plataformas digitais.',
+        350.00, 1),
+
+    (31, 'Manutenção de Instrumentos',
+        'Revisão, limpeza e pequenos reparos em instrumentos musicais.',
+        280.00, 1),
+
+    (32, 'Consultoria de Áudio',
+        'Consultoria para montagem e configuração de equipamentos de áudio.',
+        400.00, 1),
+
+    (33, 'Gravação de Podcast',
+        'Captação, edição e tratamento de áudio para podcast.',
+        450.00, 0);
+
+
+    ------------------------------------------------------------
+    -- RECUPERANDO OS IDS DOS SERVIÇOS
+    ------------------------------------------------------------
+
+    DECLARE @AulaGuitarraId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 24
+          AND Nome = 'Aula de Guitarra'
+    );
+
+    DECLARE @AulaPianoId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 25
+          AND Nome = 'Aula de Piano'
+    );
+
+    DECLARE @GravacaoEstudioId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 26
+          AND Nome = 'Gravação em Estúdio'
+    );
+
+    DECLARE @ProducaoMusicalId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 27
+          AND Nome = 'Produção Musical'
+    );
+
+    DECLARE @SonorizacaoId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 28
+          AND Nome = 'Sonorização de Evento'
+    );
+
+    DECLARE @MixagemId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 29
+          AND Nome = 'Mixagem'
+    );
+
+    DECLARE @MasterizacaoId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 30
+          AND Nome = 'Masterização'
+    );
+
+    DECLARE @ManutencaoId INT =
+    (
+        SELECT IdServico
+        FROM Servicos
+        WHERE EmpresaId = 31
+          AND Nome = 'Manutenção de Instrumentos'
+    );
+
+
+    ------------------------------------------------------------
+    -- PEDIDOS
+    ------------------------------------------------------------
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (4, '2026-01-10', 180.00, 'Concluido');
+
+    DECLARE @Pedido1Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (5, '2026-02-12', 220.00, 'Concluido');
+
+    DECLARE @Pedido2Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (6, '2026-03-08', 500.00, 'Concluido');
+
+    DECLARE @Pedido3Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (7, '2026-04-18', 850.00, 'EmAndamento');
+
+    DECLARE @Pedido4Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (8, '2026-05-09', 1200.00, 'EmAndamento');
+
+    DECLARE @Pedido5Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (9, '2026-06-11', 850.00, 'Pendente');
+
+    DECLARE @Pedido6Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (10, '2026-06-22', 280.00, 'Cancelado');
+
+    DECLARE @Pedido7Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (11, '2026-07-05', 500.00, 'Pendente');
+
+    DECLARE @Pedido8Id INT = SCOPE_IDENTITY();
+
+
+    ------------------------------------------------------------
+    -- ITENS DOS PEDIDOS
+    ------------------------------------------------------------
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido1Id,
+        @AulaGuitarraId,
+        14,
+        180.00,
+        'Primeira aula de guitarra do cliente.',
+        'Concluido'
+    );
+
+    DECLARE @Item1Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido2Id,
+        @AulaPianoId,
+        15,
+        220.00,
+        'Aula introdutória de piano.',
+        'Concluido'
+    );
+
+    DECLARE @Item2Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido3Id,
+        @GravacaoEstudioId,
+        18,
+        500.00,
+        'Gravação de voz e violão.',
+        'Concluido'
+    );
+
+    DECLARE @Item3Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido4Id,
+        @ProducaoMusicalId,
+        20,
+        850.00,
+        'Produção musical em fase de arranjo.',
+        'EmAndamento'
+    );
+
+    DECLARE @Item4Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido5Id,
+        @SonorizacaoId,
+        22,
+        1200.00,
+        'Preparação de sonorização para evento.',
+        'EmAndamento'
+    );
+
+    DECLARE @Item5Id INT = SCOPE_IDENTITY();
+
+
+    -- Pedido com dois serviços
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido6Id,
+        @MixagemId,
+        20,
+        500.00,
+        'Mixagem de voz e instrumental.',
+        'Pendente'
+    );
+
+    DECLARE @Item6Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido6Id,
+        @MasterizacaoId,
+        23,
+        350.00,
+        'Masterização após a conclusão da mixagem.',
+        'Pendente'
+    );
+
+    DECLARE @Item7Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido7Id,
+        @ManutencaoId,
+        22,
+        280.00,
+        'Pedido cancelado pelo cliente.',
+        'Cancelado'
+    );
+
+    DECLARE @Item8Id INT = SCOPE_IDENTITY();
+
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @Pedido8Id,
+        @GravacaoEstudioId,
+        18,
+        500.00,
+        'Aguardando confirmação de horário.',
+        'Pendente'
+    );
+
+    DECLARE @Item9Id INT = SCOPE_IDENTITY();
+
+
+    ------------------------------------------------------------
+    -- AVALIAÇÕES
+    -- Somente serviços concluídos
+    ------------------------------------------------------------
+
+    INSERT INTO Avaliacoes
+    (
+        ServicoPedidoId,
+        ClienteId,
+        Nota,
+        Comentario,
+        DataAvaliacao
+    )
+    VALUES
+    (
+        @Item1Id,
+        4,
+        5,
+        'Professor muito atencioso e aula excelente.',
+        '2026-01-11'
+    );
+
+
+    INSERT INTO Avaliacoes
+    (
+        ServicoPedidoId,
+        ClienteId,
+        Nota,
+        Comentario,
+        DataAvaliacao
+    )
+    VALUES
+    (
+        @Item2Id,
+        5,
+        4,
+        'Gostei bastante da aula e da metodologia.',
+        '2026-02-13'
+    );
+
+
+    INSERT INTO Avaliacoes
+    (
+        ServicoPedidoId,
+        ClienteId,
+        Nota,
+        Comentario,
+        DataAvaliacao
+    )
+    VALUES
+    (
+        @Item3Id,
+        6,
+        5,
+        'Gravação com ótima qualidade e atendimento profissional.',
+        '2026-03-10'
+    );
+
+
+    COMMIT TRANSACTION;
+
+    PRINT 'Dados da Gestão de Serviços inseridos com sucesso.';
+
+END TRY
+BEGIN CATCH
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+
+    PRINT 'Erro ao inserir os dados da Gestão de Serviços.';
+    PRINT ERROR_MESSAGE();
+
+END CATCH;
+GO
+
+
+INSERT INTO Servicos
+(EmpresaId,ProfissionalId,Nome,Descricao,Preco,Ativo)
+VALUES
+
+(24,NULL,
+'Locação de Estúdio',
+'Estúdio completo para gravação.',
+600,1),
+
+(NULL,15,
+'Aula de Piano',
+'Aulas presenciais de piano.',
+220,1),
+
+(25,NULL,
+'Mixagem',
+'Mixagem profissional.',
+480,1),
+
+(NULL,17,
+'Aula de Canto',
+'Técnica vocal.',
+160,1),
+
+(26,NULL,
+'Masterização',
+'Masterização profissional.',
+350,1),
+
+(NULL,20,
+'Produção Musical',
+'Produção completa.',
+850,1);
+
+
+USE MusicStation;
+GO
+
+BEGIN TRANSACTION;
+
+BEGIN TRY
+
+    DECLARE @ServicoId INT;
+
+    SELECT @ServicoId = IdServico
+    FROM Servicos
+    WHERE ProfissionalId = 15
+      AND Nome = 'Aula de Piano';
+
+    IF @ServicoId IS NULL
+    BEGIN
+        THROW 50001, 'O serviço autônomo não foi encontrado.', 1;
+    END;
+
+    --------------------------------------------------
+    -- CRIA O PEDIDO
+    --------------------------------------------------
+
+    INSERT INTO Pedidos
+    (
+        ClienteId,
+        DataPedido,
+        Total,
+        Status
+    )
+    VALUES
+    (
+        4,
+        GETDATE(),
+        220.00,
+        'Pendente'
+    );
+
+    DECLARE @PedidoId INT = SCOPE_IDENTITY();
+
+    --------------------------------------------------
+    -- COLOCA O SERVIÇO DENTRO DO PEDIDO
+    --------------------------------------------------
+
+    INSERT INTO ServicosPedidos
+    (
+        PedidoId,
+        ServicoId,
+        ProfissionalId,
+        ValorServico,
+        Observacao,
+        Status
+    )
+    VALUES
+    (
+        @PedidoId,
+        @ServicoId,
+        15,
+        220.00,
+        'Primeira aula solicitada com profissional autônomo.',
+        'Pendente'
+    );
+
+    COMMIT TRANSACTION;
+
+    PRINT 'Pedido do profissional autônomo inserido com sucesso.';
+
+END TRY
+BEGIN CATCH
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+
+    PRINT ERROR_MESSAGE();
+
+END CATCH;
+GO

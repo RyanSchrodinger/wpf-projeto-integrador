@@ -1,54 +1,716 @@
 ﻿<UserControl x:Class="wpf_projeto_integrador.View.Financeiro.DashboardFinanceiroView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              Background="#0B1024">
 
-    <Grid Margin="22">
+    <Grid Background="#0B1024">
 
-        <StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      PanningMode="VerticalOnly">
 
-            <TextBlock Text="Dashboard Financeiro"
-                       Foreground="White"
-                       FontSize="31"
-                       FontWeight="Bold"/>
+            <Grid Margin="22">
 
-            <TextBlock Text="Análises, gráficos e indicadores financeiros da plataforma."
-                       Foreground="#CBD5E1"
-                       FontSize="14"
-                       Margin="0 4 0 0"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Border Background="#11162B"
-                    BorderBrush="#1F2942"
-                    BorderThickness="1"
-                    CornerRadius="18"
-                    Padding="24"
-                    Margin="0 24 0 0">
+                <!-- CABEÇALHO -->
+                <Grid Grid.Row="0">
 
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="📊"
-                               FontSize="50"
-                               HorizontalAlignment="Center"/>
+                    <StackPanel>
 
-                    <TextBlock Text="Dashboard Analítico"
-                               Foreground="White"
-                               FontSize="24"
-                               FontWeight="Bold"
-                               HorizontalAlignment="Center"
-                               Margin="0 12 0 0"/>
+                        <TextBlock Text="Dashboard Financeiro"
+                                   Foreground="White"
+                                   FontSize="31"
+                                   FontWeight="Bold"/>
 
-                    <TextBlock Text="Os gráficos serão adicionados nesta tela."
-                               Foreground="#94A3B8"
-                               FontSize="14"
-                               HorizontalAlignment="Center"
-                               Margin="0 6 0 0"/>
+                        <TextBlock Text="Indicadores, análises e comparativos financeiros da plataforma."
+                                   Foreground="#94A3B8"
+                                   FontSize="14"
+                                   Margin="0 3 0 0"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-            </Border>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
 
-        </StackPanel>
+                        <Border Width="190"
+                                Height="52"
+                                Background="#11162D"
+                                BorderBrush="#252B46"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="12 5"
+                                Margin="0 0 10 0">
+
+                            <StackPanel>
+
+                                <TextBlock Text="Período"
+                                           Foreground="#94A3B8"
+                                           FontSize="10"/>
+
+                                <ComboBox x:Name="cmbPeriodoDashboard"
+                                          Style="{StaticResource ComboBoxModerno}"
+                                          SelectionChanged="FiltroDashboard_Changed">
+
+                                    <ComboBoxItem Content="Todos"
+                                                  IsSelected="True"/>
+
+                                    <ComboBoxItem Content="Hoje"/>
+
+                                    <ComboBoxItem Content="Este mês"/>
+
+                                    <ComboBoxItem Content="Este ano"/>
+
+                                </ComboBox>
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <Button Width="120"
+                                Height="42"
+                                Style="{StaticResource BotaoRoxoTelas}"
+                                Click="BtnAtualizarDashboard_Click">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Icon:PackIconMaterial Kind="Refresh"
+                                                       Width="16"
+                                                       Height="16"
+                                                       Margin="0 0 8 0"/>
+
+                                <TextBlock Text="Atualizar"
+                                           VerticalAlignment="Center"/>
+
+                            </StackPanel>
+
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!-- CARDS ANALÍTICOS -->
+                <UniformGrid Grid.Row="1"
+                             Columns="4"
+                             Margin="0 20 0 14">
+
+                    <!-- TOTAL RECEBIDO -->
+                    <Border Style="{StaticResource CardResumo}">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="54"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Width="42"
+                                    Height="42"
+                                    CornerRadius="21"
+                                    Background="#123829"
+                                    VerticalAlignment="Center">
+
+                                <Icon:PackIconMaterial Kind="CashCheck"
+                                                       Foreground="#22C55E"
+                                                       Width="22"
+                                                       Height="22"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Total Recebido"
+                                           Style="{StaticResource TextoCard}"/>
+
+                                <TextBlock x:Name="txtTotalRecebido"
+                                           Text="R$ 0,00"
+                                           Style="{StaticResource NumeroCard}"/>
+
+                                <TextBlock Text="Pagamentos com status pago"
+                                           Foreground="#22C55E"
+                                           FontSize="11"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- VALOR PENDENTE -->
+                    <Border Style="{StaticResource CardResumo}">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="54"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Width="42"
+                                    Height="42"
+                                    CornerRadius="21"
+                                    Background="#3A3012"
+                                    VerticalAlignment="Center">
+
+                                <Icon:PackIconMaterial Kind="ClockAlertOutline"
+                                                       Foreground="#FACC15"
+                                                       Width="22"
+                                                       Height="22"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Valor Pendente"
+                                           Style="{StaticResource TextoCard}"/>
+
+                                <TextBlock x:Name="txtValorPendente"
+                                           Text="R$ 0,00"
+                                           Style="{StaticResource NumeroCard}"/>
+
+                                <TextBlock Text="Valores aguardando pagamento"
+                                           Foreground="#FACC15"
+                                           FontSize="11"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- VALOR VENCIDO -->
+                    <Border Style="{StaticResource CardResumo}">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="54"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Width="42"
+                                    Height="42"
+                                    CornerRadius="21"
+                                    Background="#451927"
+                                    VerticalAlignment="Center">
+
+                                <Icon:PackIconMaterial Kind="AlertCircleOutline"
+                                                       Foreground="#EF4444"
+                                                       Width="22"
+                                                       Height="22"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Valor Vencido"
+                                           Style="{StaticResource TextoCard}"/>
+
+                                <TextBlock x:Name="txtValorVencido"
+                                           Text="R$ 0,00"
+                                           Style="{StaticResource NumeroCard}"/>
+
+                                <TextBlock Text="Pagamentos fora do prazo"
+                                           Foreground="#EF4444"
+                                           FontSize="11"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- QUANTIDADE -->
+                    <Border Style="{StaticResource CardResumo}"
+                            Margin="0">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="54"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Width="42"
+                                    Height="42"
+                                    CornerRadius="21"
+                                    Background="#11315B"
+                                    VerticalAlignment="Center">
+
+                                <Icon:PackIconMaterial Kind="ReceiptTextOutline"
+                                                       Foreground="#38BDF8"
+                                                       Width="22"
+                                                       Height="22"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Text="Pagamentos"
+                                           Style="{StaticResource TextoCard}"/>
+
+                                <TextBlock x:Name="txtQuantidadePagamentos"
+                                           Text="0"
+                                           Style="{StaticResource NumeroCard}"/>
+
+                                <TextBlock Text="Registros no período"
+                                           Foreground="#38BDF8"
+                                           FontSize="11"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                </UniformGrid>
+
+                <!-- PRIMEIRA LINHA -->
+                <Grid Grid.Row="2"
+                      Margin="0 0 0 14">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.4*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- RECEITA POR CATEGORIA -->
+                    <Border Grid.Column="0"
+                            Background="#11162B"
+                            BorderBrush="#1F2942"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="16"
+                            Margin="0 0 12 0"
+                            Height="340">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Receita por Categoria"
+                                           Foreground="White"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="Distribuição dos valores recebidos por categoria"
+                                           Foreground="#64748B"
+                                           FontSize="11"
+                                           Margin="0 2 0 0"/>
+
+                            </StackPanel>
+
+                            <lvc:PieChart Grid.Row="1"
+                                          x:Name="graficoReceitaCategoria"
+                                          Height="270"
+                                          Background="Transparent"
+                                          LegendPosition="Right"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- STATUS -->
+                    <Border Grid.Column="1"
+                            Background="#11162B"
+                            BorderBrush="#1F2942"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="16"
+                            Height="340">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Status dos Pagamentos"
+                                           Foreground="White"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="Quantidade de registros por situação"
+                                           Foreground="#64748B"
+                                           FontSize="11"
+                                           Margin="0 2 0 0"/>
+
+                            </StackPanel>
+
+                            <lvc:PieChart Grid.Row="1"
+                                          x:Name="graficoStatusPagamentos"
+                                          Height="270"
+                                          Background="Transparent"
+                                          LegendPosition="Right"/>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- SEGUNDA LINHA -->
+                <Grid Grid.Row="3"
+                      Margin="0 0 0 14">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- FORMA DE PAGAMENTO -->
+                    <Border Grid.Column="0"
+                            Background="#11162B"
+                            BorderBrush="#1F2942"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="16"
+                            Margin="0 0 12 0"
+                            Height="360">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Receita por Forma de Pagamento"
+                                           Foreground="White"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="Valores recebidos por método utilizado"
+                                           Foreground="#64748B"
+                                           FontSize="11"
+                                           Margin="0 2 0 0"/>
+
+                            </StackPanel>
+
+                            <lvc:CartesianChart Grid.Row="1"
+                                                x:Name="graficoFormaPagamento"
+                                                Background="Transparent"
+                                                Margin="0 10 0 0"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- TOP CLIENTES -->
+                    <Border Grid.Column="1"
+                            Background="#11162B"
+                            BorderBrush="#1F2942"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="16"
+                            Height="360">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Top Clientes"
+                                           Foreground="White"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="Clientes com maior valor pago"
+                                           Foreground="#64748B"
+                                           FontSize="11"
+                                           Margin="0 2 0 0"/>
+
+                            </StackPanel>
+
+                            <lvc:CartesianChart Grid.Row="1"
+                                                x:Name="graficoTopClientes"
+                                                Background="Transparent"
+                                                Margin="0 10 0 0"/>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- TERCEIRA LINHA -->
+                <Grid Grid.Row="4"
+                      Margin="0 0 0 14">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- EMPRESAS -->
+                    <Border Grid.Column="0"
+                            Background="#11162B"
+                            BorderBrush="#1F2942"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="16"
+                            Margin="0 0 12 0"
+                            Height="360">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Receita por Empresa"
+                                           Foreground="White"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="Empresas com maior participação na receita"
+                                           Foreground="#64748B"
+                                           FontSize="11"
+                                           Margin="0 2 0 0"/>
+
+                            </StackPanel>
+
+                            <lvc:CartesianChart Grid.Row="1"
+                                                x:Name="graficoEmpresas"
+                                                Background="Transparent"
+                                                Margin="0 10 0 0"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- PROFISSIONAIS -->
+                    <Border Grid.Column="1"
+                            Background="#11162B"
+                            BorderBrush="#1F2942"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="16"
+                            Height="360">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Receita por Profissional"
+                                           Foreground="White"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="Profissionais com maior receita registrada"
+                                           Foreground="#64748B"
+                                           FontSize="11"
+                                           Margin="0 2 0 0"/>
+
+                            </StackPanel>
+
+                            <lvc:CartesianChart Grid.Row="1"
+                                                x:Name="graficoProfissionais"
+                                                Background="Transparent"
+                                                Margin="0 10 0 0"/>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- RESUMO ANALÍTICO -->
+                <Border Grid.Row="5"
+                        Background="#11162B"
+                        BorderBrush="#1F2942"
+                        BorderThickness="1"
+                        CornerRadius="16"
+                        Padding="18"
+                        Margin="0 0 0 24">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel>
+
+                            <TextBlock Text="Resumo Analítico"
+                                       Foreground="White"
+                                       FontSize="18"
+                                       FontWeight="Bold"/>
+
+                            <TextBlock Text="Principais destaques do período selecionado"
+                                       Foreground="#64748B"
+                                       FontSize="11"
+                                       Margin="0 2 0 0"/>
+
+                        </StackPanel>
+
+                        <UniformGrid Grid.Row="1"
+                                     Columns="4"
+                                     Margin="0 18 0 0">
+
+                            <!-- MELHOR MÊS -->
+                            <Border Background="#151B34"
+                                    BorderBrush="#252B46"
+                                    BorderThickness="1"
+                                    CornerRadius="12"
+                                    Padding="14"
+                                    Margin="0 0 12 0">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Melhor mês"
+                                               Foreground="#94A3B8"
+                                               FontSize="11"/>
+
+                                    <TextBlock x:Name="txtMelhorMesDashboard"
+                                               Text="Nenhum"
+                                               Foreground="#A78BFA"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               TextWrapping="Wrap"
+                                               Margin="0 5 0 0"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- CATEGORIA DESTAQUE -->
+                            <Border Background="#151B34"
+                                    BorderBrush="#252B46"
+                                    BorderThickness="1"
+                                    CornerRadius="12"
+                                    Padding="14"
+                                    Margin="0 0 12 0">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Categoria destaque"
+                                               Foreground="#94A3B8"
+                                               FontSize="11"/>
+
+                                    <TextBlock x:Name="txtCategoriaDestaqueDashboard"
+                                               Text="Nenhuma"
+                                               Foreground="#38BDF8"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               TextWrapping="Wrap"
+                                               Margin="0 5 0 0"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- FORMA MAIS USADA -->
+                            <Border Background="#151B34"
+                                    BorderBrush="#252B46"
+                                    BorderThickness="1"
+                                    CornerRadius="12"
+                                    Padding="14"
+                                    Margin="0 0 12 0">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Forma mais usada"
+                                               Foreground="#94A3B8"
+                                               FontSize="11"/>
+
+                                    <TextBlock x:Name="txtFormaMaisUsada"
+                                               Text="Nenhuma"
+                                               Foreground="#22C55E"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               TextWrapping="Wrap"
+                                               Margin="0 5 0 0"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- CLIENTE DESTAQUE -->
+                            <Border Background="#151B34"
+                                    BorderBrush="#252B46"
+                                    BorderThickness="1"
+                                    CornerRadius="12"
+                                    Padding="14">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Cliente destaque"
+                                               Foreground="#94A3B8"
+                                               FontSize="11"/>
+
+                                    <TextBlock x:Name="txtClienteDestaque"
+                                               Text="Nenhum"
+                                               Foreground="#FACC15"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               TextWrapping="Wrap"
+                                               Margin="0 5 0 0"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                        </UniformGrid>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+        </ScrollViewer>
 
     </Grid>
 

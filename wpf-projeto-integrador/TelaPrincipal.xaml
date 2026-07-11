@@ -228,104 +228,12 @@
                                                Grid.Column="1"
                                                VerticalAlignment="Center"/>
 
-                                    <Icon:PackIconMaterial x:Name="SetaServicos"
-                                                           Grid.Column="2"
-                                                           Kind="ChevronDown"
-                                                           Width="14"
-                                                           Height="14"
-                                                           VerticalAlignment="Center"/>
                                 </Grid>
 
 
                             </Button>
 
-                            <StackPanel x:Name="SubMenuServicos"
-                                        Visibility="Collapsed"
-                                        Margin="42 0 0 0">
-
-
-                                <Button x:Name="BtnServicos"
-                                         Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                    Fill="#8B5CF6"
-                                                    VerticalAlignment="Center"/>            
-
-                                        <TextBlock Text="Serviços"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-
-                                <Button x:Name="BtnPedidos"
-                                         Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Pedidos"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-
-                                <Button x:Name="BtnServicosPedidos"
-                                      Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Serviços Pedidos"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-
-                                <Button x:Name="BtnAvaliacoes"
-                                        Style="{StaticResource SubMenuButton}">
-
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <Ellipse Width="6"
-                                                 Height="6"
-                                                 Fill="#8B5CF6"
-                                                 VerticalAlignment="Center"/>
-
-                                        <TextBlock Text="Avaliações"
-                                                   Margin="14 0 0 0"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-
-
-                                </Button>
-
-
-
-                            </StackPanel>
-
+                 
                         </StackPanel>
 
                         <StackPanel>

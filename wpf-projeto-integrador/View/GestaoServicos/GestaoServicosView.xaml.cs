@@ -1,10 +1,6 @@
-﻿using ClosedXML.Excel;
-using LiveChartsCore;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
-using Microsoft.Win32;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -14,36 +10,40 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using wpf_projeto_integrador.Services.Financeiro;
-using wpf_projeto_integrador.ViewModels.Financeiro;
+using System.Windows.Media.Animation;
+using wpf_projeto_integrador.Services.GestaoServicos;
+using wpf_projeto_integrador.ViewModels.GestaoServicos;
 
-namespace wpf_projeto_integrador.View.Financeiro
+namespace wpf_projeto_integrador.View.GestaoServicos
 {
-    public partial class FinanceiroView : UserControl
+    public partial class GestaoServicosView : UserControl
     {
-        // Serviço responsável pela consulta e tratamento dos dados financeiros.
-        private readonly FinanceiroService _financeiroService = new();
+        // Serviço responsável por consultar e tratar os dados.
+        private readonly GestaoServicosService _gestaoServicosService =
+            new();
 
-        // Cultura usada para formatação de valores em Real.
-        private readonly CultureInfo _cultura = new("pt-BR");
+        // Cultura utilizada para nomes dos meses e números.
+        private readonly CultureInfo _cultura =
+            new("pt-BR");
 
-        // Lista já filtrada, usada na tabela, paginação, cards e exportação.
-        private List<FinanceiroItemViewModel> _pagamentosFiltrados = new();
+        // Lista com os resultados já filtrados.
+        private List<ServicoPedidoItemViewModel> _itensFiltrados =
+            new();
 
-        // Quantidade fixa de registros por página.
+        // Quantidade de linhas mostradas por página.
         private const int ItensPorPagina = 10;
 
-        // Página atual da tabela.
+        // Página atual do DataGrid.
         private int _paginaAtual = 1;
 
-        // Total de páginas existentes.
+        // Quantidade total de páginas.
         private int _totalPaginas = 1;
 
-        // Evita que eventos dos ComboBoxes sejam executados
-        // durante a inicialização da tela.
+        // Evita que os eventos dos filtros sejam executados
+        // enquanto a tela está sendo inicializada.
         private bool _telaInicializada;
 
-        public FinanceiroView()
+        public GestaoServicosView()
         {
             InitializeComponent();
 
@@ -51,23 +51,18 @@ namespace wpf_projeto_integrador.View.Financeiro
 
             _telaInicializada = true;
 
-            CarregarFinanceiro();
+            CarregarGestaoServicos();
         }
 
         /// <summary>
-        /// Carrega as opções de categoria e status usando o serviço.
+        /// Carrega os dados dos ComboBoxes.
         /// </summary>
         private void CarregarCombos()
         {
             try
             {
-                cmbCategoria.ItemsSource =
-                    _financeiroService.ObterCategorias();
-
-                cmbCategoria.SelectedIndex = 0;
-
                 cmbStatus.ItemsSource =
-                    _financeiroService.ObterStatus();
+                    _gestaoServicosService.ObterStatus();
 
                 cmbStatus.SelectedIndex = 0;
 
@@ -82,34 +77,31 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Carrega os dados financeiros aplicando os filtros atuais.
+        /// Consulta os dados usando os filtros atuais.
         /// </summary>
-        private void CarregarFinanceiro(
+        private void CarregarGestaoServicos(
             bool forcarAtualizacao = false)
         {
             try
             {
                 string busca =
-                    txtBusca.Text?.Trim() ?? string.Empty;
-
-                string categoria =
-                    cmbCategoria.SelectedItem?.ToString()
-                    ?? "Todas";
+                    txtBusca.Text?.Trim() ??
+                    string.Empty;
 
                 string status =
-                    cmbStatus.SelectedItem?.ToString()
-                    ?? "Todos";
+                    cmbStatus.SelectedItem?.ToString() ??
+                    "Todos";
 
                 string periodo =
                     ObterPeriodoSelecionado();
 
-                _pagamentosFiltrados =
-                    _financeiroService.ObterPagamentosFiltrados(
-                        busca,
-                        categoria,
-                        status,
-                        periodo,
-                        forcarAtualizacao);
+                _itensFiltrados =
+                    _gestaoServicosService
+                        .ObterServicosPedidosFiltrados(
+                            busca,
+                            status,
+                            periodo,
+                            forcarAtualizacao);
 
                 _paginaAtual = 1;
 
@@ -118,7 +110,7 @@ namespace wpf_projeto_integrador.View.Financeiro
             catch (Exception ex)
             {
                 ExibirErro(
-                    "Não foi possível carregar os dados financeiros.",
+                    "Não foi possível carregar a Gestão de Serviços.",
                     ex);
             }
         }
@@ -135,7 +127,7 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Atualiza todos os componentes dependentes dos dados.
+        /// Atualiza todos os elementos visuais da tela.
         /// </summary>
         private void AtualizarTela()
         {
@@ -145,12 +137,61 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Atualiza a página exibida no DataGrid.
+        /// Atualiza os quatro cards da Visão Geral.
+        /// </summary>
+        private void AtualizarCards()
+        {
+            try
+            {
+                int quantidadeServicosAtivos =
+                    _gestaoServicosService
+                        .ObterQuantidadeServicosAtivos();
+
+                int pedidosPendentes =
+                    _itensFiltrados.Count(item =>
+                        StatusIgual(
+                            item,
+                            "Pendente"));
+
+                int emAndamento =
+                    _itensFiltrados.Count(item =>
+                        StatusIgual(
+                            item,
+                            "Em andamento"));
+
+                decimal mediaAvaliacoes =
+                    _gestaoServicosService
+                        .ObterMediaAvaliacoes();
+
+                txtServicosAtivos.Text =
+                    quantidadeServicosAtivos.ToString();
+
+                txtPedidosPendentes.Text =
+                    pedidosPendentes.ToString();
+
+                txtEmAndamento.Text =
+                    emAndamento.ToString();
+
+                txtMediaAvaliacoes.Text =
+                    mediaAvaliacoes.ToString(
+                        "N1",
+                        _cultura);
+            }
+            catch (Exception ex)
+            {
+                ExibirErro(
+                    "Não foi possível atualizar os cards.",
+                    ex);
+            }
+        }
+
+        /// <summary>
+        /// Atualiza os dados mostrados no DataGrid.
         /// </summary>
         private void AtualizarPaginacao()
         {
             int totalRegistros =
-                _pagamentosFiltrados.Count;
+                _itensFiltrados.Count;
 
             _totalPaginas = (int)Math.Ceiling(
                 totalRegistros /
@@ -166,14 +207,14 @@ namespace wpf_projeto_integrador.View.Financeiro
                 _paginaAtual = 1;
 
             var registrosPagina =
-                _pagamentosFiltrados
+                _itensFiltrados
                     .Skip(
                         (_paginaAtual - 1) *
                         ItensPorPagina)
                     .Take(ItensPorPagina)
                     .ToList();
 
-            dgPagamentos.ItemsSource =
+            dgServicosPedidos.ItemsSource =
                 registrosPagina;
 
             int primeiroRegistro =
@@ -218,83 +259,30 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Configura o estado visual de um botão de paginação.
+        /// Habilita ou desabilita visualmente
+        /// os botões da paginação.
         /// </summary>
         private static void ConfigurarBotaoPaginacao(
             Button botao,
             bool habilitado)
         {
-            botao.IsEnabled = habilitado;
-            botao.Opacity = habilitado ? 1 : 0.4;
+            botao.IsEnabled =
+                habilitado;
 
-            botao.Cursor = habilitado
-                ? Cursors.Hand
-                : Cursors.Arrow;
+            botao.Opacity =
+                habilitado
+                    ? 1
+                    : 0.4;
+
+            botao.Cursor =
+                habilitado
+                    ? Cursors.Hand
+                    : Cursors.Arrow;
         }
 
         /// <summary>
-        /// Atualiza os quatro cards da Visão Geral.
-        /// </summary>
-        private void AtualizarCards()
-        {
-            var pagamentosPagos =
-                _pagamentosFiltrados
-                    .Where(p =>
-                        p.Status.Equals(
-                            "Pago",
-                            StringComparison.OrdinalIgnoreCase))
-                    .ToList();
-
-            DateTime hoje = DateTime.Today;
-
-            decimal receitaTotal =
-                pagamentosPagos.Sum(p => p.Valor);
-
-            decimal receitaMes =
-                pagamentosPagos
-                    .Where(p =>
-                        p.DataReferencia.Month ==
-                        hoje.Month &&
-                        p.DataReferencia.Year ==
-                        hoje.Year)
-                    .Sum(p => p.Valor);
-
-            decimal receitaHoje =
-                pagamentosPagos
-                    .Where(p =>
-                        p.DataReferencia.Date ==
-                        hoje)
-                    .Sum(p => p.Valor);
-
-            decimal ticketMedio =
-                pagamentosPagos.Count == 0
-                    ? 0
-                    : pagamentosPagos.Average(
-                        p => p.Valor);
-
-            txtReceitaTotal.Text =
-                receitaTotal.ToString(
-                    "C",
-                    _cultura);
-
-            txtReceitaMes.Text =
-                receitaMes.ToString(
-                    "C",
-                    _cultura);
-
-            txtReceitaHoje.Text =
-                receitaHoje.ToString(
-                    "C",
-                    _cultura);
-
-            txtTicketMedio.Text =
-                ticketMedio.ToString(
-                    "C",
-                    _cultura);
-        }
-
-        /// <summary>
-        /// Atualiza o gráfico de receita mensal do ano atual.
+        /// Atualiza o gráfico com a quantidade
+        /// de serviços solicitados por mês.
         /// </summary>
         private void AtualizarGraficoMensal()
         {
@@ -314,28 +302,24 @@ namespace wpf_projeto_integrador.View.Financeiro
                             _cultura)
                         .Replace(".", ""),
 
-                    Valor = _pagamentosFiltrados
-                        .Where(p =>
-                            p.Status.Equals(
-                                "Pago",
-                                StringComparison.OrdinalIgnoreCase) &&
-                            p.DataReferencia.Month ==
-                                numeroMes &&
-                            p.DataReferencia.Year ==
-                                anoAtual)
-                        .Sum(p => p.Valor)
+                    Quantidade =
+                        _itensFiltrados.Count(item =>
+                            item.DataReferencia.Year ==
+                                anoAtual &&
+                            item.DataReferencia.Month ==
+                                numeroMes)
                 })
                 .ToList();
 
-            graficoReceitaMensal.Series =
+            graficoPedidosMensais.Series =
                 new ISeries[]
                 {
-                    new ColumnSeries<decimal>
+                    new ColumnSeries<int>
                     {
-                        Name = "Receita",
+                        Name = "Serviços",
 
                         Values = meses
-                            .Select(m => m.Valor)
+                            .Select(m => m.Quantidade)
                             .ToArray(),
 
                         Fill =
@@ -348,6 +332,7 @@ namespace wpf_projeto_integrador.View.Financeiro
                         MaxBarWidth = 38,
 
                         Rx = 5,
+
                         Ry = 5,
 
                         DataLabelsSize = 10,
@@ -364,15 +349,12 @@ namespace wpf_projeto_integrador.View.Financeiro
                         DataLabelsFormatter =
                             ponto =>
                                 ponto.Model > 0
-                                    ? ponto.Model
-                                        .ToString(
-                                            "C0",
-                                            _cultura)
+                                    ? ponto.Model.ToString()
                                     : string.Empty
                     }
                 };
 
-            graficoReceitaMensal.XAxes =
+            graficoPedidosMensais.XAxes =
                 new[]
                 {
                     new Axis
@@ -398,7 +380,7 @@ namespace wpf_projeto_integrador.View.Financeiro
                     }
                 };
 
-            graficoReceitaMensal.YAxes =
+            graficoPedidosMensais.YAxes =
                 new[]
                 {
                     new Axis
@@ -418,31 +400,45 @@ namespace wpf_projeto_integrador.View.Financeiro
 
                         TextSize = 10,
 
-                        Labeler = valor =>
-                            valor.ToString(
-                                "C0",
-                                _cultura),
+                        MinLimit = 0,
 
-                        MinLimit = 0
+                        MinStep = 1,
+
+                        Labeler = valor =>
+                            ((int)valor).ToString()
                     }
                 };
 
-            graficoReceitaMensal.LegendPosition =
+            graficoPedidosMensais.LegendPosition =
                 LiveChartsCore.Measure
                     .LegendPosition.Hidden;
 
-            graficoReceitaMensal.TooltipTextPaint =
+            graficoPedidosMensais.TooltipTextPaint =
                 new SolidColorPaint(
                     SKColors.White);
 
-            graficoReceitaMensal
+            graficoPedidosMensais
                 .TooltipBackgroundPaint =
                 new SolidColorPaint(
-                    SKColor.Parse("#202744"));
+                    SKColor.Parse(
+                        "#202744"));
         }
 
         /// <summary>
-        /// Move a tabela para a página anterior.
+        /// Verifica o status ignorando letras
+        /// maiúsculas e minúsculas.
+        /// </summary>
+        private static bool StatusIgual(
+            ServicoPedidoItemViewModel item,
+            string status)
+        {
+            return item.Status.Equals(
+                status,
+                StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Volta uma página.
         /// </summary>
         private void BtnPaginaAnterior_Click(
             object sender,
@@ -457,7 +453,7 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Move a tabela para a próxima página.
+        /// Avança uma página.
         /// </summary>
         private void BtnProximaPagina_Click(
             object sender,
@@ -472,14 +468,15 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Repassa o movimento do mouse para o ScrollViewer da tela.
+        /// Repassa a rolagem do DataGrid
+        /// para o ScrollViewer principal.
         /// </summary>
-        private void dgPagamentos_PreviewMouseWheel(
+        private void DgServicosPedidos_PreviewMouseWheel(
             object sender,
             MouseWheelEventArgs e)
         {
             DependencyObject elemento =
-                dgPagamentos;
+                dgServicosPedidos;
 
             while (elemento != null)
             {
@@ -494,26 +491,28 @@ namespace wpf_projeto_integrador.View.Financeiro
                         e.Delta);
 
                     e.Handled = true;
+
                     return;
                 }
             }
         }
 
         /// <summary>
-        /// Executado quando o texto da busca é alterado.
+        /// Executado sempre que o usuário
+        /// digita no campo de busca.
         /// </summary>
-        private void txtBusca_TextChanged(
+        private void TxtBusca_TextChanged(
             object sender,
             TextChangedEventArgs e)
         {
             if (!_telaInicializada)
                 return;
 
-            CarregarFinanceiro();
+            CarregarGestaoServicos();
         }
 
         /// <summary>
-        /// Executado quando categoria, status ou período mudam.
+        /// Executado quando status ou período mudam.
         /// </summary>
         private void Filtro_Changed(
             object sender,
@@ -522,26 +521,31 @@ namespace wpf_projeto_integrador.View.Financeiro
             if (!_telaInicializada)
                 return;
 
-            CarregarFinanceiro();
+            CarregarGestaoServicos();
         }
 
         /// <summary>
-        /// Limpa o cache e consulta novamente o banco.
+        /// Limpa o cache e atualiza os dados do banco.
         /// </summary>
         private void BtnAtualizar_Click(
             object sender,
             RoutedEventArgs e)
         {
-            CarregarFinanceiro(
+            _gestaoServicosService.LimparCache();
+
+            CarregarGestaoServicos(
                 forcarAtualizacao: true);
         }
 
+        /// <summary>
+        /// Abre o drawer lateral.
+        /// </summary>
         private void AbrirDrawer()
         {
             FundoDrawer.Visibility =
                 Visibility.Visible;
 
-            DrawerPagamento.Visibility =
+            DrawerServico.Visibility =
                 Visibility.Visible;
 
             var animacaoFundo =
@@ -550,7 +554,8 @@ namespace wpf_projeto_integrador.View.Financeiro
                     From = 0,
                     To = 1,
                     Duration =
-                        TimeSpan.FromMilliseconds(180)
+                        TimeSpan.FromMilliseconds(
+                            180)
                 };
 
             FundoDrawer.BeginAnimation(
@@ -563,7 +568,8 @@ namespace wpf_projeto_integrador.View.Financeiro
                     From = 410,
                     To = 0,
                     Duration =
-                        TimeSpan.FromMilliseconds(260),
+                        TimeSpan.FromMilliseconds(
+                            260),
 
                     EasingFunction =
                         new CubicEase
@@ -578,6 +584,9 @@ namespace wpf_projeto_integrador.View.Financeiro
                 animacaoDrawer);
         }
 
+        /// <summary>
+        /// Fecha o drawer lateral.
+        /// </summary>
         private void FecharDrawer()
         {
             var animacaoFundo =
@@ -586,7 +595,8 @@ namespace wpf_projeto_integrador.View.Financeiro
                     From = FundoDrawer.Opacity,
                     To = 0,
                     Duration =
-                        TimeSpan.FromMilliseconds(180)
+                        TimeSpan.FromMilliseconds(
+                            180)
                 };
 
             FundoDrawer.BeginAnimation(
@@ -599,7 +609,8 @@ namespace wpf_projeto_integrador.View.Financeiro
                     From = TransformDrawer.X,
                     To = 410,
                     Duration =
-                        TimeSpan.FromMilliseconds(220),
+                        TimeSpan.FromMilliseconds(
+                            220),
 
                     EasingFunction =
                         new CubicEase
@@ -611,7 +622,7 @@ namespace wpf_projeto_integrador.View.Financeiro
 
             animacaoDrawer.Completed += (_, _) =>
             {
-                DrawerPagamento.Visibility =
+                DrawerServico.Visibility =
                     Visibility.Collapsed;
 
                 FundoDrawer.Visibility =
@@ -627,88 +638,80 @@ namespace wpf_projeto_integrador.View.Financeiro
                 animacaoDrawer);
         }
 
-        private void BtnFecharDrawer_Click(
-    object sender,
-    RoutedEventArgs e)
-        {
-            FecharDrawer();
-        }
-
-        private void FundoDrawer_MouseLeftButtonDown(
-    object sender,
-    MouseButtonEventArgs e)
-        {
-            FecharDrawer();
-        }
-
+        /// <summary>
+        /// Preenche o drawer com os dados selecionados.
+        /// </summary>
         private void PreencherDrawer(
-                 FinanceiroItemViewModel pagamento)
+            ServicoPedidoItemViewModel item)
         {
             txtDrawerTitulo.Text =
-                $"Pagamento #{pagamento.Id}";
+                $"Pedido #{item.PedidoId}";
 
             txtDrawerCliente.Text =
-                pagamento.Cliente;
+                item.Cliente;
 
-            txtDrawerOrigem.Text =
-                pagamento.Origem;
+            txtDrawerServico.Text =
+                item.Servico;
 
-            txtDrawerCategoria.Text =
-                pagamento.Categoria;
+            txtDrawerProfissional.Text =
+                item.Profissional;
 
-            txtDrawerForma.Text =
-                pagamento.FormaPagamento;
+            txtDrawerPrestador.Text =
+                item.Prestador;
 
             txtDrawerStatus.Text =
-                pagamento.Status;
+                item.Status;
 
             txtDrawerValor.Text =
-                pagamento.ValorFormatado;
+                item.ValorFormatado;
 
             txtDrawerData.Text =
-                pagamento.Data;
+                item.Data;
 
-            txtDrawerObservacoes.Text =
+            txtDrawerObservacao.Text =
                 string.IsNullOrWhiteSpace(
-                    pagamento.Observacoes)
+                    item.Observacao)
                     ? "Sem observações"
-                    : pagamento.Observacoes;
+                    : item.Observacao;
 
             ConfigurarCorStatus(
-                pagamento.Status);
+                item.Status);
         }
 
-
+        /// <summary>
+        /// Configura as cores do status dentro do drawer.
+        /// </summary>
         private void ConfigurarCorStatus(
-    string status)
+            string status)
         {
             string corFundo;
             string corTexto;
 
             switch (status)
             {
-                case "Pendente":
-                    corFundo = "#3A3012";
-                    corTexto = "#FACC15";
+                case "Em andamento":
+                    corFundo = "#11315B";
+                    corTexto = "#38BDF8";
                     break;
 
-                case "Vencido":
+                case "Concluído":
+                    corFundo = "#10382B";
+                    corTexto = "#22C55E";
+                    break;
+
+                case "Cancelado":
                     corFundo = "#451927";
                     corTexto = "#EF4444";
                     break;
 
-                case "Cancelado":
-                    corFundo = "#27272A";
-                    corTexto = "#A1A1AA";
-                    break;
-
                 default:
-                    corFundo = "#10382B";
-                    corTexto = "#22C55E";
+                    corFundo = "#3A3012";
+                    corTexto = "#FACC15";
                     break;
             }
 
-            var conversor = new BrushConverter();
+            var conversor =
+                new BrushConverter();
 
             brdDrawerStatus.Background =
                 (Brush)conversor.ConvertFromString(
@@ -724,235 +727,56 @@ namespace wpf_projeto_integrador.View.Financeiro
         }
 
         /// <summary>
-        /// Mostra os detalhes do pagamento selecionado.
+        /// Abre os detalhes do registro selecionado.
         /// </summary>
         private void BtnVisualizar_Click(
-                object sender,
-                RoutedEventArgs e)
+            object sender,
+            RoutedEventArgs e)
         {
-            var pagamento =
+            var item =
                 (sender as Button)?
-                .DataContext as FinanceiroItemViewModel;
+                    .DataContext
+                as ServicoPedidoItemViewModel;
 
-            if (pagamento == null)
+            if (item == null)
             {
                 MessageBox.Show(
-                    "Pagamento não encontrado.",
-                    "Detalhes financeiros",
+                    "Serviço não encontrado.",
+                    "Detalhes do serviço",
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
 
                 return;
             }
 
-            PreencherDrawer(pagamento);
+            PreencherDrawer(item);
+
             AbrirDrawer();
         }
 
-        /// <summary>
-        /// Exporta todos os resultados filtrados.
-        /// </summary>
-        private void BtnExportarExcel_Click(
+        private void BtnFecharDrawer_Click(
             object sender,
             RoutedEventArgs e)
         {
-            if (_pagamentosFiltrados.Count == 0)
-            {
-                MessageBox.Show(
-                    "Não há dados para exportar.",
-                    "Exportação",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-
-                return;
-            }
-
-            var dialog = new SaveFileDialog
-            {
-                Filter =
-                    "Arquivo Excel (*.xlsx)|*.xlsx",
-
-                FileName =
-                    $"Relatorio_Financeiro_" +
-                    $"{DateTime.Now:dd-MM-yyyy}.xlsx"
-            };
-
-            if (dialog.ShowDialog() != true)
-                return;
-
-            try
-            {
-                using var workbook =
-                    new XLWorkbook();
-
-                var worksheet =
-                    workbook.Worksheets.Add(
-                        "Financeiro");
-
-                CriarCabecalhoExcel(worksheet);
-
-                PreencherDadosExcel(worksheet);
-
-                FormatarPlanilhaExcel(worksheet);
-
-                workbook.SaveAs(
-                    dialog.FileName);
-
-                MessageBox.Show(
-                    "Relatório financeiro exportado com sucesso.",
-                    "Exportação concluída",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                ExibirErro(
-                    "Não foi possível exportar o relatório.",
-                    ex);
-            }
+            FecharDrawer();
         }
 
-        /// <summary>
-        /// Cria o cabeçalho da planilha.
-        /// </summary>
-        private static void CriarCabecalhoExcel(
-            IXLWorksheet worksheet)
+        private void FundoDrawer_MouseLeftButtonDown(
+            object sender,
+            MouseButtonEventArgs e)
         {
-            worksheet.Cell(1, 1).Value =
-                "Cliente";
-
-            worksheet.Cell(1, 2).Value =
-                "Origem";
-
-            worksheet.Cell(1, 3).Value =
-                "Categoria";
-
-            worksheet.Cell(1, 4).Value =
-                "Forma de Pagamento";
-
-            worksheet.Cell(1, 5).Value =
-                "Status";
-
-            worksheet.Cell(1, 6).Value =
-                "Valor";
-
-            worksheet.Cell(1, 7).Value =
-                "Data";
-
-            worksheet.Cell(1, 8).Value =
-                "Observações";
+            FecharDrawer();
         }
 
         /// <summary>
-        /// Preenche as linhas da planilha.
-        /// </summary>
-        private void PreencherDadosExcel(
-            IXLWorksheet worksheet)
-        {
-            int linha = 2;
-
-            foreach (var item in
-                     _pagamentosFiltrados)
-            {
-                worksheet.Cell(linha, 1).Value =
-                    item.Cliente;
-
-                worksheet.Cell(linha, 2).Value =
-                    item.Origem;
-
-                worksheet.Cell(linha, 3).Value =
-                    item.Categoria;
-
-                worksheet.Cell(linha, 4).Value =
-                    item.FormaPagamento;
-
-                worksheet.Cell(linha, 5).Value =
-                    item.Status;
-
-                worksheet.Cell(linha, 6).Value =
-                    item.Valor;
-
-                worksheet.Cell(linha, 7).Value =
-                    item.DataReferencia;
-
-                worksheet.Cell(linha, 8).Value =
-                    item.Observacoes;
-
-                linha++;
-            }
-        }
-
-        /// <summary>
-        /// Aplica formatação visual à planilha.
-        /// </summary>
-        private void FormatarPlanilhaExcel(
-            IXLWorksheet worksheet)
-        {
-            int ultimaLinha =
-                _pagamentosFiltrados.Count + 1;
-
-            var cabecalho =
-                worksheet.Range(
-                    1,
-                    1,
-                    1,
-                    8);
-
-            cabecalho.Style.Font.Bold = true;
-
-            cabecalho.Style.Fill.BackgroundColor =
-                XLColor.FromHtml("#7C3AED");
-
-            cabecalho.Style.Font.FontColor =
-                XLColor.White;
-
-            cabecalho.Style.Alignment.Horizontal =
-                XLAlignmentHorizontalValues.Center;
-
-            worksheet.Column(6)
-                .Style
-                .NumberFormat
-                .Format = "R$ #,##0.00";
-
-            worksheet.Column(7)
-                .Style
-                .NumberFormat
-                .Format = "dd/MM/yyyy";
-
-            var intervaloDados =
-                worksheet.Range(
-                    1,
-                    1,
-                    ultimaLinha,
-                    8);
-
-            intervaloDados.Style.Border
-                .BottomBorder =
-                XLBorderStyleValues.Thin;
-
-            intervaloDados.Style.Border
-                .BottomBorderColor =
-                XLColor.FromHtml("#D1D5DB");
-
-            worksheet.SheetView
-                .FreezeRows(1);
-
-            worksheet.RangeUsed()?
-                .SetAutoFilter();
-
-            worksheet.Columns()
-                .AdjustToContents();
-        }
-
-        /// <summary>
-        /// Exibe uma mensagem padronizada de erro.
+        /// Exibe mensagem padronizada de erro.
         /// </summary>
         private static void ExibirErro(
             string mensagem,
             Exception ex)
         {
             MessageBox.Show(
-                $"{mensagem}\n\n{ex.Message}",
+                $"{mensagem}\n\n{ex.InnerException?.Message ?? ex.Message}",
                 "Erro",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
