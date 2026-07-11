@@ -120,43 +120,41 @@
                             </Button>
 
                             <StackPanel x:Name="SubMenuPessoas"
-            Visibility="Collapsed"
-            Margin="34 6 0 10">
+                                        Visibility="Collapsed"
+                                        Margin="34 6 0 10">
 
-    <Button x:Name="BtnUsuarios"
-            Click="BtnUsuarios_Click"
-            Style="{StaticResource SubMenuButton}"
-            Content="Usuários"/>
+                                <Button x:Name="BtnUsuarios"
+                                        Click="BtnUsuarios_Click"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Content="Usuários"/>
 
-    <Button x:Name="BtnAdministradores"
-            Click="BtnAdministradores_Click"
-            Style="{StaticResource SubMenuButton}"
-            Content="Administradores"/>
+                                <Button x:Name="BtnAdministradores"
+                                        Click="BtnAdministradores_Click"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Content="Administradores"/>
 
-    <Button x:Name="BtnProfissionais"
-            Click="BtnProfissional_Click"
-            Style="{StaticResource SubMenuButton}"
-            Content="Profissionais"/>
+                                <Button x:Name="BtnProfissionais"
+                                        Click="BtnProfissional_Click"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Content="Profissionais"/>
 
-    <Button x:Name="BtnClientes"
-            Click="BtnClientes_Click"
-            Style="{StaticResource SubMenuButton}"
-            Content="Clientes"/>
+                                <Button x:Name="BtnClientes"
+                                        Click="BtnClientes_Click"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Content="Clientes"/>
 
-    <Button x:Name="BtnEmpresas"
-            Click="BtnEmpresas_Click"
-            Style="{StaticResource SubMenuButton}"
-            Content="Empresas"/>
-
-    <Button x:Name="BtnProfissionalCargo"
-            Style="{StaticResource SubMenuButton}"
-            Content="Profissional Cargo"/>
-</StackPanel>
+                                <Button x:Name="BtnEmpresas"
+                                        Click="BtnEmpresas_Click"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Content="Empresas"/>
+                            </StackPanel>
 
                         </StackPanel>
 
 
+                        <!-- GESTÃO DE FINANÇAS -->
                         <StackPanel>
+
                             <Button x:Name="BtnGestaoFinanceira"
                                     Style="{StaticResource MenuButton}"
                                     Click="BtnGestaoFinanceira_Click">
@@ -168,34 +166,49 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-
                                     <Icon:PackIconMaterial Kind="Finance"
-                                                            Width="24"
-                                                            Height="24"/>
+                                                           Width="24"
+                                                           Height="24"
+                                                           VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="Gestão de Finanças"
-                                                Grid.Column="1"
-                                                Margin="14 0 0 0"
-                                                VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Gestão de Finanças"
+                                               Margin="14 0 0 0"
+                                               VerticalAlignment="Center"/>
 
-                                    <Icon:PackIconMaterial x:Name="SetaFinancas"
-                                   Grid.Column="2"
-                                   Kind="ChevronDown"
-                                   Width="14"
-                                   Height="14"
-                                   VerticalAlignment="Center"/>
+                                    <Icon:PackIconMaterial x:Name="SetaFinanceiro"
+                                                           Grid.Column="2"
+                                                           Kind="ChevronDown"
+                                                           Width="14"
+                                                           Height="14"
+                                                           VerticalAlignment="Center"/>
 
                                 </Grid>
                             </Button>
 
+                            <StackPanel x:Name="SubMenuFinanceiro"
+                                        Visibility="Collapsed"
+                                        Margin="34 6 0 10">
+
+                                <Button x:Name="BtnVisaoGeralFinanceiro"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Click="BtnVisaoGeralFinanceiro_Click"
+                                        Content="Visão Geral"/>
+
+                                <Button x:Name="BtnDashboardFinanceiro"
+                                        Style="{StaticResource SubMenuButton}"
+                                        Click="BtnDashboardFinanceiro_Click"
+                                        Content="Dashboard Analítico"/>
+
+                            </StackPanel>
 
                         </StackPanel>
 
 
                         <StackPanel>
                             <Button x:Name="BtnGestaoServicos"
-            Style="{StaticResource MenuButton}"
-            Click="BtnGestaoServicos_Click">
+                                    Style="{StaticResource MenuButton}"
+                                    Click="BtnGestaoServicos_Click">
 
 
                                 <Grid>
@@ -207,28 +220,28 @@
 
 
                                     <Icon:PackIconMaterial Kind="Hammer"
-                                    Width="24"
-                                    Height="24"/>
+                                                            Width="24"
+                                                            Height="24"/>
 
                                     <TextBlock Text="Gestão de Serviços"
-                       Margin="14 0 0 0"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"/>
+                                               Margin="14 0 0 0"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Center"/>
 
                                     <Icon:PackIconMaterial x:Name="SetaServicos"
-                                   Grid.Column="2"
-                                   Kind="ChevronDown"
-                                   Width="14"
-                                   Height="14"
-                                   VerticalAlignment="Center"/>
+                                                           Grid.Column="2"
+                                                           Kind="ChevronDown"
+                                                           Width="14"
+                                                           Height="14"
+                                                           VerticalAlignment="Center"/>
                                 </Grid>
 
 
                             </Button>
 
                             <StackPanel x:Name="SubMenuServicos"
-                Visibility="Collapsed"
-                Margin="42 0 0 0">
+                                        Visibility="Collapsed"
+                                        Margin="42 0 0 0">
 
 
                                 <Button x:Name="BtnServicos"

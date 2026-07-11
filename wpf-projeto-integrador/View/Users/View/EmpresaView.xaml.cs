@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using wpf_projeto_integrador.Data;
+using wpf_projeto_integrador.View.Dialog;
+using wpf_projeto_integrador.View.Dialog.Controls;
 using wpf_projeto_integrador.View.Users.ControleDeUsuarios;
 
 namespace wpf_projeto_integrador.View.Users.View
@@ -160,7 +160,12 @@ namespace wpf_projeto_integrador.View.Users.View
 
             if (empresa == null)
             {
-                MessageBox.Show("Empresa não encontrada.");
+                MessageBox.Show(
+                    "Empresa não encontrada.",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
                 return;
             }
 
@@ -184,9 +189,16 @@ namespace wpf_projeto_integrador.View.Users.View
 
             if (empresa == null)
             {
-                MessageBox.Show("Empresa não encontrada.");
+                MessageBox.Show(
+                    "Empresa não encontrada.",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
                 return;
             }
+
+            
 
             var telaPrincipal = (FormMenu)Window.GetWindow(this);
 
@@ -199,8 +211,10 @@ namespace wpf_projeto_integrador.View.Users.View
 
             if (empresaSelecionada == null)
             {
-                MessageBox.Show("Empresa não encontrada.");
-                return;
+                DialogoCustomizado.Show(
+                     "Erro",
+                     new MensagemDialogControl("Empresa não encontrada."),
+                     Window.GetWindow(this));
             }
 
             using var db = new MusicStationContext();
@@ -295,7 +309,10 @@ namespace wpf_projeto_integrador.View.Users.View
             MessageBox.Show(
                 empresa.Ativo
                     ? "Empresa ativada com sucesso."
-                    : "Empresa desativada com sucesso.");
+                    : "Empresa desativada com sucesso.",
+                "Sucesso",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
 
             CarregarEmpresas();
         }

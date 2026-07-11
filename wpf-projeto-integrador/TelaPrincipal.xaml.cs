@@ -87,7 +87,10 @@ namespace wpf_projeto_integrador
             BtnProfissionais.Tag = null;
             BtnClientes.Tag = null;
             BtnEmpresas.Tag = null;
-            BtnProfissionalCargo.Tag = null;
+
+            // Submenus do financeiro
+            BtnVisaoGeralFinanceiro.Tag = null;
+            BtnDashboardFinanceiro.Tag = null;
 
             BtnServicos.Tag = null;
             BtnPedidos.Tag = null;
@@ -131,9 +134,10 @@ namespace wpf_projeto_integrador
             BtnProfissionais.Visibility = Visibility.Collapsed;
             BtnClientes.Visibility = Visibility.Collapsed;
             BtnEmpresas.Visibility = Visibility.Collapsed;
-            BtnProfissionalCargo.Visibility = Visibility.Collapsed;
 
             BtnGestaoFinanceira.Visibility = Visibility.Collapsed;
+            BtnVisaoGeralFinanceiro.Visibility = Visibility.Collapsed;
+            BtnDashboardFinanceiro.Visibility = Visibility.Collapsed;
 
             BtnGestaoServicos.Visibility = Visibility.Collapsed;
             BtnServicos.Visibility = Visibility.Collapsed;
@@ -161,9 +165,10 @@ namespace wpf_projeto_integrador
                     BtnProfissionais.Visibility = Visibility.Visible;
                     BtnClientes.Visibility = Visibility.Visible;
                     BtnEmpresas.Visibility = Visibility.Visible;
-                    BtnProfissionalCargo.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
+                    BtnVisaoGeralFinanceiro.Visibility = Visibility.Visible;
+                    BtnDashboardFinanceiro.Visibility = Visibility.Visible;
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
                     BtnServicos.Visibility = Visibility.Visible;
@@ -199,6 +204,8 @@ namespace wpf_projeto_integrador
                     BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
+                    BtnVisaoGeralFinanceiro.Visibility = Visibility.Visible;
+                    BtnDashboardFinanceiro.Visibility = Visibility.Visible;
                     BtnComunicacao.Visibility = Visibility.Visible;
                     break;
 
@@ -331,8 +338,24 @@ namespace wpf_projeto_integrador
 
         private void BtnGestaoFinanceira_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new FinanceiroView();
+            AbrirSubMenu(SubMenuFinanceiro, SetaFinanceiro);
             SelecionarMenu(BtnGestaoFinanceira);
+        }
+        private void BtnVisaoGeralFinanceiro_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new FinanceiroView();
+
+            SelecionarMenu(
+                BtnGestaoFinanceira,
+                BtnVisaoGeralFinanceiro);
+        }
+        private void BtnDashboardFinanceiro_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new DashboardFinanceiroView();
+
+            SelecionarMenu(
+                BtnGestaoFinanceira,
+                BtnDashboardFinanceiro);
         }
 
         private void BtnGestaoServicos_Click(object sender, RoutedEventArgs e)
