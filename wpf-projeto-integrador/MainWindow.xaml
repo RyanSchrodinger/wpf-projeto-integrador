@@ -90,8 +90,6 @@
             </Border.Background>
 
         </Border>
-
-        <!-- CARD LOGIN -->
         
         <!-- CARD LOGIN -->
         <Grid Grid.Column="1">

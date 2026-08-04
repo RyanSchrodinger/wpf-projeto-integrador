@@ -71,7 +71,7 @@
                     <StackPanel Orientation="Vertical">
 
 
-                        <Button x:Name="BtnDashboard"
+                        <!--<Button x:Name="BtnDashboard"
                                 Click="BtnDashboard_Click"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
@@ -84,7 +84,7 @@
                                 <TextBlock Text="Dashboard"/>
 
                             </StackPanel>
-                        </Button>
+                        </Button>-->
 
                         <StackPanel>
                             <Button x:Name="BtnGestaoPessoas"
@@ -280,7 +280,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button x:Name="BtnConfiguracao"
+                        <!--<Button x:Name="BtnConfiguracao"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
 
@@ -292,7 +292,7 @@
                                 <TextBlock Text="Configuração"/>
 
                             </StackPanel>
-                        </Button>
+                        </Button>-->
 
                         <Button x:Name="BtnLogs"
                                 Style="{StaticResource MenuButton}"

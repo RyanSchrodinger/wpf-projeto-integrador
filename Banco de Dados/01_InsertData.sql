@@ -8,8 +8,7 @@ SELECT * FROM Pagamentos
 
 
 -- Definindo o tipo de log "Login"
-INSERT INTO TiposAcao(Nome)
-VALUES ('Login')
+
 
 -- INSERT DE ALGUNS USUÁRIOS
 INSERT INTO Usuarios(Nome,SenhaHash,NomeUsuario,Email)
@@ -165,21 +164,21 @@ INSERT INTO Pagamentos
 )
 VALUES
 -- JANEIRO
-(180.00, '2026-01-05', '2026-01-05', 1, 2, 1, 'Aula de violão iniciante com profissional', 4, NULL, 14),
-(320.00, '2026-01-12', '2026-01-12', 2, 2, 2, 'Locação de guitarra para evento', 5, 24, NULL),
-(750.00, '2026-01-22', '2026-01-22', 1, 2, 3, 'Venda de violão acústico', 6, 24, NULL),
+(200000000.00, '2026-01-05', '2026-09-17', 1, 2, 2, 'Troca de Toamdas', 37, NULL, 14),
+(40000.00, '2026-01-12', '2026-03-12', 2, 2, 2, 'Locação de guitarra para evento', 7, 24, NULL),
+(30000.00, '2026-01-22', '2026-04-22', 1, 2, 3, 'Venda de violão acústico', 8, 24, NULL),
 
 -- FEVEREIRO
-(250.00, '2026-02-03', '2026-02-03', 1, 2, 1, 'Regulagem de guitarra com profissional', 7, NULL, 15),
-(480.00, '2026-02-10', '2026-02-10', 3, 2, 2, 'Locação de teclado Yamaha', 8, 25, NULL),
-(1200.00, '2026-02-18', '2026-02-18', 2, 2, 3, 'Venda de interface de áudio', 9, 25, NULL),
+(250.00, '2026-02-03', '2026-02-03', 1, 2, 1, 'Regulagem de guitarra com profissional', 10, NULL, 15),
+(480.00, '2026-02-10', '2026-02-10', 3, 2, 2, 'Locação de teclado Yamaha', 11, 25, NULL),
+(1200.00, '2026-02-18', '2026-02-18', 2, 2, 3, 'Venda de interface de áudio', 12, 25, NULL),
 (90.00, '2026-02-26', NULL, 5, 1, 1, 'Pagamento pendente de aula avulsa', 10, NULL, 16),
 
 -- MARÇO
-(300.00, '2026-03-04', '2026-03-04', 1, 2, 1, 'Aula de guitarra avançada', 11, NULL, 17),
-(650.00, '2026-03-11', '2026-03-11', 2, 2, 2, 'Locação de bateria Pearl', 12, 26, NULL),
-(1600.00, '2026-03-19', '2026-03-19', 1, 2, 3, 'Venda de teclado usado', 13, 26, NULL),
-(120.00, '2026-03-25', NULL, 4, 3, 4, 'Multa por atraso na devolução', 4, 24, NULL),
+(30000.00, '2026-03-04', '2026-03-04', 1, 2, 1, 'Aula de guitarra avançada', 11, NULL, 17),
+(65000.00, '2026-03-11', '2026-03-11', 2, 2, 2, 'Locação de bateria Pearl', 12, 26, NULL),
+(160000.00, '2026-03-19', '2026-03-19', 1, 2, 3, 'Venda de teclado usado', 13, 26, NULL),
+(120000.00, '2026-03-25', NULL, 4, 3, 4, 'Multa por atraso na devolução', 4, 24, NULL),
 
 -- ABRIL
 (420.00, '2026-04-02', '2026-04-02', 1, 2, 1, 'Gravação em estúdio com técnico de áudio', 5, NULL, 18),

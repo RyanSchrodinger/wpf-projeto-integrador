@@ -28,20 +28,49 @@ namespace wpf_projeto_integrador.View.Users
             // CARDS
             // =========================
 
+            // =========================
+            // CARDS
+            // =========================
+
+            int totalAdministradores = db.Administradores.Count();
+
+            int totalAdministradorGeral = db.Administradores.Count(a =>
+                a.NivelAcesso ==
+                Administrador.NivelAcessoEnum.AdministradorGeral);
+
+            int totalAtendente = db.Administradores.Count(a =>
+                a.NivelAcesso ==
+                Administrador.NivelAcessoEnum.Atendente);
+
+            int totalSuporte = db.Administradores.Count(a =>
+                a.NivelAcesso ==
+                Administrador.NivelAcessoEnum.Suporte);
+
+            int totalFinanceiro = db.Administradores.Count(a =>
+                a.NivelAcesso ==
+                Administrador.NivelAcessoEnum.Financeiro);
+
+            int totalModerador = db.Administradores.Count(a =>
+                a.NivelAcesso ==
+                Administrador.NivelAcessoEnum.Moderador);
+
             txtTotalAdministradores.Text =
-                db.Administradores.Count().ToString();
+                totalAdministradores.ToString();
 
-            txtToalAlto.Text =
-                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.AdministradorGeral)
-                .ToString();
+            txtTotalAdministradorGeral.Text =
+                totalAdministradorGeral.ToString();
 
-            txtTotalMedio.Text =
-                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Financeiro)
-                .ToString();
+            txtTotalAtendente.Text =
+                totalAtendente.ToString();
 
-            txtTotalBaixo.Text =
-                db.Administradores.Count(a => a.NivelAcesso == Administrador.NivelAcessoEnum.Atendente)
-                .ToString();
+            txtTotalSuporte.Text =
+                totalSuporte.ToString();
+
+            txtTotalFinanceiro.Text =
+                totalFinanceiro.ToString();
+
+            txtTotalModerador.Text =
+                totalModerador.ToString();
 
             //txtotalAlto.Text =
             //    db.Administradores.Count(a => a.Ativo)

@@ -26,7 +26,7 @@ namespace wpf_projeto_integrador
         public int IdUsuarioLogado;
         private bool telaCheia = false;
 
-        public FormMenu(Administrador administrador)
+        public FormMenu(Administrador administrador)    
         {
             InitializeComponent();
 
@@ -40,8 +40,9 @@ namespace wpf_projeto_integrador
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
 
-            MainContent.Content = new DashBoardView();
-            SelecionarMenu(BtnDashboard);
+            //MainContent.Content = new DashBoardView();
+            //SelecionarMenu(BtnDashboard);
+            AbrirFinanceiro();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -66,6 +67,14 @@ namespace wpf_projeto_integrador
             }
         }
 
+        public void AbrirFinanceiro()
+        {
+            if(_administrador.NivelAcesso == NivelAcessoEnum.Financeiro)
+            {
+                MainContent.Content = new FinanceiroView();
+
+            }
+        }
         public void AbrirTela(UserControl tela)
         {
             MainContent.Content = tela;
@@ -73,16 +82,15 @@ namespace wpf_projeto_integrador
 
         private void LimparSelecaoMenu()
         {
-            BtnDashboard.Tag = null;
+            //BtnDashboard.Tag = null;
 
             BtnGestaoPessoas.Tag = null;
             BtnGestaoFinanceira.Tag = null;
             BtnGestaoServicos.Tag = null;
             BtnGestaoLocacoes.Tag = null;
             BtnComunicacao.Tag = null;
-            BtnConfiguracao.Tag = null;
+            //BtnConfiguracao.Tag = null;
             BtnLogs.Tag = null;
-
             BtnUsuarios.Tag = null;
             BtnAdministradores.Tag = null;
             BtnProfissionais.Tag = null;
@@ -122,7 +130,7 @@ namespace wpf_projeto_integrador
 
         public void VerificarPermissoes()
         {
-            BtnDashboard.Visibility = Visibility.Collapsed;
+            //BtnDashboard.Visibility = Visibility.Collapsed;
 
             BtnGestaoPessoas.Visibility = Visibility.Collapsed;
             BtnUsuarios.Visibility = Visibility.Collapsed;
@@ -134,20 +142,17 @@ namespace wpf_projeto_integrador
             BtnGestaoFinanceira.Visibility = Visibility.Collapsed;
             BtnVisaoGeralFinanceiro.Visibility = Visibility.Collapsed;
             BtnDashboardFinanceiro.Visibility = Visibility.Collapsed;
-
-            
-
             BtnGestaoLocacoes.Visibility = Visibility.Collapsed;
             
 
             BtnComunicacao.Visibility = Visibility.Collapsed;
-            BtnConfiguracao.Visibility = Visibility.Collapsed;
+            //BtnConfiguracao.Visibility = Visibility.Collapsed;
             BtnLogs.Visibility = Visibility.Collapsed;
 
             switch (_administrador.NivelAcesso)
             {
                 case NivelAcessoEnum.AdministradorGeral:
-                    BtnDashboard.Visibility = Visibility.Visible;
+                    //BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoPessoas.Visibility = Visibility.Visible;
                     BtnUsuarios.Visibility = Visibility.Visible;
@@ -167,12 +172,12 @@ namespace wpf_projeto_integrador
                     
 
                     BtnComunicacao.Visibility = Visibility.Visible;
-                    BtnConfiguracao.Visibility = Visibility.Visible;
+                    //BtnConfiguracao.Visibility = Visibility.Visible;
                     BtnLogs.Visibility = Visibility.Visible;
                     break;
 
                 case NivelAcessoEnum.Atendente:
-                    BtnDashboard.Visibility = Visibility.Visible;
+                    //BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoPessoas.Visibility = Visibility.Visible;
                     BtnClientes.Visibility = Visibility.Visible;
@@ -184,7 +189,7 @@ namespace wpf_projeto_integrador
                     break;
 
                 case NivelAcessoEnum.Financeiro:
-                    BtnDashboard.Visibility = Visibility.Visible;
+                    //BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoFinanceira.Visibility = Visibility.Visible;
                     BtnVisaoGeralFinanceiro.Visibility = Visibility.Visible;
@@ -193,7 +198,7 @@ namespace wpf_projeto_integrador
                     break;
 
                 case NivelAcessoEnum.Suporte:
-                    BtnDashboard.Visibility = Visibility.Visible;
+                    //BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoServicos.Visibility = Visibility.Visible;
                     
@@ -202,7 +207,7 @@ namespace wpf_projeto_integrador
                     break;
 
                 case NivelAcessoEnum.Moderador:
-                    BtnDashboard.Visibility = Visibility.Visible;
+                    //BtnDashboard.Visibility = Visibility.Visible;
 
                     BtnGestaoPessoas.Visibility = Visibility.Visible;
                     BtnUsuarios.Visibility = Visibility.Visible;
@@ -275,11 +280,11 @@ namespace wpf_projeto_integrador
             return $"{partes[0][0]}{partes[^1][0]}".ToUpper();
         }
 
-        private void BtnDashboard_Click(object sender, RoutedEventArgs e)
-        {
-            MainContent.Content = new DashBoardView();
-            SelecionarMenu(BtnDashboard);
-        }
+        //private void BtnDashboard_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainContent.Content = new DashBoardView();
+        //    SelecionarMenu(BtnDashboard);
+        //}
 
         private void BtnGestaoPessoas_Click(object sender, RoutedEventArgs e)
         {

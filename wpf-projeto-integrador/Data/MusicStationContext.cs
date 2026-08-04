@@ -34,9 +34,7 @@ namespace wpf_projeto_integrador.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                 "Server=Ryan\\SQLEXPRESS;Database=MusicStation;Trusted_Connection=True;TrustServerCertificate=True;"
-             );
-
+                @"Server=RYAN\SQLEXPRESS;Database=MusicStation;Trusted_Connection=True;TrustServerCertificate=True;");
 
         }
 

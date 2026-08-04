@@ -27,55 +27,104 @@
         </Grid>
 
         <UniformGrid Grid.Row="1"
-                     Columns="6"
-                     Margin="0 18 0 10">
+             Columns="6"
+             Margin="0 18 0 10">
 
+            <!-- TOTAL -->
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Total de Administradores</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalAdministradores">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
-                </StackPanel>
-            </Border>
+                    <TextBlock Style="{StaticResource TextoCard}"
+                       Text="Total de Administradores"/>
 
+                    <TextBlock Style="{StaticResource NumeroCard}"
+                       x:Name="txtTotalAdministradores"
+                       Text="0"/>
 
-            <Border Style="{StaticResource CardResumo}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Administrador</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtToalAlto">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource CardResumo}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Nível Medio</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalMedio">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource CardResumo}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">Nível Baixo</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}" Name="txtTotalBaixo">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
-                </StackPanel>
-            </Border>
-            <Border Style="{StaticResource CardResumo}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">outro nivel</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                    <TextBlock Text="Cadastrados no sistema"
+                       Foreground="#8B5CF6"
+                       FontSize="11"/>
                 </StackPanel>
             </Border>
 
+            <!-- ADMINISTRADOR GERAL -->
             <Border Style="{StaticResource CardResumo}">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource TextoCard}">outro nivel</TextBlock>
-                    <TextBlock Style="{StaticResource NumeroCard}">0</TextBlock>
-                    <TextBlock Text="100% do total" Foreground="#8B5CF6" FontSize="11"/>
+                    <TextBlock Style="{StaticResource TextoCard}"
+                       Text="Administradores Gerais"/>
+
+                    <TextBlock Style="{StaticResource NumeroCard}"
+                       x:Name="txtTotalAdministradorGeral"
+                       Text="0"/>
+
+                    <TextBlock Text="Acesso total ao sistema"
+                       Foreground="#A855F7"
+                       FontSize="11"/>
                 </StackPanel>
             </Border>
 
+            <!-- ATENDENTE -->
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}"
+                       Text="Atendentes"/>
+
+                    <TextBlock Style="{StaticResource NumeroCard}"
+                       x:Name="txtTotalAtendente"
+                       Text="0"/>
+
+                    <TextBlock Text="Atendimento aos usuários"
+                       Foreground="#3B82F6"
+                       FontSize="11"/>
+                </StackPanel>
+            </Border>
+
+            <!-- SUPORTE -->
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}"
+                       Text="Suporte"/>
+
+                    <TextBlock Style="{StaticResource NumeroCard}"
+                       x:Name="txtTotalSuporte"
+                       Text="0"/>
+
+                    <TextBlock Text="Suporte técnico"
+                       Foreground="#06B6D4"
+                       FontSize="11"/>
+                </StackPanel>
+            </Border>
+
+            <!-- FINANCEIRO -->
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}"
+                       Text="Financeiro"/>
+
+                    <TextBlock Style="{StaticResource NumeroCard}"
+                       x:Name="txtTotalFinanceiro"
+                       Text="0"/>
+
+                    <TextBlock Text="Gestão financeira"
+                       Foreground="#FACC15"
+                       FontSize="11"/>
+                </StackPanel>
+            </Border>
+
+            <!-- MODERADOR -->
+            <Border Style="{StaticResource CardResumo}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TextoCard}"
+                       Text="Moderadores"/>
+
+                    <TextBlock Style="{StaticResource NumeroCard}"
+                       x:Name="txtTotalModerador"
+                       Text="0"/>
+
+                    <TextBlock Text="Moderação da plataforma"
+                       Foreground="#EC4899"
+                       FontSize="11"/>
+                </StackPanel>
+            </Border>
 
         </UniformGrid>
 
